@@ -1,0 +1,34 @@
+Projet pseudo réseau social
+
+Rôle:
+- Visiteur
+- Utilisateur
+- Modérateur
+- Administrateur
+
+Administration (Modérateur et Administrateur):
+- Possibilité de supprimer un commentaire ou une publication
+- Possibilité de consulter les signalements.
+- Possibilité de bannir un utilisateur.
+- Consulter un historique de bannissement.
+- Désigner un utilisateur modérateur ou administrateur (seul l'administrateur peu faire ceci).
+
+Accueil:
+- Si l'utilisateur n'est pas connecté, afficher une page d'inscription ou de connexion un peu comme Facebook ou Twitter.
+- Sinon, afficher son fil d'actualité.
+
+Profil:
+- Possibilité de consulté ses publications (texte, photo, vidéo, etc...).
+- Il y a plusieurs catégories sur le profil (accueil, photos, liste d'amis).
+- Possibilité d'ajouter en amis les autres membres.
+- Possibilité de bloquer un utilisateur.
+- Possibilité de signaler un profil.
+
+Publication :
+- Les publications peuvent être visible publiquement, amis, amis sauf, et privé.
+- Possibilité de signaler une publication ou un commentaire.
+
+Messagerie (logo enveloppe):
+- L'utilisateur peut choisir si les utilisateurs qu'ils ne sont pas amis avec peuvent communiqué avec lui.
+
+Notification (logo cloche):
