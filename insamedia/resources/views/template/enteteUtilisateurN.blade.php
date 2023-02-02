@@ -1,10 +1,6 @@
 <head>
     <meta charset="UTF-8">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-    <link href="{{ asset('css/style.css') }}" rel="stylesheet" />
-
-    <script src="https://kit.fontawesome.com/09475d7342.js" crossorigin="anonymous"></script>
-
     <title>Insamedia Accueil</title>
 <head>
 <body>
@@ -24,10 +20,8 @@
                     
                     <!-- Liens à gauche de la navbar -->
                     <ul class="navbar-nav ms-auto">
-                        <a class="nav-link" href="#"><i class="fa-solid fa-arrow-up-from-bracket icon"></i></i></a>
-                        <a class="nav-link" href="#"><i class="fa-regular fa-id-card icon"></i></a>
-                        <a class="nav-link" href="#"><i class="fa-solid fa-door-open icon"></i></a>
-                        <a class="nav-link" href="#"><i class="fa-solid fa-gear icon"></i></a>
+                        <a class="nav-link" href="#">Connexion</a>
+                        <a class="nav-link" href="#">Inscription</a>
                     </ul>
                 </div>
             </div>
