@@ -2,6 +2,15 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\ConnexionInscriptionController;
+use App\Http\Controllers\AccueilController;
+use App\Http\Controllers\UtilisateurController;
+use App\Http\Controllers\NotificationController;
+use App\Http\Controllers\PublicationController;
+use App\Http\Controllers\MessageController;
+use App\Http\Controllers\ParametreController;
+use App\Http\Controllers\ParcourirController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,6 +22,35 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [AccueilController::class, 'afficherAccueil'])->name('accueil.afficher');
+
+Route::get('/parcourir', [ParcourirController::class, 'afficherParcourir'])->name('parcourir.afficher');
+Route::post('/parcourir/recherche', [ParcourirController::class, 'rechercher'])->name('parcourir.rechercher');
+
+Route::get('/connexion', [ConnexionInscriptionController::class, 'afficherConnexion'])->name('connexion.afficher');
+Route::post('/connexion/seconnecter', [ConnexionInscriptionController::class, 'seconnecter'])->name('connexion.seconnecter');
+
+Route::get('/inscription', [ConnexionInscriptionController::class, 'afficherInscription'])->name('inscription.afficher');
+Route::post('/inscription/sincrire', [ConnexionInscriptionController::class, 'sincrire'])->name('inscription.sincrire');
+
+Route::get('/deconnexion', [ConnexionInscriptionController::class, 'deconnexion'])->name('deconnexion');
+
+Route::get('/profils/{id}', [UtilisateurController::class, 'afficherProfil'])->name('profil.afficher');
+Route::get('/profils/{id}/ajouter', [UtilisateurController::class, 'ajouterAmis'])->name('profil.ajouter');
+Route::get('/profils/{id}/accepter', [UtilisateurController::class, 'accepterAmis'])->name('profil.accepter');
+Route::get('/profils/{id}/refuser', [UtilisateurController::class, 'supprimerAmis'])->name('profil.refuser');
+Route::get('/profils/{id}/annuler', [UtilisateurController::class, 'supprimerAmis'])->name('profil.annuler');
+Route::get('/profils/{id}/supprimer', [UtilisateurController::class, 'supprimerAmis'])->name('profil.supprimer');
+
+Route::get('/notifications', [NotificationController::class, 'afficherNotification'])->name('notification.afficher');
+
+Route::post('/publication/publier/{id}', [PublicationController::class, 'publier'])->name('publication.publier');
+Route::get('/publication/aimer/{id}', [PublicationController::class, 'aimer'])->name('publication.aimer');
+Route::get('/publication/commentaire/{id}', [PublicationController::class, 'commentaire'])->name('publication.commentaire');
+
+Route::get('/message', [MessageController::class, 'afficherMessage'])->name('message.afficher');
+Route::get('/message/{id}', [MessageController::class, 'afficherMessage'])->name('message.afficher');
+Route::post('/message/envoyer/{id}', [MessageController::class, 'envoyerMessage'])->name('message.envoyer');
+
+Route::get('/parametre/{id}', [ParametreController::class, 'afficherParametre'])->name('parametre.afficher');
+Route::post('/parametre/modifProfil', [ParametreController::class, 'modifProfil'])->name('parametre.modifProfil');

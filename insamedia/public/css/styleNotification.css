@@ -1,0 +1,40 @@
+.containerN{
+    margin: auto;
+    width: 70%;
+    margin-top: 2%;
+}
+
+.uneNotification{
+    display: flex;
+    border-color: gray;
+    border-bottom-width: 2px;
+    border-bottom-style: solid;
+}
+
+.photoProfileN{
+    width: 7%;
+    border-radius: 50%;
+}
+
+.testN{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.testN2{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.bouton{
+    width: 50px;
+    height: 40px;
+}
+
+.boutonVisio{
+    margin-left: 450px;
+}
+
+.boutonAccepter{
+    margin-left: 500px;
+}

@@ -1,0 +1,113 @@
+.icon{
+    font-size: 20px;
+    color: white;
+}
+
+.ligneE{
+    display: flex;
+}
+
+.colonneE1{
+    flex: 10%;
+}
+
+.colonneE2{
+    padding-left: 2%;
+    flex: 90%
+}
+
+.formulaire{
+    width: 40%;
+}
+
+.centrer{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.titre{
+    text-align: center;
+    margin-top: 8%;
+}
+
+.petiteLigne{
+    text-align: center;
+    font-size: 12px;
+}
+
+.photoProfile{
+    width: 70%;
+    border-radius: 50%;
+    display: block;
+    margin: auto;
+}
+
+.cartePublication{
+    margin-top: 1%;
+    margin-bottom: 5%;
+    width: 50%;
+}
+
+.carteContenu{
+    width: 50%;
+}
+
+.carteCommentaire{
+    width: 50%;
+    margin-bottom: 3%;
+}
+
+.elementDroite{
+    display: block;
+    margin-left: auto;
+}
+
+.texteContenu{
+    font-size: 10px;
+    text-align: center;
+}
+
+.unCommentaire{
+    margin-bottom: 1%;
+}
+
+.photoPublication{
+    width: 50%;
+}
+
+.image{
+    width: 100%;
+    display: block;
+    margin: auto;
+}
+
+@media screen and (max-width: 900px){
+    .formulaire{
+        width: 80%;
+    }
+
+    .photoProfile{
+        width: 50%;
+    }
+
+    .colonneE1{
+        flex: 20%;
+    }
+
+    .colonneE2{
+        flex: 80%;
+    }
+
+    .cartePublication{
+        width: 90%;
+    }
+
+    .carteContenu{
+        width: 90%;
+    }
+
+    .carteCommentaire{
+        width: 90%;
+    }
+}

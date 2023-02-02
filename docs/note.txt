@@ -32,3 +32,5 @@ Messagerie (logo enveloppe):
 - L'utilisateur peut choisir si les utilisateurs qu'ils ne sont pas amis avec peuvent communiqué avec lui.
 
 Notification (logo cloche):
+
+Rajouter middleWare pour la vérification des rôles.

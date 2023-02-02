@@ -1,0 +1,55 @@
+#containerM{
+    display: grid;
+    grid-template-columns: 450px 1030px;
+    grid-template-areas:
+    "lc d d d"
+    "lc d d d"
+    "lc c c c"
+    "lc c c c";
+}
+
+#listcontact {
+    grid-area: lc;
+    height: 650px;
+    overflow-y: scroll;
+}
+
+#discussion{
+    grid-area: d;
+    height: 520px;
+    overflow-y: scroll;
+}
+
+.commentaireM{
+    grid-area: c;
+}
+
+.apercuMessage{
+    font-size: 13px;
+}
+
+.photoProfileM{
+    width: 25%;
+    border-radius: 50%;
+}
+
+.bulleD{
+    display: grid;
+    grid-template-columns: 50px 900px;
+    padding: 5px;
+}
+
+.carteB{
+    padding: 5px;
+}
+
+.bulleR{
+    display: grid;
+    grid-template-columns: 900px 50px;
+    padding: 5px;
+    justify-content: right;
+}
+
+.carteB{
+    padding: 5px;
+}
