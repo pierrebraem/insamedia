@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr">
-@include('template.enteteAdministrateur')
+@include('template.enteteUtilisateurN')
 
 @yield('content')
 
