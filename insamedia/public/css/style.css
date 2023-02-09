@@ -43,7 +43,17 @@
 
 .cartePublication{
     margin-top: 1%;
+    margin-bottom: 5%;
     width: 50%;
+}
+
+.carteContenu{
+    width: 50%;
+}
+
+.carteCommentaire{
+    width: 50%;
+    margin-bottom: 1%;
 }
 
 .elementDroite{
@@ -51,9 +61,17 @@
     margin-left: auto;
 }
 
+.texteContenu{
+    font-size: 10px;
+}
+
 @media screen and (max-width: 900px){
     .formulaire{
         width: 80%;
+    }
+
+    .photoProfile{
+        width: 50%;
     }
 
     .colonne1{
@@ -62,5 +80,17 @@
 
     .colonne2{
         flex: 80%;
+    }
+
+    .cartePublication{
+        width: 90%;
+    }
+
+    .carteContenu{
+        width: 90%;
+    }
+
+    .carteCommentaire{
+        width: 90%;
     }
 }
