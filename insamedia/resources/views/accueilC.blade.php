@@ -346,5 +346,44 @@
                 </div>
             </div>
         </div>
+
+        <!-- Exemple d'un post contenant une vidéo -->
+        <div class="post">
+            <div class="card carteContenu centrer">
+                <div class="card-body">
+                    <div class="row w-50">
+                        <div class="col-2">
+                            <a href="#"><img class="photoProfile elementDroite" src="{{ asset('images/photo_exemple7.png') }}" alt="exemple7"/></a>
+                        </div>
+                        <div class="col-6 texteContenu">
+                            <p>BearX - 6H</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <p>J'ai trouvé un bug sur ce jeu ce matin.</p>
+                            <video width="500" heigth="500" controls>
+                                <source src="{{ asset('videos/bug.mp4') }}">
+                            </video>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <i class="fa-regular fa-heart"></i>
+                            <span class="badge bg-danger round-pill" style="margin-right: 10px;">64</span>
+
+                            <i class="fa-solid fa-share" style="margin-right: 10px;"></i>
+            
+                            <i class="fa-regular fa-flag"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card carteCommentaire centrer text-center">
+                <div class="card-body">
+                    <p>Les commentaires sur ce post sont désactivées.</p>
+                </div>
+            </div>
+        </div>
     </div>
 @endsection
