@@ -69,6 +69,10 @@
     margin-bottom: 1%;
 }
 
+.photoPublication{
+    width: 50%;
+}
+
 @media screen and (max-width: 900px){
     .formulaire{
         width: 80%;

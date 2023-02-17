@@ -271,5 +271,80 @@
                 </div>
             </div>
         </div>
+
+        <!-- Exemple d'un post avec une image avec les commentaires désactivées -->
+        <div class="post">
+            <div class="card carteContenu centrer">
+                <div class="card-body">
+                    <div class="row w-50">
+                        <div class="col-2">
+                            <a href="#"><img class="photoProfile elementDroite" src="{{ asset('images/photo_exemple6.png') }}" alt="exemple6"/></a>
+                        </div>
+                        <div class="col-6 texteContenu">
+                            <p>OscarBrave - 32min</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <p>Voici une photo de mon chat trop mignon</p>
+                            <p>Son nom est... Oups...</p>
+                            <img class="photoPublication" src="{{ asset('images/Mon_chat.jpg') }}" alt="Mon_chat"/>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <i class="fa-solid fa-heart"></i>
+                            <span class="badge bg-danger round-pill" style="margin-right: 10px;">1.2k</span>
+
+                            <i class="fa-solid fa-share" style="margin-right: 10px;"></i>
+            
+                            <i class="fa-regular fa-flag"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card carteCommentaire centrer text-center">
+                <div class="card-body">
+                    <p>Les commentaires sur ce post sont désactivées.</p>
+                </div>
+            </div>
+        </div>
+
+         <!-- Exemple 2 d'un post avec une image avec les commentaires désactivées -->
+         <div class="post">
+            <div class="card carteContenu centrer">
+                <div class="card-body">
+                    <div class="row w-50">
+                        <div class="col-2">
+                            <a href="#"><img class="photoProfile elementDroite" src="{{ asset('images/photo_exemple6.png') }}" alt="exemple6"/></a>
+                        </div>
+                        <div class="col-6 texteContenu">
+                            <p>OscarBrave - 21min</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <p>J'ai également un cheval du nom de Junior.</p>
+                            <img class="photoPublication" src="{{ asset('images/Mon_cheval.jpg') }}" alt="Mon_cheval"/>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <i class="fa-solid fa-heart"></i>
+                            <span class="badge bg-danger round-pill" style="margin-right: 10px;">723</span>
+
+                            <i class="fa-solid fa-share" style="margin-right: 10px;"></i>
+            
+                            <i class="fa-regular fa-flag"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card carteCommentaire centrer text-center">
+                <div class="card-body">
+                    <p>Les commentaires sur ce post sont désactivées.</p>
+                </div>
+            </div>
+        </div>
     </div>
 @endsection
