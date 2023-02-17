@@ -3,15 +3,15 @@
     color: white;
 }
 
-.ligne{
+.ligneE{
     display: flex;
 }
 
-.colonne1{
+.colonneE1{
     flex: 10%;
 }
 
-.colonne2{
+.colonneE2{
     padding-left: 2%;
     flex: 90%
 }
@@ -53,7 +53,7 @@
 
 .carteCommentaire{
     width: 50%;
-    margin-bottom: 1%;
+    margin-bottom: 3%;
 }
 
 .elementDroite{
@@ -65,6 +65,10 @@
     font-size: 10px;
 }
 
+.unCommentaire{
+    margin-bottom: 1%;
+}
+
 @media screen and (max-width: 900px){
     .formulaire{
         width: 80%;
@@ -74,11 +78,11 @@
         width: 50%;
     }
 
-    .colonne1{
+    .colonneE1{
         flex: 20%;
     }
 
-    .colonne2{
+    .colonneE2{
         flex: 80%;
     }
 
