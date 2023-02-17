@@ -140,7 +140,7 @@
                                 <div class="col">
                                     <div class="card">
                                         <div class="card-head texteContenu">
-                                            Mr.X - 5 jours
+                                            Mr.X - 5J
                                         </div>
                                         <div class="card-body">
                                             OMG. C'est aussi mon plat préférer!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -165,7 +165,7 @@
                                 <div class="col">
                                     <div class="card">
                                         <div class="card-head texteContenu">
-                                            DarkUranium - 5 jours
+                                            DarkUranium - 5J
                                         </div>
                                         <div class="card-body">
                                             Trop bien. On devrait s'ajouter en amis.
@@ -190,7 +190,7 @@
                                 <div class="col">
                                     <div class="card">
                                         <div class="card-head texteContenu">
-                                            Mr.X - 5 jours
+                                            Mr.X - 5J
                                         </div>
                                         <div class="card-body">
                                             Avec plaisir :)
@@ -215,7 +215,7 @@
                                 <div class="col">
                                     <div class="card">
                                         <div class="card-head texteContenu">
-                                            CrabyThunder - 1 jour
+                                            CrabyThunder - 1J
                                         </div>
                                         <div class="card-body">
                                             Moi, je ne suis pas d'accord avec toi.
@@ -371,6 +371,46 @@
                         <div class="col">
                             <i class="fa-regular fa-heart"></i>
                             <span class="badge bg-danger round-pill" style="margin-right: 10px;">64</span>
+
+                            <i class="fa-solid fa-share" style="margin-right: 10px;"></i>
+            
+                            <i class="fa-regular fa-flag"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card carteCommentaire centrer text-center">
+                <div class="card-body">
+                    <p>Les commentaires sur ce post sont désactivées.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Exemple d'un post contenant une musique -->
+        <div class="post">
+            <div class="card carteContenu centrer">
+                <div class="card-body">
+                    <div class="row w-50">
+                        <div class="col-2">
+                            <a href="#"><img class="photoProfile elementDroite" src="{{ asset('images/photo_exemple8.png') }}" alt="exemple8"/></a>
+                        </div>
+                        <div class="col-6 texteContenu">
+                            <p>GhostMaj - 2J</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                        <p>Song: Netrum & Halvorsen - Phoenix [NCS Release]
+                        Music provided by NoCopyrightSounds
+                        Free Download/Stream: http://NCS.io/Phoenix
+                        Watch: http://youtu.be/yH88qRmgkGI</p>
+                            <audio controls src="{{ asset('audios/Netrum & Halvorsen - Phoenix [NCS Release].mp3') }}">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <i class="fa-regular fa-heart"></i>
+                            <span class="badge bg-danger round-pill" style="margin-right: 10px;">39.2k</span>
 
                             <i class="fa-solid fa-share" style="margin-right: 10px;"></i>
             
