@@ -28,13 +28,12 @@
         <div class="post">
             <div class="card carteContenu centrer">
                 <div class="card-body">
-                    <div class="row w-25">
-                        <div class="col">
+                    <div class="row w-50">
+                        <div class="col-2">
                             <a href="#"><img class="photoProfile elementDroite" src="{{ asset('images/photo_exemple1.png') }}" alt="exemple1"/></a>
                         </div>
-                        <div class="col texteContenu">
-                            <p>FrenchBrave</p>
-                            <p>2H</p>
+                        <div class="col-6 texteContenu">
+                            <p>FrenchBrave - 2H</p>
                         </div>
                     </div>
                     <div class="row">
@@ -73,13 +72,13 @@
         <div class="post">
             <div class="card carteContenu centrer">
                 <div class="card-body">
-                    <div class="row w-25">
-                        <div class="col">
+                    <div class="row w-50">
+                        <div class="col-2">
                             <a href="#"><img class="photoProfile elementDroite" src="{{ asset('images/photo_exemple2.png') }}" alt="exemple2"/></a>
                         </div>
-                        <div class="col texteContenu">
-                            <p>DarkUranium</p>
-                            <p>31 jan 2023</p>
+                        <div class="col-6 texteContenu">
+                            <p>DarkUranium - 31 jan 2023</p>
+                            
                         </div>
                     </div>
                     <div class="row">
