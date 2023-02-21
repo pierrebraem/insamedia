@@ -17,45 +17,69 @@
     <div class="card mt-5">
         <h5 class="card-header">Profils - 8</h5>
         <div class="card-body">
-            <div class="resultatProfil">
-                <div class="resultatProfilCol">
+            <div class="resultat">
+                <div class="resultatCol">
                     <img src="{{ asset('images/photo_exemple1.png') }}" class="photoProfile"/>
-                    <figcaption class="labelProfil">FrenchBrave</figcaption>
+                    <figcaption class="labelResultat">FrenchBrave</figcaption>
                 </div>
 
-                <div class="resultatProfilCol">
+                <div class="resultatCol">
                     <img src="{{ asset('images/photo_exemple2.png') }}" class="photoProfile"/>
-                    <figcaption class="labelProfil">DarkUranium</figcaption>
+                    <figcaption class="labelResultat">DarkUranium</figcaption>
                 </div>
 
-                <div class="resultatProfilCol">
+                <div class="resultatCol">
                     <img src="{{ asset('images/photo_exemple3.png') }}" class="photoProfile"/>
-                    <figcaption class="labelProfil">EmeraudeDragon</figcaption>
+                    <figcaption class="labelResultat">EmeraudeDragon</figcaption>
                 </div>
 
-                <div class="resultatProfilCol">
+                <div class="resultatCol">
                     <img src="{{ asset('images/photo_exemple4.png') }}" class="photoProfile"/>
-                    <figcaption class="labelProfil">Mr.X</figcaption>
+                    <figcaption class="labelResultat">Mr.X</figcaption>
                 </div>
 
-                <div class="resultatProfilCol">
+                <div class="resultatCol">
                     <img src="{{ asset('images/photo_exemple5.png') }}" class="photoProfile"/>
-                    <figcaption class="labelProfil">CrabyThunder</figcaption>
+                    <figcaption class="labelResultat">CrabyThunder</figcaption>
                 </div>
 
-                <div class="resultatProfilCol">
+                <div class="resultatCol">
                     <img src="{{ asset('images/photo_exemple6.png') }}" class="photoProfile"/>
-                    <figcaption class="labelProfil">OscarBrave</figcaption>
+                    <figcaption class="labelResultat">OscarBrave</figcaption>
                 </div>
 
-                <div class="resultatProfilCol">
+                <div class="resultatCol">
                     <img src="{{ asset('images/photo_exemple7.png') }}" class="photoProfile"/>
-                    <figcaption class="labelProfil">BearX</figcaption>
+                    <figcaption class="labelResultat">BearX</figcaption>
                 </div>
 
-                <div class="resultatProfilCol">
+                <div class="resultatCol">
                     <img src="{{ asset('images/photo_exemple8.png') }}" class="photoProfile"/>
-                    <figcaption class="labelProfil">GhostMaj</figcaption>
+                    <figcaption class="labelResultat">GhostMaj</figcaption>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Carte images -->
+    <div class="card mt-5">
+        <h5 class="card-header">Images - 2</h5>
+        <div class="card-body">
+            <div class="resultat">
+                <div class="resultatCol">
+                    <img src="{{ asset('images/Mon_chat.jpg') }}" class="image"/>
+                    <figcaption class="labelResultat">
+                        <p>Mon chat</p>
+                        <p>De OscarBrave</p>
+                    </figcaption>
+                </div>
+
+                <div class="resultatCol">
+                    <img src="{{ asset('images/Mon_cheval.jpg') }}" class="image"/>
+                    <figcaption class="labelResultat">
+                        <p>Mon cheval</p>
+                        <p>De OscarBrave</p>
+                    </figcaption>
                 </div>
             </div>
         </div>

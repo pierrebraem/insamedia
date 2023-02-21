@@ -53,22 +53,28 @@
     margin: auto;
 }
 
-.labelProfil{
+.labelResultat{
     font-size: 10px;
     text-align: center;
 }
 
-.resultatProfil{
+.resultat{
     display: block;
 }
 
-.resultatProfilCol{
+.resultatCol{
     width: 10%;
     display: inline-block;
 }
 
+.image{
+    width: 100%;
+    display: block;
+    margin: auto;
+}
+
 @media screen and (max-width: 900px){
-    .resultatProfilCol{
+    .resultatCol{
         width: 20%;
     }
 }
