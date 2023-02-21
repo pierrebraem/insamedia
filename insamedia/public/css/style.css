@@ -44,3 +44,28 @@
     text-decoration: none;
     cursor: pointer;
 }
+
+/* -------------------------------------------------------- */
+.photoProfile{
+    width: 60%;
+    border-radius: 50%;
+}
+
+.labelProfil{
+    font-size: 10px;
+}
+
+.resultatProfil{
+    display: block;
+}
+
+.resultatProfilCol{
+    width: 10%;
+    display: inline-block;
+}
+
+@media screen and (max-width: 900px){
+    .resultatProfilCol{
+        width: 20%;
+    }
+}

@@ -2,6 +2,7 @@
 
 @section('content')
 <div class="container">
+    <!-- Carte recherche -->
     <div class="card mt-4 text-center">
         <h5 class="card-header">Rechercher</h5>
         <div class="card-body">
@@ -9,6 +10,54 @@
             <input class="form-control mb-2" type="search" placeholder="Rechercher"/>
             <button class="btn btn-dark"><i class="fa-solid fa-filter" id="rechercheFiltre"></i></button>
             <button class="btn btn-success" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+        </div>
+    </div>
+
+    <!-- Carte profil -->
+    <div class="card mt-5">
+        <h5 class="card-header">Profils - 8</h5>
+        <div class="card-body text-center">
+            <div class="resultatProfil">
+                <div class="resultatProfilCol">
+                    <img src="{{ asset('images/photo_exemple1.png') }}" class="photoProfile"/>
+                    <figcaption class="labelProfil">FrenchBrave</figcaption>
+                </div>
+
+                <div class="resultatProfilCol">
+                    <img src="{{ asset('images/photo_exemple2.png') }}" class="photoProfile"/>
+                    <figcaption class="labelProfil">DarkUranium</figcaption>
+                </div>
+
+                <div class="resultatProfilCol">
+                    <img src="{{ asset('images/photo_exemple3.png') }}" class="photoProfile"/>
+                    <figcaption class="labelProfil">EmeraudeDragon</figcaption>
+                </div>
+
+                <div class="resultatProfilCol">
+                    <img src="{{ asset('images/photo_exemple4.png') }}" class="photoProfile"/>
+                    <figcaption class="labelProfil">Mr.X</figcaption>
+                </div>
+
+                <div class="resultatProfilCol">
+                    <img src="{{ asset('images/photo_exemple5.png') }}" class="photoProfile"/>
+                    <figcaption class="labelProfil">CrabyThunder</figcaption>
+                </div>
+
+                <div class="resultatProfilCol">
+                    <img src="{{ asset('images/photo_exemple6.png') }}" class="photoProfile"/>
+                    <figcaption class="labelProfil">OscarBrave</figcaption>
+                </div>
+
+                <div class="resultatProfilCol">
+                    <img src="{{ asset('images/photo_exemple7.png') }}" class="photoProfile"/>
+                    <figcaption class="labelProfil">BearX</figcaption>
+                </div>
+
+                <div class="resultatProfilCol">
+                    <img src="{{ asset('images/photo_exemple8.png') }}" class="photoProfile"/>
+                    <figcaption class="labelProfil">GhostMaj</figcaption>
+                </div>
+            </div>
         </div>
     </div>
 
