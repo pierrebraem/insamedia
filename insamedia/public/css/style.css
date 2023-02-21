@@ -49,10 +49,13 @@
 .photoProfile{
     width: 60%;
     border-radius: 50%;
+    display: block;
+    margin: auto;
 }
 
 .labelProfil{
     font-size: 10px;
+    text-align: center;
 }
 
 .resultatProfil{

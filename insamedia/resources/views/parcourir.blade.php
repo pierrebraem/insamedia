@@ -16,7 +16,7 @@
     <!-- Carte profil -->
     <div class="card mt-5">
         <h5 class="card-header">Profils - 8</h5>
-        <div class="card-body text-center">
+        <div class="card-body">
             <div class="resultatProfil">
                 <div class="resultatProfilCol">
                     <img src="{{ asset('images/photo_exemple1.png') }}" class="photoProfile"/>
