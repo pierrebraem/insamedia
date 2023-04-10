@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\ConnexionInscriptionController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -21,10 +23,7 @@ Route::get('/parcourir', function() {
     return view('parcourir');
 });
 
-Route::get('/connexion', function() {
-    return view('accueilN');
-});
+Route::get('/connexion', [ConnexionInscriptionController::class, 'afficherConnexion'])->name('connexion.afficher');
 
-Route::get('/inscription', function() {
-    return view('inscription');
-});
+Route::get('/inscription', [ConnexionInscriptionController::class, 'afficherInscription'])->name('inscription.afficher');
+Route::post('/inscription/sincrire', [ConnexionInscriptionController::class, 'sincrire'])->name('inscription.sincrire');
