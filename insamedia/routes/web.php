@@ -20,3 +20,11 @@ Route::get('/', function () {
 Route::get('/parcourir', function() {
     return view('parcourir');
 });
+
+Route::get('/connexion', function() {
+    return view('accueilN');
+});
+
+Route::get('/inscription', function() {
+    return view('inscription');
+});

@@ -16,7 +16,7 @@
                     </div>
                     <button type="submit" class="btn btn-primary centrer mt-3">Connexion</button>
                 </form>
-                <p class="petiteLigne">Pas de compte? Vous pouvez en créer un un <a href="#">ici</a>
+                <p class="petiteLigne">Pas de compte? Vous pouvez en créer un un <a href="/inscription">ici</a>
                 <p class="petiteLigne">Mot de passe oublié? <a href="#">Réinitialisez-le</a>
             </div>
         </div>

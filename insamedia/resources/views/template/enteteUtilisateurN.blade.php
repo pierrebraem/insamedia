@@ -18,13 +18,13 @@
                     <!-- Liens à droite de la navbar -->
                     <ul class="navbar-nav me-auto">
                         <a class="nav-link" href="/parcourir">Parcourir</a>
-                        <a class="nav-link" href="#">Support</a>
+                        <a class="nav-link" href="/inscription">Support</a>
                     </ul>
                     
                     <!-- Liens à gauche de la navbar -->
                     <ul class="navbar-nav ms-auto">
-                        <a class="nav-link" href="#">Connexion</a>
-                        <a class="nav-link" href="#">Inscription</a>
+                        <a class="nav-link" href="/connexion">Connexion</a>
+                        <a class="nav-link" href="/inscription">Inscription</a>
                     </ul>
                 </div>
             </div>
