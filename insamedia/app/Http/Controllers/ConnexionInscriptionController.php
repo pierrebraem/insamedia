@@ -49,7 +49,6 @@ class ConnexionInscriptionController extends Controller
         $nouvelUtilisateur->email = $request->input('email');
         $nouvelUtilisateur->datenaissance = $request->input('datenaissance');
         $nouvelUtilisateur->pseudo = $request->input('pseudo');
-        $nouvelUtilisateur->mdp = $request->input('mdp');
         $nouvelUtilisateur->idrole = 3;
         $nouvelUtilisateur->save();
 
