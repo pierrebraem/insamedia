@@ -72,4 +72,10 @@ class ConnexionInscriptionController extends Controller
         }
         return redirect('/');
     }
+
+    public function deconnexion(Request $request){
+        $request->session()->flush();
+
+        return redirect('/');
+    }
 }
