@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\ConnexionInscriptionController;
+use App\Http\Controllers\AccueilController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,9 +16,7 @@ use App\Http\Controllers\ConnexionInscriptionController;
 |
 */
 
-Route::get('/', function () {
-    return view('accueilC');
-});
+Route::get('/', [AccueilController::class, 'afficherAccueil'])->name('accueil.afficher');
 
 Route::get('/parcourir', function() {
     return view('parcourir');

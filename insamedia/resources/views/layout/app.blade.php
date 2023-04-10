@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html lang="fr">
-@include('template.enteteUtilisateurN')
+@if(session()->get('id'))
+    @include('template.enteteUtilisateurC')
+@else
+    @include('template.enteteUtilisateurN')
+@endif
 
 @yield('content')
 
