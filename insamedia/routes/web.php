@@ -33,3 +33,7 @@ Route::get('/deconnexion', [ConnexionInscriptionController::class, 'deconnexion'
 Route::get('/profils/{id}', function(){
     return view('profil');
 });
+
+Route::get('/notifications', function(){
+    return view('notification');
+});
