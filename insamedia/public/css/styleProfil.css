@@ -34,16 +34,11 @@
     margin-left: 10px;
 }
 
-.resultat{
-    display: block;
+.cartePublicationP{
+    margin-top: 1%;
+    margin-bottom: 5%;
 }
 
-.labelResultat{
-    font-size: 10px;
-    text-align: center;
-}
-
-.resultatCol{
-    width: 10%;
-    display: inline-block;
+.carteCommentaireP{
+    margin-bottom: 3%;
 }
