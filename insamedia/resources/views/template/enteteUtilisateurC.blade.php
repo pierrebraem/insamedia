@@ -18,13 +18,14 @@
                 <div class="collapse navbar-collapse" id="navbarExtendU">
                     <!-- Liens à droite de la navbar -->
                     <ul class="navbar-nav me-auto">
-                        <a class="nav-link" href="#">Parcourir</a>
+                        <a class="nav-link" href="/parcourir">Parcourir</a>
                         <a class="nav-link" href="#">Support</a>
                     </ul>
                     
                     <!-- Liens à gauche de la navbar -->
                     <ul class="navbar-nav ms-auto">
-                        <a class="nav-link" href="#"><i class="fa-solid fa-arrow-up-from-bracket icon"></i></i></a>
+                        <a class="nav-link" href="#"><i class="fa-regular fa-bell icon"></i></a>
+                        <a class="nav-link" href="#"><i class="fa-regular fa-envelope icon"></i></a>
                         <a class="nav-link" href="#"><i class="fa-regular fa-id-card icon"></i></a>
                         <a class="nav-link" href="/deconnexion"><i class="fa-solid fa-door-open icon"></i></a>
                         <a class="nav-link" href="#"><i class="fa-solid fa-gear icon"></i></a>

@@ -18,7 +18,7 @@
                     <!-- Liens à droite de la navbar -->
                     <ul class="navbar-nav me-auto">
                         <a class="nav-link" href="/parcourir">Parcourir</a>
-                        <a class="nav-link" href="/inscription">Support</a>
+                        <a class="nav-link" href="#">Support</a>
                     </ul>
                     
                     <!-- Liens à gauche de la navbar -->
