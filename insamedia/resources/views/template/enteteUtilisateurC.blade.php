@@ -27,7 +27,7 @@
                     <ul class="navbar-nav ms-auto">
                         <a class="nav-link" href="#"><i class="fa-regular fa-bell icon"></i></a>
                         <a class="nav-link" href="#"><i class="fa-regular fa-envelope icon"></i></a>
-                        <a class="nav-link" href="/profil"><i class="fa-regular fa-id-card icon"></i></a>
+                        <a class="nav-link" href="/profils/1"><i class="fa-regular fa-id-card icon"></i></a>
                         <a class="nav-link" href="/deconnexion"><i class="fa-solid fa-door-open icon"></i></a>
                         <a class="nav-link" href="#"><i class="fa-solid fa-gear icon"></i></a>
                     </ul>

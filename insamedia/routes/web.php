@@ -30,6 +30,6 @@ Route::post('/inscription/sincrire', [ConnexionInscriptionController::class, 'si
 
 Route::get('/deconnexion', [ConnexionInscriptionController::class, 'deconnexion'])->name('deconnexion');
 
-Route::get('/profil', function(){
+Route::get('/profils/{id}', function(){
     return view('profil');
 });
