@@ -29,3 +29,7 @@ Route::get('/inscription', [ConnexionInscriptionController::class, 'afficherInsc
 Route::post('/inscription/sincrire', [ConnexionInscriptionController::class, 'sincrire'])->name('inscription.sincrire');
 
 Route::get('/deconnexion', [ConnexionInscriptionController::class, 'deconnexion'])->name('deconnexion');
+
+Route::get('/profil', function(){
+    return view('profil');
+});
