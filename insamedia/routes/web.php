@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\ConnexionInscriptionController;
 use App\Http\Controllers\AccueilController;
+use App\Http\Controllers\UtilisateurController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,9 +31,7 @@ Route::post('/inscription/sincrire', [ConnexionInscriptionController::class, 'si
 
 Route::get('/deconnexion', [ConnexionInscriptionController::class, 'deconnexion'])->name('deconnexion');
 
-Route::get('/profils/{id}', function(){
-    return view('profil');
-});
+Route::get('/profils/{id}', [UtilisateurController::class, 'afficherProfil'])->name('profil.afficher');
 
 Route::get('/notifications', function(){
     return view('notification');
