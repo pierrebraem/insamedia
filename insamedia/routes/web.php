@@ -32,6 +32,7 @@ Route::post('/inscription/sincrire', [ConnexionInscriptionController::class, 'si
 Route::get('/deconnexion', [ConnexionInscriptionController::class, 'deconnexion'])->name('deconnexion');
 
 Route::get('/profils/{id}', [UtilisateurController::class, 'afficherProfil'])->name('profil.afficher');
+Route::get('/profils/{id}/ajouter', [UtilisateurController::class, 'ajouterAmis'])->name('profil.ajouter');
 
 Route::get('/notifications', function(){
     return view('notification');

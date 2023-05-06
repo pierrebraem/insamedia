@@ -14,9 +14,16 @@
                 <p id="pseudo">{{$utilisateur->pseudo}}</p>
                 @if(Session::has('id'))
                     @if($utilisateur->id === Session::get('id'))
-                        <a class="btn btn-primary ajout" href="#"><i class="fa-solid fa-pen"></i></a>
+                        <a class="btn btn-primary boutonP" href="#"><i class="fa-solid fa-pen"></i></a>
                     @else
-                        <a class="btn btn-primary ajout" href="#"><i class="fa-solid fa-plus"></i></a>
+                        @if($demandeurAmi !== null)
+                            <a class="btn btn-danger boutonP" href="#"><i class="fa-solid fa-minus"></i></a>
+                        @elseif($receveurAmi !== null)
+                            <a class="btn btn-success boutonP" href="#"><i class="fa-solid fa-check"></i></a>
+                            <a class="btn btn-danger boutonP" href="#"><i class="fa-solid fa-xmark"></i></a>
+                        @else
+                            <a class="btn btn-primary boutonP" href="{{$utilisateur->id}}/ajouter"><i class="fa-solid fa-plus"></i></a>
+                        @endif
                     @endif
                 @endif
             </div>
@@ -34,14 +41,16 @@
                 <div class="card-body">
                     <div class="resultat">
                         @foreach($amis as $ami)
-                            <div class="resultatCol">
-                                @if($ami->receveur->photo === null)
-                                    <img src="{{ asset('images/photo_default.jpg') }}" class="photoProfile"/>
-                                @else
-                                    <img src="{{ asset($ami->receveur->photo) }}" class="photoProfile"/>
-                                @endif
-                                <figcaption class="labelResultat">{{$ami->receveur->pseudo}}</figcaption>
-                            </div>
+                            @if($ami->attente === 0)
+                                <div class="resultatCol">
+                                    @if($ami->receveur->photo === null)
+                                        <img src="{{ asset('images/photo_default.jpg') }}" class="photoProfile"/>
+                                    @else
+                                        <img src="{{ asset($ami->receveur->photo) }}" class="photoProfile"/>
+                                    @endif
+                                    <figcaption class="labelResultat">{{$ami->receveur->pseudo}}</figcaption>
+                                </div>
+                            @endif
                         @endforeach
                     </div>
                 </div>
