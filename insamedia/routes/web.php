@@ -34,7 +34,9 @@ Route::get('/deconnexion', [ConnexionInscriptionController::class, 'deconnexion'
 Route::get('/profils/{id}', [UtilisateurController::class, 'afficherProfil'])->name('profil.afficher');
 Route::get('/profils/{id}/ajouter', [UtilisateurController::class, 'ajouterAmis'])->name('profil.ajouter');
 Route::get('/profils/{id}/accepter', [UtilisateurController::class, 'accepterAmis'])->name('profil.accepter');
-Route::get('/profils/{id}/refuser', [UtilisateurController::class, 'refuserAmis'])->name('profil.refuser');
+Route::get('/profils/{id}/refuser', [UtilisateurController::class, 'supprimerAmis'])->name('profil.refuser');
+Route::get('/profils/{id}/annuler', [UtilisateurController::class, 'supprimerAmis'])->name('profil.annuler');
+Route::get('/profils/{id}/supprimer', [UtilisateurController::class, 'supprimerAmis'])->name('profil.supprimer');
 
 Route::get('/notifications', function(){
     return view('notification');
