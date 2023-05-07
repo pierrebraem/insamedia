@@ -14,11 +14,11 @@ class UtilisateurController extends Controller
     }
 
     public function checkDemandeurAmi($idD, $idR){
-        return Amis::where('idcompted', $idD)->where('idcompter', $idR)->first();
+        return Amis::where('idcompted', $idD)->where('idcompter', $idR)->where('attente', 1)->first();
     }
 
     public function checkReceveurAmi($idR, $idD){
-        return Amis::where('idcompter', $idR)->where('idcompted', $idD)->first();
+        return Amis::where('idcompter', $idR)->where('idcompted', $idD)->where('attente', 1)->first();
     }
 
     public function afficherProfil(Request $request, $id){
@@ -52,6 +52,17 @@ class UtilisateurController extends Controller
             $ajoutAmis->idcompted = $request->session()->get('id');
             $ajoutAmis->idcompter = $id;
             $ajoutAmis->save();
+            return back();
+        }
+    }
+
+    public function accepterAmis(Request $request, $id){
+        $accepter = Amis::where('idcompter', $request->session()->get('id'))->where('idcompted', $id)->where('attente', 1)->first();
+        if(Utilisateur::firstWhere('id', $id) === null || $accepter === null){
+            return view('profil\profilErreur');
+        }
+        else{
+            $accepter->update(['attente' => 0]);
             return back();
         }
     }

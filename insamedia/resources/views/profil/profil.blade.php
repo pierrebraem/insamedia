@@ -17,10 +17,10 @@
                         <a class="btn btn-primary boutonP" href="#"><i class="fa-solid fa-pen"></i></a>
                     @else
                         @if($demandeurAmi !== null)
-                            <a class="btn btn-danger boutonP" href="#"><i class="fa-solid fa-minus"></i></a>
-                        @elseif($receveurAmi !== null)
-                            <a class="btn btn-success boutonP" href="#"><i class="fa-solid fa-check"></i></a>
                             <a class="btn btn-danger boutonP" href="#"><i class="fa-solid fa-xmark"></i></a>
+                        @elseif($receveurAmi !== null)
+                            <a class="btn btn-success boutonP" href="{{$utilisateur->id}}/accepter"><i class="fa-solid fa-check"></i></a>
+                            <a class="btn btn-danger boutonP" href="{{$utilisateur->id}}/refuser"><i class="fa-solid fa-xmark"></i></a>
                         @else
                             <a class="btn btn-primary boutonP" href="{{$utilisateur->id}}/ajouter"><i class="fa-solid fa-plus"></i></a>
                         @endif
