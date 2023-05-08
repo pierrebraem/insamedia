@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Http\Controllers\NotificationController;
+
 use App\Models\Utilisateur;
 use App\Models\Amis;
 
@@ -60,6 +62,8 @@ class UtilisateurController extends Controller
             $ajoutAmis->idcompted = $request->session()->get('id');
             $ajoutAmis->idcompter = $id;
             $ajoutAmis->save();
+
+            NotificationController::enregistrerNotification(Utilisateur::where('id', $request->session()->get('id'))->value('pseudo').' veut être votre ami', $id, $request->session()->get('id'));
             return back();
         }
     }
@@ -72,6 +76,8 @@ class UtilisateurController extends Controller
         }
         else{
             Amis::where('idcompter', $request->session()->get('id'))->where('idcompted', $id)->where('attente', 1)->update(['attente' => 0]);
+            NotificationController::MAJNotification('Vous avez acceptés la demande d\'amis de '.Utilisateur::where('id', $id)->value('pseudo'), $request->session()->get('id'), $id);
+            NotificationController::enregistrerNotification(Utilisateur::where('id', $request->session()->get('id'))->value('pseudo').' a accepté d\'être votre ami', $id, $request->session()->get('id'));
             return back();
         }
     }
@@ -87,6 +93,7 @@ class UtilisateurController extends Controller
         }
         else{
             Amis::where('idcompted', $request->session()->get('id'))->where('idcompter', $id)->delete();
+            NotificationController::MAJNotification('Vous avez refusés la demande d\'amis de '.Utilisateur::where('id', $id)->value('pseudo'), $request->session()->get('id'), $id);
             return back();
         }
     }

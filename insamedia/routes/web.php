@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ConnexionInscriptionController;
 use App\Http\Controllers\AccueilController;
 use App\Http\Controllers\UtilisateurController;
+use App\Http\Controllers\NotificationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,6 +39,4 @@ Route::get('/profils/{id}/refuser', [UtilisateurController::class, 'supprimerAmi
 Route::get('/profils/{id}/annuler', [UtilisateurController::class, 'supprimerAmis'])->name('profil.annuler');
 Route::get('/profils/{id}/supprimer', [UtilisateurController::class, 'supprimerAmis'])->name('profil.supprimer');
 
-Route::get('/notifications', function(){
-    return view('notification');
-});
+Route::get('/notifications', [NotificationController::class, 'afficherNotification'])->name('notification.afficher');
