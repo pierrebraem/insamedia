@@ -13,8 +13,8 @@ class UtilisateurController extends Controller
         return Amis::where('idcompted', $id)->where('attente', 0)->get();
     }
 
-    public function estAmi($idR, $idD){
-        if(Amis::where('idcompter', $idR)->where('idcompted', $idD)->where('attente', 0)->first() !== null){
+    public function estAmi($id1, $id2){
+        if(Amis::where('idcompter', $id1)->where('idcompted', $id2)->where('attente', 0)->orWhere('idcompted', $id1)->where('idcompter', $id2)->where('attente', 0)->first() !== null){
             return true;
         }
         return false;
