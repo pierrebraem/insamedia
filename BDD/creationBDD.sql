@@ -32,12 +32,22 @@ CREATE TABLE amis(
     PRIMARY KEY(idcompted, idcompter)
 );
 
+-- Création de la table 'typenotification'
+CREATE TABLE typenotification(
+    id INT(10) NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    libelle VARCHAR(50) NOT NULL
+);
+
 -- Création de la table 'notification'
 CREATE TABLE notification(
     id INT(10) NOT NULL PRIMARY KEY AUTO_INCREMENT,
     contenu VARCHAR(255) NOT NULL,
     vu TINYINT(1) NOT NULL DEFAULT 0,
-    idcompte INT(10) NOT NULL
+    date TIMESTAMP NOT NULL,
+    idtype INT(10) NOT NULL,
+    idcompter INT(10) NOT NULL,
+    idcompteo INT(10) NOT NULL,
+    idpublication INT(10) NULL
 );
 
 -- Création de la table 'bloquer'
@@ -81,7 +91,7 @@ CREATE TABLE visibilite(
 CREATE TABLE publication(
     id INT(10) NOT NULL PRIMARY KEY AUTO_INCREMENT,
     description LONGTEXT NOT NULL,
-    date DATETIME NOT NULL,
+    date TIMESTAMP NOT NULL,
     urlcontenu VARCHAR(255) NULL,
     idcompte INT(10) NOT NULL,
     idvisibilite INT(10) NOT NULL
@@ -123,6 +133,10 @@ INSERT INTO visibilite(libelle) VALUES
 ('amis seulement'),
 ('privée');
 
+-- Ajout des données dans la table 'typenotification'
+INSERT INTO typenotification(libelle) VALUES
+('demandeAmis');
+
 -- Insertion des clés étrangères
 -- Insertion de la clé étrangère dans la table 'compte'
 ALTER TABLE compte
@@ -135,7 +149,10 @@ ADD CONSTRAINT fk_compte_amis_r FOREIGN KEY (idcompter) REFERENCES compte(id);
 
 -- Insertion de la clés étrangère dans la table 'notification'
 ALTER TABLE notification
-ADD CONSTRAINT fk_notification_compte FOREIGN KEY (idcompte) REFERENCES compte(id);
+ADD CONSTRAINT fk_notification_typenotification FOREIGN KEY (idtype) REFERENCES typenotification(id),
+ADD CONSTRAINT fk_notification_compte_r FOREIGN KEY (idcompter) REFERENCES compte(id),
+ADD CONSTRAINT fk_notification_compte_o FOREIGN KEY (idcompteo) REFERENCES compte(id),
+ADD CONSTRAINT fk_notification_publication FOREIGN KEY (idpublication) REFERENCES publication(id);
 
 -- Insertion des clès étrangères dans la table 'bloquer'
 ALTER TABLE bloquer
