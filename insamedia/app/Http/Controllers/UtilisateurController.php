@@ -10,7 +10,7 @@ use App\Models\Amis;
 class UtilisateurController extends Controller
 {
     public function obtenirTousAmis($id){
-        return Amis::where('idcompted', $id)->get();
+        return Amis::where('idcompted', $id)->where('attente', 0)->get();
     }
 
     public function estAmi($idR, $idD){
