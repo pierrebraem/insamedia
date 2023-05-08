@@ -45,11 +45,13 @@
                         @foreach($amis as $ami)
                             @if($ami->attente === 0)
                                 <div class="resultatCol">
+                                    <a href="/profils/{{$ami->receveur->id}}">
                                     @if($ami->receveur->photo === null)
                                         <img src="{{ asset('images/photo_default.jpg') }}" class="photoProfile"/>
                                     @else
                                         <img src="{{ asset($ami->receveur->photo) }}" class="photoProfile"/>
                                     @endif
+                                    </a>
                                     <figcaption class="labelResultat">{{$ami->receveur->pseudo}}</figcaption>
                                 </div>
                             @endif
