@@ -86,6 +86,7 @@ class UtilisateurController extends Controller
         $id = intval($id);
         if(Amis::where('idcompter', $request->session()->get('id'))->where('idcompted', $id)->first() !== null){
             Amis::where('idcompter', $request->session()->get('id'))->where('idcompted', $id)->delete();
+            NotificationController::MAJNotification('Vous avez refusés la demande d\'amis de '.Utilisateur::where('id', $id)->value('pseudo'), $request->session()->get('id'), $id);
             return back();
         }
         else if(Utilisateur::firstWhere('id', $id) === null || Amis::where('idcompted', $request->session()->get('id'))->where('idcompter', $id)->first() === null){
@@ -93,7 +94,6 @@ class UtilisateurController extends Controller
         }
         else{
             Amis::where('idcompted', $request->session()->get('id'))->where('idcompter', $id)->delete();
-            NotificationController::MAJNotification('Vous avez refusés la demande d\'amis de '.Utilisateur::where('id', $id)->value('pseudo'), $request->session()->get('id'), $id);
             return back();
         }
     }

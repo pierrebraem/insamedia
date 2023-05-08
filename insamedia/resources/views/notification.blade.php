@@ -16,8 +16,10 @@
                         <p>Il y a 32min</p>
                         <div class="testN2">
                             <p>{{$notification->contenu}}</p>
-                            <a href="profils/{{$notification->idcompteo}}/accepter" class="btn btn-success bouton boutonAccepter"><i class="fa-solid fa-check"></i></a>
-                            <a href="profils/{{$notification->idcompteo}}/refuser" class="btn btn-danger bouton"><i class="fa-solid fa-xmark"></i></a>
+                            @if($notification->idtype === 1)
+                                <a href="profils/{{$notification->idcompteo}}/accepter" class="btn btn-success bouton boutonAccepter"><i class="fa-solid fa-check"></i></a>
+                                <a href="profils/{{$notification->idcompteo}}/refuser" class="btn btn-danger bouton"><i class="fa-solid fa-xmark"></i></a>
+                            @endif
                         </div>
                     </div>
                 </div>
