@@ -65,27 +65,28 @@ class UtilisateurController extends Controller
     }
 
     public function accepterAmis(Request $request, $id){
-        $accepter = Amis::where('idcompter', $request->session()->get('id'))->where('idcompted', $id)->where('attente', 1)->first();
-        if(Utilisateur::firstWhere('id', $id) === null || $accepter === null){
+        $id = intval($id);
+
+        if(Utilisateur::firstWhere('id', $id) === null || Amis::where('idcompter', $request->session()->get('id'))->where('idcompted', $id)->where('attente', 1)->first() === null){
             return view('profil\profilErreur');
         }
         else{
-            $accepter->update(['attente' => 0]);
+            Amis::where('idcompter', $request->session()->get('id'))->where('idcompted', $id)->where('attente', 1)->update(['attente' => 0]);
             return back();
         }
     }
 
     public function supprimerAmis(Request $request, $id){
-        $supprimer = Amis::where('idcompter', $request->session()->get('id'))->where('idcompted', $id)->first();
-        if($supprimer === null){
-            $supprimer = Amis::where('idcompter', $id)->where('idcompted', $request->session()->get('id'))->first();
+        $id = intval($id);
+        if(Amis::where('idcompter', $request->session()->get('id'))->where('idcompted', $id)->first() !== null){
+            Amis::where('idcompter', $request->session()->get('id'))->where('idcompted', $id)->delete();
+            return back();
         }
-
-        if(Utilisateur::firstWhere('id', $id) === null || $supprimer === null){
+        else if(Utilisateur::firstWhere('id', $id) === null || Amis::where('idcompted', $request->session()->get('id'))->where('idcompter', $id)->first() === null){
             return view('profil\profilErreur');
         }
         else{
-            $supprimer->delete();
+            Amis::where('idcompted', $request->session()->get('id'))->where('idcompter', $id)->delete();
             return back();
         }
     }
