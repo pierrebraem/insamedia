@@ -23,9 +23,20 @@ class PublicationController extends Controller
         return back();
     }
 
-    public static function obtenirPublicationsProfil($id){
-        $id = intval($id);
+    public static function obtenirPublicationsProfil($idProfil){
+        $idProfil = intval($idProfil);
 
-        return Publication::where('idprofil', $id)->get();
+        return Publication::where('idprofil', $idProfil)->get();
+    }
+
+    public static function calculTempsPublication($date){
+        $diff = Carbon::now()->diffInSeconds($date);
+        if($diff > 60){
+            return Carbon::now()->diffInMinutes($date).' min';
+        }
+        else if($diff > 3600){
+            return Carbon::now()->diffInHours($date).'H';
+        }
+        return $diff.' s';
     }
 }

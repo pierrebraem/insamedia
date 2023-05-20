@@ -31,12 +31,20 @@ class UtilisateurController extends Controller
         return Amis::where('idcompter', $idR)->where('idcompted', $idD)->where('attente', 1)->first();
     }
 
+    public function obtenirPublications($id){
+        $publications = PublicationController::obtenirPublicationsProfil($id);
+        foreach($publications as $publication){
+            $publication->anciennete = PublicationController::calculTempsPublication($publication->date);
+        }
+        return $publications;
+    }
+
     public function afficherProfil(Request $request, $id){
         $id = intval($id);
         $demandeurAmi = null;
         $receveurAmi = null;
         $utilisateur = Utilisateur::firstWhere('id', $id);
-        $publications = PublicationController::obtenirPublicationsProfil($id);
+        $publications = $this->obtenirPublications($id);
 
         if($utilisateur === null){
             return view('profil\profilErreur');

@@ -97,10 +97,14 @@
                             <div class="card-body">
                                 <div class="row w-50">
                                     <div class="col-2">
-                                        <a href="#"><img class="photoProfile elementDroite" src="{{ asset('images/photo_exemple1.png') }}" alt="exemple1"/></a>
+                                        @if($publication->compte->photo === null)
+                                            <img src="{{ asset('images/photo_default.jpg') }}" class="photoProfile"/>
+                                        @else
+                                            <img src="{{ asset($publication->compte->photo) }}" class="photoProfile"/>
+                                        @endif
                                     </div>
                                     <div class="col-6 texteContenu">
-                                        <p>FrenchBrave - 2H</p>
+                                        <p>{{$publication->compte->pseudo}} - {{$publication->anciennete}}</p>
                                     </div>
                                 </div>
                                 <div class="row">
