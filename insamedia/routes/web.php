@@ -6,6 +6,7 @@ use App\Http\Controllers\ConnexionInscriptionController;
 use App\Http\Controllers\AccueilController;
 use App\Http\Controllers\UtilisateurController;
 use App\Http\Controllers\NotificationController;
+use App\Http\Controllers\PublicationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,3 +41,5 @@ Route::get('/profils/{id}/annuler', [UtilisateurController::class, 'supprimerAmi
 Route::get('/profils/{id}/supprimer', [UtilisateurController::class, 'supprimerAmis'])->name('profil.supprimer');
 
 Route::get('/notifications', [NotificationController::class, 'afficherNotification'])->name('notification.afficher');
+
+Route::post('/publication/publier', [PublicationController::class, 'publier'])->name('publication.publier');

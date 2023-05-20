@@ -10,7 +10,7 @@
                         <a href="#"><img class="photoProfile elementDroite" src="{{ asset('images/photo_default.jpg') }}" alt="default"/></a>
                     </div>
                     <div class="colonneE2">
-                        <textarea class="w-100" rows="5" placeholder="Dites ce que vous voulez"></textarea>
+                        <textarea class="w-100" rows="5" placeholder="Dites ce que vous voulez" name="publication"></textarea>
                     </div>
                 </div>
                 <div class="row">
@@ -18,7 +18,7 @@
                         <button class="btn btn-warning">Joindre un fichier</button>
                     </div>
                     <div class="col">
-                        <button class="btn btn-primary elementDroite">Publier</button>
+                        <a href="/publication/publier" class="btn btn-primary elementDroite" style="width: 25%;">Publier</a>
                     </div>
                 </div>                
             </div>
