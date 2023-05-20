@@ -43,3 +43,4 @@ Route::get('/profils/{id}/supprimer', [UtilisateurController::class, 'supprimerA
 Route::get('/notifications', [NotificationController::class, 'afficherNotification'])->name('notification.afficher');
 
 Route::post('/publication/publier', [PublicationController::class, 'publier'])->name('publication.publier');
+Route::get('/publication/aimer/{id}', [PublicationController::class, 'aimer'])->name('publication.aimer');

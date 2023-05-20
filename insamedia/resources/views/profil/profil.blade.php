@@ -114,8 +114,14 @@
                                 </div>
                                 <div class="row">
                                     <div class="col">
-                                        <i class="fa-regular fa-heart"></i>
-                                        <span class="badge bg-danger round-pill" style="margin-right: 10px;">3</span>
+                                        <a href="/publication/aimer/{{$publication->id}}">
+                                            @if($publication->aimeDeja)
+                                                <i class="fa-solid fa-heart"></i>
+                                            @else
+                                                <i class="fa-regular fa-heart"></i>
+                                            @endif
+                                        </a>
+                                        <span class="badge bg-danger round-pill" style="margin-right: 10px;">{{$publication->aimer}}</span>
 
                                         <i class="fa-solid fa-share" style="margin-right: 10px;"></i>
                         
