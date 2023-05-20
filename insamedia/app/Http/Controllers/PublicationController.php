@@ -15,10 +15,17 @@ class PublicationController extends Controller
         $nouvellePublication->description = $request->input('publication');
         $nouvellePublication->date = Carbon::now();
         $nouvellePublication->idcompte = $request->session()->get('id');
+        $nouvellePublication->idprofil = $request->session()->get('id');
         $nouvellePublication->idvisibilite = 1;
 
         $nouvellePublication->save();
 
         return back();
+    }
+
+    public static function obtenirPublicationsProfil($id){
+        $id = intval($id);
+
+        return Publication::where('idprofil', $id)->get();
     }
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Controllers\NotificationController;
+use App\Http\Controllers\PublicationController;
 
 use App\Models\Utilisateur;
 use App\Models\Amis;
@@ -35,6 +36,7 @@ class UtilisateurController extends Controller
         $demandeurAmi = null;
         $receveurAmi = null;
         $utilisateur = Utilisateur::firstWhere('id', $id);
+        $publications = PublicationController::obtenirPublicationsProfil($id);
 
         if($utilisateur === null){
             return view('profil\profilErreur');
@@ -49,7 +51,8 @@ class UtilisateurController extends Controller
                                         ->with('amis', $amis)
                                         ->with('demandeurAmi', $demandeurAmi)
                                         ->with('receveurAmi', $receveurAmi)
-                                        ->with('estAmi', $this->estAmi($request->session()->get('id'), $id));
+                                        ->with('estAmi', $this->estAmi($request->session()->get('id'), $id))
+                                        ->with('publications', $publications);
         }
     }
 

@@ -87,6 +87,55 @@
                     </form>                
                 </div>
             </div>
+
+            @if($publications->count() === 0)
+                <h1 class="title text-center">Aucune publications sur ce profil</h1>
+            @else
+                @foreach($publications as $publication)
+                    <div class="post">
+                        <div class="card centrer">
+                            <div class="card-body">
+                                <div class="row w-50">
+                                    <div class="col-2">
+                                        <a href="#"><img class="photoProfile elementDroite" src="{{ asset('images/photo_exemple1.png') }}" alt="exemple1"/></a>
+                                    </div>
+                                    <div class="col-6 texteContenu">
+                                        <p>FrenchBrave - 2H</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <p>{{$publication->description}}</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <i class="fa-regular fa-heart"></i>
+                                        <span class="badge bg-danger round-pill" style="margin-right: 10px;">3</span>
+
+                                        <i class="fa-solid fa-share" style="margin-right: 10px;"></i>
+                        
+                                        <i class="fa-regular fa-flag"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card carteCommentaireP centrer">
+                            <div class="card-body">
+                                <p>Commentaire 0</p>
+                                <div class="ligneE">
+                                    <div class="colonneE1">
+                                        <a href="#"><img class="photoProfile elementDroite" src="{{ asset('images/photo_default.jpg') }}" alt="default"/></a>
+                                    </div>
+                                    <div class="colonneE2">
+                                        <textarea class="w-100" rows="2" placeholder="Écrivez un commentaire"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+            @endif
         </div>
     </div>
 @endsection

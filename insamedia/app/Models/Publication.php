@@ -10,10 +10,14 @@ class Publication extends Model
     protected $table = 'publication';
     protected $primaryKey = 'id';
     public $timestamps = false;
-    protected $fillable = ['id', 'description', 'date', 'urlcontenu', 'idcompte', 'idvisibilite'];
+    protected $fillable = ['id', 'description', 'date', 'urlcontenu', 'idcompte', 'idprofil', 'idvisibilite'];
 
     public function compte(){
         return $this->belongsTo('App\Models\Utilisateur', 'idcompte');
+    }
+
+    public function profil(){
+        return $this->belongsTo('App\Models\Utilisateur', 'idprofil');
     }
 
     public function visibilite(){
