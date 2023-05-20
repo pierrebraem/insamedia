@@ -94,6 +94,7 @@ CREATE TABLE publication(
     date TIMESTAMP NOT NULL,
     urlcontenu VARCHAR(255) NULL,
     idcompte INT(10) NOT NULL,
+    idprofil INT(10) NOT NULL,
     idvisibilite INT(10) NOT NULL
 );
 
@@ -175,6 +176,7 @@ ADD CONSTRAINT fk_compte_message_r FOREIGN KEY (idcompter) REFERENCES compte(id)
 -- Insertion des clés étrangères dans la table 'publication'
 ALTER TABLE publication
 ADD CONSTRAINT fk_publication_compte FOREIGN KEY (idcompte) REFERENCES compte(id),
+ADD CONSTRAINT fk_publication_profil FOREIGN KEY (idprofil) REFERENCES compte(id),
 ADD CONSTRAINT fk_publication_visibilite FOREIGN KEY (idvisibilite) REFERENCES visibilite(id);
 
 -- Insertion des clés étrangères dans la table 'aimer'
