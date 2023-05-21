@@ -49,7 +49,7 @@ class PublicationController extends Controller
     public static function obtenirPublicationsProfil($idProfil){
         $idProfil = intval($idProfil);
 
-        return Publication::where('idprofil', $idProfil)->get();
+        return Publication::where('idprofil', $idProfil)->orderBy('date', 'desc')->get();
     }
 
     public static function calculTempsPublication($date){
