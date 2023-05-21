@@ -8,6 +8,7 @@ use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\PublicationController;
 
 use App\Models\Utilisateur;
+use App\Models\Visibilite;
 use App\Models\Amis;
 
 class UtilisateurController extends Controller
@@ -62,6 +63,7 @@ class UtilisateurController extends Controller
                                         ->with('demandeurAmi', $demandeurAmi)
                                         ->with('receveurAmi', $receveurAmi)
                                         ->with('estAmi', $this->estAmi($request->session()->get('id'), $id))
+                                        ->with('visibilites', Visibilite::all())
                                         ->with('publications', $publications);
         }
     }

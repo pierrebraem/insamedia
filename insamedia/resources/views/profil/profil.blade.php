@@ -77,6 +77,22 @@
                             </div>
                         </div>
                         <div class="row">
+                            <div>
+                                <label>Visibilite</label>
+                                <select name="visibilite">
+                                    @foreach($visibilites as $visibilite)
+                                        <option value="{{$visibilite->id}}">{{$visibilite->libelle}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div>
+                                <input type="checkbox" name="aCommentaire"/>
+                                <label>Désactiver les commentaires</label>
+                            </div>
+                        </div>
+                        <div class="row">
                             <div class="col">
                                 <button class="btn btn-warning">Joindre un fichier</button>
                             </div>
@@ -88,6 +104,7 @@
                 </div>
             </div>
 
+            <!-- Affichage publication sur le profil -->
             @if($publications->count() === 0)
                 <h1 class="title text-center">Aucune publications sur ce profil</h1>
             @else

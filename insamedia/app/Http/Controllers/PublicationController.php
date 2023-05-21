@@ -17,7 +17,13 @@ class PublicationController extends Controller
         $nouvellePublication->date = Carbon::now();
         $nouvellePublication->idcompte = $request->session()->get('id');
         $nouvellePublication->idprofil = $request->session()->get('id');
-        $nouvellePublication->idvisibilite = 1;
+        $nouvellePublication->idvisibilite = $request->input('visibilite');
+        if($request->input('aCommentaire') === null){
+            $nouvellePublication->aCommentaire = 1;
+        }
+        else{
+            $nouvellePublication->aCommentaire = 0;
+        }
 
         $nouvellePublication->save();
 
