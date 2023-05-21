@@ -93,6 +93,7 @@ CREATE TABLE publication(
     description LONGTEXT NOT NULL,
     date TIMESTAMP NOT NULL,
     urlcontenu VARCHAR(255) NULL,
+    aCommentaire TINYINT(1) NOT NULL DEFAULT 0,
     idcompte INT(10) NOT NULL,
     idprofil INT(10) NOT NULL,
     idvisibilite INT(10) NOT NULL
