@@ -27,8 +27,7 @@ class PublicationController extends Controller
     public function aimer(Request $request, $id){
         $id = intval($id);
         
-        $aime = Aimer::where('idpublication', $id)->where('idcompte', $request->session()->get('id'))->get();
-        //dd($aime);
+        $aime = Aimer::where('idpublication', $id)->where('idcompte', $request->session()->get('id'))->first();
         if($aime === null){
             $nouveauAimer = new Aimer;
             $nouveauAimer->idpublication = $id;
@@ -36,7 +35,7 @@ class PublicationController extends Controller
             $nouveauAimer->save();
         }
         else{
-            $aime[0]->delete();
+            Aimer::where('idpublication', $id)->where('idcompte', $request->session()->get('id'))->delete();
         }
         return back();
     }
