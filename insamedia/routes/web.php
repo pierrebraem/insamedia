@@ -44,3 +44,4 @@ Route::get('/notifications', [NotificationController::class, 'afficherNotificati
 
 Route::post('/publication/publier', [PublicationController::class, 'publier'])->name('publication.publier');
 Route::get('/publication/aimer/{id}', [PublicationController::class, 'aimer'])->name('publication.aimer');
+Route::get('/publication/commentaire/{id}', [PublicationController::class, 'commentaire'])->name('publication.commentaire');

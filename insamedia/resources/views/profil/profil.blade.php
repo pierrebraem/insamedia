@@ -151,14 +151,21 @@
                             <div class="card carteCommentaireP centrer">
                                 <div class="card-body">
                                     <p>Commentaire 0</p>
-                                    <div class="ligneE">
-                                        <div class="colonneE1">
-                                            <a href="#"><img class="photoProfile elementDroite" src="{{ asset('images/photo_default.jpg') }}" alt="default"/></a>
+                                    <form action="/publication/commentaire/{{$publication->id}}" method="get">
+                                        <div class="ligneE">
+                                            <div class="colonneE1">
+                                                <a href="#"><img class="photoProfile elementDroite" src="{{ asset('images/photo_default.jpg') }}" alt="default"/></a>
+                                            </div>
+                                            <div class="colonneE2">
+                                                <textarea class="w-100" rows="2" placeholder="Écrivez un commentaire" name="commentaire"></textarea>
+                                            </div>
                                         </div>
-                                        <div class="colonneE2">
-                                            <textarea class="w-100" rows="2" placeholder="Écrivez un commentaire"></textarea>
+                                        <div class="row">
+                                            <div class="col">
+                                                <input type="submit" class="btn btn-primary elementDroite" value="Publier"/>
+                                            </div>
                                         </div>
-                                    </div>
+                                    </form>
                                 </div>
                             </div>
                         @else

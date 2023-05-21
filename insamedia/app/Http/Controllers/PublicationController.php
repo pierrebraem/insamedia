@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Carbon\Carbon;
 
 use App\Models\Publication;
+use App\Models\Commentaire;
 use App\Models\Aimer;
 
 class PublicationController extends Controller
@@ -43,6 +44,17 @@ class PublicationController extends Controller
         else{
             Aimer::where('idpublication', $id)->where('idcompte', $request->session()->get('id'))->delete();
         }
+        return back();
+    }
+
+    public function commentaire(Request $request, $id){
+        $id = intval($id);
+        $nouveauCommentaire = new Commentaire;
+        $nouveauCommentaire->idpublication = $id;
+        $nouveauCommentaire->idcompte = $request->session()->get('id');
+        $nouveauCommentaire->commentaire = $request->input('commentaire');
+        $nouveauCommentaire->save();
+
         return back();
     }
 
