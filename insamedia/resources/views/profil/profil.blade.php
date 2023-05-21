@@ -147,19 +147,27 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="card carteCommentaireP centrer">
-                            <div class="card-body">
-                                <p>Commentaire 0</p>
-                                <div class="ligneE">
-                                    <div class="colonneE1">
-                                        <a href="#"><img class="photoProfile elementDroite" src="{{ asset('images/photo_default.jpg') }}" alt="default"/></a>
-                                    </div>
-                                    <div class="colonneE2">
-                                        <textarea class="w-100" rows="2" placeholder="Écrivez un commentaire"></textarea>
+                        @if($publication->aCommentaire === 1)
+                            <div class="card carteCommentaireP centrer">
+                                <div class="card-body">
+                                    <p>Commentaire 0</p>
+                                    <div class="ligneE">
+                                        <div class="colonneE1">
+                                            <a href="#"><img class="photoProfile elementDroite" src="{{ asset('images/photo_default.jpg') }}" alt="default"/></a>
+                                        </div>
+                                        <div class="colonneE2">
+                                            <textarea class="w-100" rows="2" placeholder="Écrivez un commentaire"></textarea>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
+                        @else
+                        <div class="card carteCommentaireP centrer text-center">
+                            <div class="card-body">
+                                <p>Les commentaires sur cette publication sont désactivés.</p>
+                            </div>
                         </div>
+                        @endif
                     </div>
                 @endforeach
             @endif
