@@ -4,10 +4,11 @@
     <link href="{{ asset('css/style.css') }}" rel="stylesheet" />
     <link href="{{ asset('css/styleProfil.css') }}" rel="stylesheet" />
     <link href="{{ asset('css/styleNotification.css') }}" rel="stylesheet" />
+    <link href="{{ asset('css/styleMessage.css') }}" rel="stylesheet" />
 
     <script src="https://kit.fontawesome.com/09475d7342.js" crossorigin="anonymous"></script>
 
-    <title>Insamedia Accueil</title>
+    <title>Insamedia</title>
 <head>
 <body>
     <div id="navbarU">

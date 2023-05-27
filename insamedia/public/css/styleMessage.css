@@ -1,0 +1,14 @@
+#listcontact {
+    width: 500px;
+    height: 650px;
+    overflow-y: scroll;
+}
+
+.apercuMessage{
+    font-size: 13px;
+}
+
+.photoProfileM{
+    width: 25%;
+    border-radius: 50%;
+}
