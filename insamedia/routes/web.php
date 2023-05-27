@@ -7,6 +7,7 @@ use App\Http\Controllers\AccueilController;
 use App\Http\Controllers\UtilisateurController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\PublicationController;
+use App\Http\Controllers\MessageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -45,3 +46,5 @@ Route::get('/notifications', [NotificationController::class, 'afficherNotificati
 Route::post('/publication/publier', [PublicationController::class, 'publier'])->name('publication.publier');
 Route::get('/publication/aimer/{id}', [PublicationController::class, 'aimer'])->name('publication.aimer');
 Route::get('/publication/commentaire/{id}', [PublicationController::class, 'commentaire'])->name('publication.commentaire');
+
+Route::get('/message', [MessageController::class, 'afficherMessage'])->name('message.afficher');
