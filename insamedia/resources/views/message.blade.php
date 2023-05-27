@@ -267,5 +267,16 @@
                 </div>
             </div>
         </div>
+
+        <div id="commentaireM">
+            <div class="ligneE">
+                <div class="colonneE1">
+                    <a href="#"><img class="photoProfile elementDroite" src="{{ asset('images/photo_default.jpg') }}" alt="default"/></a>
+                </div>
+                <div class="colonneE2">
+                    <textarea class="w-100" rows="3" placeholder="Ecrivez votre message ici" name="publication"></textarea>
+                </div>
+            </div>
+        </div>
     </div>
 @endsection

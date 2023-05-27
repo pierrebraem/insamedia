@@ -1,16 +1,26 @@
 #containerM{
     display: grid;
     grid-template-columns: 500px 1030px;
+    grid-template-areas:
+    "lc d d d"
+    "lc d d d"
+    "lc c c c";
 }
 
 #listcontact {
+    grid-area: lc;
     height: 650px;
     overflow-y: scroll;
 }
 
 #discussion{
+    grid-area: d;
     height: 550px;
     overflow-y: scroll;
+}
+
+.commentaireM{
+    grid-area: c;
 }
 
 .apercuMessage{
