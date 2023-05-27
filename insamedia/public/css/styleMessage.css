@@ -1,6 +1,15 @@
+#containerM{
+    display: grid;
+    grid-template-columns: 500px 1030px;
+}
+
 #listcontact {
-    width: 500px;
     height: 650px;
+    overflow-y: scroll;
+}
+
+#discussion{
+    height: 550px;
     overflow-y: scroll;
 }
 
@@ -11,4 +20,25 @@
 .photoProfileM{
     width: 25%;
     border-radius: 50%;
+}
+
+.bulleD{
+    display: grid;
+    grid-template-columns: 50px 900px;
+    padding: 5px;
+}
+
+.carteB{
+    padding: 5px;
+}
+
+.bulleR{
+    display: grid;
+    grid-template-columns: 900px 50px;
+    padding: 5px;
+    justify-content: right;
+}
+
+.carteB{
+    padding: 5px;
 }
