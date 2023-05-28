@@ -8,6 +8,7 @@ use App\Http\Controllers\UtilisateurController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\PublicationController;
 use App\Http\Controllers\MessageController;
+use App\Http\Controllers\ParametreController;
 
 /*
 |--------------------------------------------------------------------------
@@ -48,3 +49,6 @@ Route::get('/publication/aimer/{id}', [PublicationController::class, 'aimer'])->
 Route::get('/publication/commentaire/{id}', [PublicationController::class, 'commentaire'])->name('publication.commentaire');
 
 Route::get('/message', [MessageController::class, 'afficherMessage'])->name('message.afficher');
+
+Route::get('/parametre/{id}', [ParametreController::class, 'afficherParametre'])->name('parametre.afficher');
+Route::post('/parametre/modifProfil', [ParametreController::class, 'modifProfil'])->name('parametre.modifProfil');

@@ -13,6 +13,10 @@ use App\Models\Amis;
 
 class UtilisateurController extends Controller
 {
+    public static function informationsUtilisateur($id){
+        return Utilisateur::firstWhere('id', $id);
+    }
+
     public function obtenirTousAmis($id){
         return Amis::where('idcompted', $id)->where('attente', 0)->get();
     }
@@ -60,7 +64,7 @@ class UtilisateurController extends Controller
         $id = intval($id);
         $demandeurAmi = null;
         $receveurAmi = null;
-        $utilisateur = Utilisateur::firstWhere('id', $id);
+        $utilisateur = $this->informationsUtilisateur($id);
         $publications = $this->obtenirPublications($request, $id);
 
         if($utilisateur === null){
