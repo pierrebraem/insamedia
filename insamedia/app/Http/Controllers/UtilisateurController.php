@@ -32,6 +32,18 @@ class UtilisateurController extends Controller
         return Amis::where('idcompter', $idR)->where('idcompted', $idD)->where('attente', 1)->first();
     }
 
+    public function autoriserVoirPublication(Request $request, $idVisibilite, $id){
+        if($idVisibilite === 3 || $id === $request->session()->get('id')){
+            return $id === $request->session()->get('id');
+        }
+        else if($idVisibilite === 2){
+            return $this->estAmi($request->session()->get('id'), $id);
+        }
+        else{
+            return true;
+        }
+    }
+
     public function obtenirPublications(Request $request, $id){
         $publications = PublicationController::obtenirPublicationsProfil($id);
         foreach($publications as $publication){
@@ -39,6 +51,7 @@ class UtilisateurController extends Controller
             $publication->aimer = PublicationController::obtenirNombreAimes($publication->id);
             $publication->aimeDeja = PublicationController::aimeDeja($request, $publication->id);
             $publication->commentaires = PublicationController::obtenirCommentaires($publication->id);
+            $publication->autoriser = $this->autoriserVoirPublication($request, $publication->idvisibilite, $id);
         }
         return $publications;
     }
@@ -55,6 +68,7 @@ class UtilisateurController extends Controller
         }
         else{
             $amis = $this->obtenirTousAmis($id);
+            $estAmi = $this->estAmi($request->session()->get('id'), $id);
             if($request->session()->get('id') !== $id){
                 $demandeurAmi = $this->checkDemandeurAmi($request->session()->get('id'), $id);
                 $receveurAmi = $this->checkReceveurAmi($request->session()->get('id'), $id);
@@ -63,7 +77,7 @@ class UtilisateurController extends Controller
                                         ->with('amis', $amis)
                                         ->with('demandeurAmi', $demandeurAmi)
                                         ->with('receveurAmi', $receveurAmi)
-                                        ->with('estAmi', $this->estAmi($request->session()->get('id'), $id))
+                                        ->with('estAmi', $estAmi)
                                         ->with('visibilites', Visibilite::all())
                                         ->with('publications', $publications);
         }

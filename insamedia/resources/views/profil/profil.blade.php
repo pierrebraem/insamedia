@@ -109,106 +109,108 @@
                 <h1 class="title text-center">Aucune publications sur ce profil</h1>
             @else
                 @foreach($publications as $publication)
-                    <div class="post">
-                        <div class="card centrer">
-                            <div class="card-body">
-                                <div class="row w-50">
-                                    <div class="col-2">
-                                        @if($publication->compte->photo === null)
-                                            <img src="{{ asset('images/photo_default.jpg') }}" class="photoProfile"/>
-                                        @else
-                                            <img src="{{ asset($publication->compte->photo) }}" class="photoProfile"/>
-                                        @endif
-                                    </div>
-                                    <div class="col-6 texteContenu">
-                                        <p>{{$publication->compte->pseudo}} - {{$publication->anciennete}}</p>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col">
-                                        <p>{{$publication->description}}</p>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col">
-                                        <a href="/publication/aimer/{{$publication->id}}">
-                                            @if($publication->aimeDeja)
-                                                <i class="fa-solid fa-heart"></i>
+                    @if($publication->autoriser)
+                        <div class="post">
+                            <div class="card centrer">
+                                <div class="card-body">
+                                    <div class="row w-50">
+                                        <div class="col-2">
+                                            @if($publication->compte->photo === null)
+                                                <img src="{{ asset('images/photo_default.jpg') }}" class="photoProfile"/>
                                             @else
-                                                <i class="fa-regular fa-heart"></i>
+                                                <img src="{{ asset($publication->compte->photo) }}" class="photoProfile"/>
                                             @endif
-                                        </a>
-                                        <span class="badge bg-danger round-pill" style="margin-right: 10px;">{{$publication->aimer}}</span>
+                                        </div>
+                                        <div class="col-6 texteContenu">
+                                            <p>{{$publication->compte->pseudo}} - {{$publication->anciennete}}</p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col">
+                                            <p>{{$publication->description}}</p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col">
+                                            <a href="/publication/aimer/{{$publication->id}}">
+                                                @if($publication->aimeDeja)
+                                                    <i class="fa-solid fa-heart"></i>
+                                                @else
+                                                    <i class="fa-regular fa-heart"></i>
+                                                @endif
+                                            </a>
+                                            <span class="badge bg-danger round-pill" style="margin-right: 10px;">{{$publication->aimer}}</span>
 
-                                        <i class="fa-solid fa-share" style="margin-right: 10px;"></i>
-                        
-                                        <i class="fa-regular fa-flag"></i>
+                                            <i class="fa-solid fa-share" style="margin-right: 10px;"></i>
+                            
+                                            <i class="fa-regular fa-flag"></i>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        @if($publication->aCommentaire === 1)
-                            <div class="card carteCommentaireP centrer">
-                                <div class="card-body">
-                                    <p>Commentaires {{$publication->commentaires->count()}}</p>
-                                    <!-- Affichage commentaire -->
-                                    @foreach($publication->commentaires as $commentaire)
-                                        <div class="unCommentaire">
-                                            <div class="contenuCommentaire">
-                                                <div class="row">
-                                                    <div class="col-1">
-                                                        @if($commentaire->compte->photo === null)
-                                                            <img src="{{ asset('images/photo_default.jpg') }}" class="photoProfile"/>
-                                                        @else
-                                                            <img src="{{ asset($publication->compte->photo) }}" class="photoProfile"/>
-                                                        @endif
-                                                    </div>
-                                                    <div class="col">
-                                                        <div class="card">
-                                                            <div class="card-head texteContenu">
-                                                                {{$commentaire->compte->pseudo}}
-                                                            </div>
-                                                            <div class="card-body">
-                                                                {{$commentaire->commentaire}}
+                            @if($publication->aCommentaire === 1)
+                                <div class="card carteCommentaireP centrer">
+                                    <div class="card-body">
+                                        <p>Commentaires {{$publication->commentaires->count()}}</p>
+                                        <!-- Affichage commentaire -->
+                                        @foreach($publication->commentaires as $commentaire)
+                                            <div class="unCommentaire">
+                                                <div class="contenuCommentaire">
+                                                    <div class="row">
+                                                        <div class="col-1">
+                                                            @if($commentaire->compte->photo === null)
+                                                                <img src="{{ asset('images/photo_default.jpg') }}" class="photoProfile"/>
+                                                            @else
+                                                                <img src="{{ asset($publication->compte->photo) }}" class="photoProfile"/>
+                                                            @endif
+                                                        </div>
+                                                        <div class="col">
+                                                            <div class="card">
+                                                                <div class="card-head texteContenu">
+                                                                    {{$commentaire->compte->pseudo}}
+                                                                </div>
+                                                                <div class="card-body">
+                                                                    {{$commentaire->commentaire}}
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-1"></div>
-                                                    <div class="col">
-                                                        <i class="fa-regular fa-heart"></i>
-                                                        <span class="badge bg-danger round-pill" style="margin-right: 10px;">0</span>
+                                                    <div class="row">
+                                                        <div class="col-1"></div>
+                                                        <div class="col">
+                                                            <i class="fa-regular fa-heart"></i>
+                                                            <span class="badge bg-danger round-pill" style="margin-right: 10px;">0</span>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    @endforeach
-                                    <form action="/publication/commentaire/{{$publication->id}}" method="get">
-                                        <div class="ligneE">
-                                            <div class="colonneE1">
-                                                <a href="#"><img class="photoProfile elementDroite" src="{{ asset('images/photo_default.jpg') }}" alt="default"/></a>
+                                        @endforeach
+                                        <form action="/publication/commentaire/{{$publication->id}}" method="get">
+                                            <div class="ligneE">
+                                                <div class="colonneE1">
+                                                    <a href="#"><img class="photoProfile elementDroite" src="{{ asset('images/photo_default.jpg') }}" alt="default"/></a>
+                                                </div>
+                                                <div class="colonneE2">
+                                                    <textarea class="w-100" rows="2" placeholder="Écrivez un commentaire" name="commentaire"></textarea>
+                                                </div>
                                             </div>
-                                            <div class="colonneE2">
-                                                <textarea class="w-100" rows="2" placeholder="Écrivez un commentaire" name="commentaire"></textarea>
+                                            <div class="row">
+                                                <div class="col">
+                                                    <input type="submit" class="btn btn-primary elementDroite" value="Publier"/>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col">
-                                                <input type="submit" class="btn btn-primary elementDroite" value="Publier"/>
-                                            </div>
-                                        </div>
-                                    </form>
+                                        </form>
+                                    </div>
+                                </div>
+                            @else
+                            <div class="card carteCommentaireP centrer text-center">
+                                <div class="card-body">
+                                    <p>Les commentaires sur cette publication sont désactivés.</p>
                                 </div>
                             </div>
-                        @else
-                        <div class="card carteCommentaireP centrer text-center">
-                            <div class="card-body">
-                                <p>Les commentaires sur cette publication sont désactivés.</p>
-                            </div>
+                            @endif
                         </div>
-                        @endif
-                    </div>
+                    @endif
                 @endforeach
             @endif
         </div>
