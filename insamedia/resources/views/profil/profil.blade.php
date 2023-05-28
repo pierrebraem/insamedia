@@ -150,7 +150,40 @@
                         @if($publication->aCommentaire === 1)
                             <div class="card carteCommentaireP centrer">
                                 <div class="card-body">
-                                    <p>Commentaire 0</p>
+                                    <p>Commentaires {{$publication->commentaires->count()}}</p>
+                                    <!-- Affichage commentaire -->
+                                    @foreach($publication->commentaires as $commentaire)
+                                        <div class="unCommentaire">
+                                            <div class="contenuCommentaire">
+                                                <div class="row">
+                                                    <div class="col-1">
+                                                        @if($commentaire->compte->photo === null)
+                                                            <img src="{{ asset('images/photo_default.jpg') }}" class="photoProfile"/>
+                                                        @else
+                                                            <img src="{{ asset($publication->compte->photo) }}" class="photoProfile"/>
+                                                        @endif
+                                                    </div>
+                                                    <div class="col">
+                                                        <div class="card">
+                                                            <div class="card-head texteContenu">
+                                                                {{$commentaire->compte->pseudo}}
+                                                            </div>
+                                                            <div class="card-body">
+                                                                {{$commentaire->commentaire}}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-1"></div>
+                                                    <div class="col">
+                                                        <i class="fa-regular fa-heart"></i>
+                                                        <span class="badge bg-danger round-pill" style="margin-right: 10px;">0</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @endforeach
                                     <form action="/publication/commentaire/{{$publication->id}}" method="get">
                                         <div class="ligneE">
                                             <div class="colonneE1">
