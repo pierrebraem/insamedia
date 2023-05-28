@@ -66,7 +66,7 @@
             <!-- Carte pour publier du contenu -->
             <div class="card cartePublicationP centrer">
                 <div class="card-body">
-                    <form action="/publication/publier" method="post">
+                    <form action="/publication/publier/{{$utilisateur->id}}" method="post">
                     @csrf
                         <div class="ligneE">
                             <div class="colonneE1">

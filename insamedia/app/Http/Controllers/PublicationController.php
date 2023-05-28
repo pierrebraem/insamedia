@@ -11,13 +11,14 @@ use App\Models\Aimer;
 
 class PublicationController extends Controller
 {
-    public function publier(Request $request){
+    public function publier(Request $request, $id){
+        $id = intval($id);
         $nouvellePublication = new Publication;
 
         $nouvellePublication->description = $request->input('publication');
         $nouvellePublication->date = Carbon::now();
         $nouvellePublication->idcompte = $request->session()->get('id');
-        $nouvellePublication->idprofil = $request->session()->get('id');
+        $nouvellePublication->idprofil = $id;
         $nouvellePublication->idvisibilite = $request->input('visibilite');
         if($request->input('aCommentaire') === null){
             $nouvellePublication->aCommentaire = 1;
