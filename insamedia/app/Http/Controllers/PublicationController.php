@@ -47,20 +47,8 @@ class PublicationController extends Controller
         return back();
     }
 
-    public function commentaire(Request $request, $id){
-        $id = intval($id);
-        $nouveauCommentaire = new Commentaire;
-        $nouveauCommentaire->idpublication = $id;
-        $nouveauCommentaire->idcompte = $request->session()->get('id');
-        $nouveauCommentaire->commentaire = $request->input('commentaire');
-        $nouveauCommentaire->save();
-
-        return back();
-    }
-
     public static function obtenirPublicationsProfil($idProfil){
         $idProfil = intval($idProfil);
-
         return Publication::where('idprofil', $idProfil)->orderBy('date', 'desc')->get();
     }
 
@@ -89,5 +77,21 @@ class PublicationController extends Controller
             return false;
         }
         return true;
+    }
+
+    public function commentaire(Request $request, $id){
+        $id = intval($id);
+        $nouveauCommentaire = new Commentaire;
+        $nouveauCommentaire->idpublication = $id;
+        $nouveauCommentaire->idcompte = $request->session()->get('id');
+        $nouveauCommentaire->commentaire = $request->input('commentaire');
+        $nouveauCommentaire->save();
+
+        return back();
+    }
+
+    public static function obtenirCommentaires($idPublication){
+        $idPublication = intval($idPublication);
+        return Commentaire::where('idpublication', $idPublication)->get();
     }
 }

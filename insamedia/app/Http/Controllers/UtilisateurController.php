@@ -38,6 +38,7 @@ class UtilisateurController extends Controller
             $publication->anciennete = PublicationController::calculTempsPublication($publication->date);
             $publication->aimer = PublicationController::obtenirNombreAimes($publication->id);
             $publication->aimeDeja = PublicationController::aimeDeja($request, $publication->id);
+            $publication->commentaires = PublicationController::obtenirCommentaires($publication->id);
         }
         return $publications;
     }
