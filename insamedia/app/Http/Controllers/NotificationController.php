@@ -33,6 +33,6 @@ class NotificationController extends Controller
     }
 
     public static function MAJNotification($contenu, $idcompter, $idcompteo, $idpublication = null){
-        Notification::where('idcompter', $idcompter)->where('idcompteo', $idcompteo)->where('idpublication', $idpublication)->update(['contenu' => $contenu, 'date' => Carbon::now(), 'idtype' => 2]);
+        Notification::where('idcompter', $idcompter)->where('idcompteo', $idcompteo)->where('idpublication', $idpublication)->update(['contenu' => $contenu, 'date' => Carbon::now()]);
     }
 }
