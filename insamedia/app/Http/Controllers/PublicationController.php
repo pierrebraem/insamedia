@@ -66,7 +66,10 @@ class PublicationController extends Controller
 
     public static function calculTempsPublication($date){
         $diff = Carbon::now()->diffInSeconds($date);
-        if($diff >= 3600){
+        if($diff >= 86400){
+            return Carbon::now()->diffInDays($date).'J';
+        }
+        else if($diff >= 3600){
             return Carbon::now()->diffInHours($date).'H';
         }
         else if($diff >= 60){
