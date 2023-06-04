@@ -17,6 +17,7 @@
                                     <p>{{$discussion->pseudo}}</p>
                                 </div>
                                 <div class="row">
+                                    <a href="/message/{{$discussion->id}}" class="stretched-link"></a>
                                     <p class="apercuMessage">Vous : Salut, comment tu vas? - 18H</p>
                                 </div>
                             </div>
@@ -27,87 +28,35 @@
         </div>
 
         <div id="discussion">
-            <div class="bulleD">
-                <div class="imageB">
-                    <img class="photoProfile elementDroite" src="{{ asset('images/photo_default.jpg') }}" alt="default"/>
-                </div>
-                <div class="commentaireB">
-                    <div class="card carteB">
-                        <p>Salut !</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="bulleR">
-                <div class="commentaireB">
-                    <div class="card carteB">
-                        <p>Salut !</p>
-                    </div>
-                </div>
-                <div class="imageB">
-                    <img class="photoProfile elementDroite" src="{{ asset('images/photo_default.jpg') }}" alt="default"/>
-                </div>
-            </div>
-
-            <div class="bulleR">
-                <div class="commentaireB">
-                    <div class="card carteB">
-                        <p>Salut !</p>
-                    </div>
-                </div>
-                <div class="imageB">
-                    <img class="photoProfile elementDroite" src="{{ asset('images/photo_exemple1.png') }}" alt="default"/>
-                </div>
-            </div>
-
-            <div class="bulleD">
-                <div class="imageB">
-                    <img class="photoProfile elementDroite" src="{{ asset('images/photo_exemple2.png') }}" alt="default"/>
-                </div>
-                <div class="commentaireB">
-                    <div class="card carteB">
-                        <p>Dum haec in oriente aguntur, Arelate hiemem agens Constantius post theatralis ludos atque circenses ambitioso editos apparatu diem sextum idus Octobres, qui imperii eius annum tricensimum terminabat, insolentiae pondera gravius librans, siquid dubium deferebatur aut falsum, pro liquido accipiens et conperto, inter alia excarnificatum Gerontium Magnentianae comitem partis exulari maerore multavit.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="bulleD">
-                <div class="imageB">
-                    <img class="photoProfile elementDroite" src="{{ asset('images/photo_exemple3.png') }}" alt="default"/>
-                </div>
-                <div class="commentaireB">
-                    <div class="card carteB">
-                        <p>Photo de mon cheval</p>
-                        <img class="photoPublication" src="{{ asset('images/Mon_cheval.jpg') }}" alt="Mon_cheval"/>
-                    </div>
-                </div>
-            </div>
-
-            <div class="bulleR">
-                <div class="commentaireB">
-                    <div class="card carteB">
-                        <p>J'ai trouvé un bug sur ce jeu ce matin.</p>
-                        <video width="500" heigth="500" controls>
-                            <source src="{{ asset('videos/bug.mp4') }}">
-                        </video>
-                    </div>
-                </div>
-                <div class="imageB">
-                    <img class="photoProfile elementDroite" src="{{ asset('images/photo_exemple4.png') }}" alt="default"/>
-                </div>
-            </div>
-
-            <div class="bulleR">
-                <div class="commentaireB">
-                    <div class="card carteB">
-                        <p>Super musique</p>
-                        <audio controls src="{{ asset('audios/Netrum & Halvorsen - Phoenix [NCS Release].mp3') }}">
-                    </div>
-                </div>
-                <div class="imageB">
-                    <img class="photoProfile elementDroite" src="{{ asset('images/photo_exemple5.png') }}" alt="default"/>
-                </div>
-            </div>
+            @if($messages == null || $messages->count() == 0)
+                <h2 class="text-center">Aucun messages</h2>
+            @else
+                @foreach($messages as $message)
+                    @if($message->idcompted == Session::get('id'))
+                        <div class="bulleR">
+                            <div class="commentaireB">
+                                <div class="card carteB">
+                                    <p>Salut !</p>
+                                </div>
+                            </div>
+                            <div class="imageB">
+                                <img class="photoProfile elementDroite" src="{{ asset('images/photo_default.jpg') }}" alt="default"/>
+                            </div>
+                        </div>
+                    @else
+                        <div class="bulleD">
+                            <div class="imageB">
+                                <img class="photoProfile elementDroite" src="{{ asset('images/photo_default.jpg') }}" alt="default"/>
+                            </div>
+                            <div class="commentaireB">
+                                <div class="card carteB">
+                                    <p>{{$message->contenu}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    @endif
+                @endforeach
+            @endif
         </div>
 
         <div id="commentaireM">

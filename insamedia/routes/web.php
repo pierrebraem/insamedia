@@ -49,6 +49,7 @@ Route::get('/publication/aimer/{id}', [PublicationController::class, 'aimer'])->
 Route::get('/publication/commentaire/{id}', [PublicationController::class, 'commentaire'])->name('publication.commentaire');
 
 Route::get('/message', [MessageController::class, 'afficherMessage'])->name('message.afficher');
+Route::get('/message/{id}', [MessageController::class, 'afficherMessage'])->name('message.afficher');
 
 Route::get('/parametre/{id}', [ParametreController::class, 'afficherParametre'])->name('parametre.afficher');
 Route::post('/parametre/modifProfil', [ParametreController::class, 'modifProfil'])->name('parametre.modifProfil');
