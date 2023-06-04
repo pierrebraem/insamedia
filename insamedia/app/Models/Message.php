@@ -10,7 +10,7 @@ class Message extends Model
     protected $table = 'message';
     protected $primaryKey = 'idcompted';
     public $timestamps = false;
-    protected $fillable = ['idcompted', 'idcompter', 'contenu', 'urlcontenu'];
+    protected $fillable = ['id', 'idcompted', 'idcompter', 'contenu', 'urlcontenu'];
 
     public function demendeur(){
         return $this->belongsTo('App\Models\Utilisateur', 'idcompted');
