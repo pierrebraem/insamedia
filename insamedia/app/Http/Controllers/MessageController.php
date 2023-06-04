@@ -12,8 +12,8 @@ use DB;
 class MessageController extends Controller
 {
     public function obtenirListeDiscussions(Request $request){
-        $premier = DB::table('message')->select('message.idcompter as id', 'compte.pseudo')->join('compte', 'message.idcompter', '=', 'compte.id')->where('idcompted', $request->session()->get('id'));
-        return DB::table('message')->select('message.idcompted as id', 'compte.pseudo')->join('compte', 'message.idcompted', '=', 'compte.id')->where('idcompter', $request->session()->get('id'))->get();
+        $premier = DB::table('message')->select('message.idcompter as id', 'compte.pseudo')->distinct()->join('compte', 'message.idcompter', '=', 'compte.id')->where('idcompted', $request->session()->get('id'));
+        return DB::table('message')->select('message.idcompted as id', 'compte.pseudo')->distinct()->join('compte', 'message.idcompted', '=', 'compte.id')->where('idcompter', $request->session()->get('id'))->get();
     }
 
     public function obtenirMessages(Request $request, $id){
