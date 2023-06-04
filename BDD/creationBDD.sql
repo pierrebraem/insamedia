@@ -74,12 +74,13 @@ CREATE TABLE parametres(
 
 -- Création de la table 'message'
 CREATE TABLE message(
+    id INT(10) NOT NULL AUTO_INCREMENT,
     idcompted INT(10) NOT NULL,
     idcompter INT(10) NOT NULL,
     contenu LONGTEXT NOT NULL,
     urlcontenu VARCHAR(255) NULL,
     date TIMESTAMP NOT NULL,
-    PRIMARY KEY(idcompted, idcompter)
+    PRIMARY KEY(id, idcompted, idcompter)
 );
 
 -- Création de la table 'visibilite'
