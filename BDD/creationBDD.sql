@@ -78,6 +78,7 @@ CREATE TABLE message(
     idcompter INT(10) NOT NULL,
     contenu LONGTEXT NOT NULL,
     urlcontenu VARCHAR(255) NULL,
+    date TIMESTAMP NOT NULL,
     PRIMARY KEY(idcompted, idcompter)
 );
 
