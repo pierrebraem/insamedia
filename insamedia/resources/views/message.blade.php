@@ -9,7 +9,11 @@
                         <div class="row">
                             <div class="w-25">
                                 <div class="col">
-                                    <img class="photoProfile elementDroite" src="{{ asset('images/photo_default.jpg') }}" alt="default"/>
+                                    @if($discussion->photo === null)
+                                        <img class="photoProfile elementDroite" src="{{ asset('images/photo_default.jpg') }}" alt="default"/>
+                                    @else
+                                        <img class="photoProfile elementDroite" src="{{ asset($discussion->photo) }}" alt="default"/>
+                                    @endif
                                 </div>
                             </div>
                             <div class="col">
@@ -27,7 +31,9 @@
         </div>
 
         <div id="discussion">
-            @if($messages == null || $messages->count() == 0)
+            @if($messages == null)
+                <h2 class="text-center">Cliquez sur une discussion pour commencer</h2>
+            @elseif($messages->count() == 0)
                 <h2 class="text-center">Aucun messages</h2>
             @else
                 @foreach($messages as $message)
@@ -39,13 +45,21 @@
                                 </div>
                             </div>
                             <div class="imageB">
-                                <img class="photoProfile elementDroite" src="{{ asset('images/photo_default.jpg') }}" alt="default"/>
+                                @if($message->demendeur->photo === null)
+                                    <img class="photoProfile elementDroite" src="{{ asset('images/photo_default.jpg') }}" alt="default"/>
+                                @else
+                                    <img class="photoProfile elementDroite" src="{{ asset($message->demendeur->photo) }}"/>
+                                @endif
                             </div>
                         </div>
                     @else
                         <div class="bulleD">
                             <div class="imageB">
-                                <img class="photoProfile elementDroite" src="{{ asset('images/photo_default.jpg') }}" alt="default"/>
+                                @if($message->receveur->photo === null)
+                                    <img class="photoProfile elementDroite" src="{{ asset('images/photo_default.jpg') }}" alt="default"/>
+                                @else
+                                    <img class="photoProfile elementDroite" src="{{ asset($message->receveur->photo) }}"/>
+                                @endif
                             </div>
                             <div class="commentaireB">
                                 <div class="card carteB">
@@ -58,23 +72,25 @@
             @endif
         </div>
 
-        <div id="commentaireM">
-            <form action="/message/envoyer/{{$id}}" method="post">
-            @csrf
-                <div class="ligneE">
-                    <div class="colonneE1">
-                        <a href="#"><img class="photoProfile elementDroite" src="{{ asset('images/photo_default.jpg') }}" alt="default"/></a>
+        @if($id !== null)
+            <div id="commentaireM">
+                <form action="/message/envoyer/{{$id}}" method="post">
+                @csrf
+                    <div class="ligneE">
+                        <div class="colonneE1">
+                            <a href="#"><img class="photoProfile elementDroite" src="{{ asset('images/photo_default.jpg') }}" alt="default"/></a>
+                        </div>
+                        <div class="colonneE2">
+                            <textarea class="w-100" rows="3" placeholder="Ecrivez votre message ici" name="message"></textarea>
+                        </div>
                     </div>
-                    <div class="colonneE2">
-                        <textarea class="w-100" rows="3" placeholder="Ecrivez votre message ici" name="message"></textarea>
+                    <div class="row">
+                        <div class="col">
+                            <input type="submit" class="btn btn-primary" value="Publier"/>
+                        </div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col">
-                        <input type="submit" class="btn btn-primary" value="Publier"/>
-                    </div>
-                </div>
-            </form>
-        </div>
+                </form>
+            </div>
+        @endif
     </div>
 @endsection

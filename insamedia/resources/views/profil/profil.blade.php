@@ -26,6 +26,7 @@
                         @else
                             <a class="btn btn-primary boutonP" href="{{$utilisateur->id}}/ajouter"><i class="fa-solid fa-plus"></i></a>
                         @endif
+                        <a class="btn btn-primary boutonP" href="/message/{{$utilisateur->id}}"><i class="fa-regular fa-envelope icon"></i></a>
                     @endif
                 @endif
             </div>
