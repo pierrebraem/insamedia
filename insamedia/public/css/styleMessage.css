@@ -1,9 +1,10 @@
 #containerM{
     display: grid;
-    grid-template-columns: 500px 1030px;
+    grid-template-columns: 450px 1030px;
     grid-template-areas:
     "lc d d d"
     "lc d d d"
+    "lc c c c"
     "lc c c c";
 }
 
@@ -15,7 +16,7 @@
 
 #discussion{
     grid-area: d;
-    height: 550px;
+    height: 520px;
     overflow-y: scroll;
 }
 

@@ -18,7 +18,6 @@
                                 </div>
                                 <div class="row">
                                     <a href="/message/{{$discussion->id}}" class="stretched-link"></a>
-                                    <p class="apercuMessage">Vous : Salut, comment tu vas? - 18H</p>
                                 </div>
                             </div>
                         </div>
@@ -36,7 +35,7 @@
                         <div class="bulleR">
                             <div class="commentaireB">
                                 <div class="card carteB">
-                                    <p>Salut !</p>
+                                    <p>{{$message->contenu}}</p>
                                 </div>
                             </div>
                             <div class="imageB">
@@ -60,14 +59,22 @@
         </div>
 
         <div id="commentaireM">
-            <div class="ligneE">
-                <div class="colonneE1">
-                    <a href="#"><img class="photoProfile elementDroite" src="{{ asset('images/photo_default.jpg') }}" alt="default"/></a>
+            <form action="/message/envoyer/{{$id}}" method="post">
+            @csrf
+                <div class="ligneE">
+                    <div class="colonneE1">
+                        <a href="#"><img class="photoProfile elementDroite" src="{{ asset('images/photo_default.jpg') }}" alt="default"/></a>
+                    </div>
+                    <div class="colonneE2">
+                        <textarea class="w-100" rows="3" placeholder="Ecrivez votre message ici" name="message"></textarea>
+                    </div>
                 </div>
-                <div class="colonneE2">
-                    <textarea class="w-100" rows="3" placeholder="Ecrivez votre message ici" name="publication"></textarea>
+                <div class="row">
+                    <div class="col">
+                        <input type="submit" class="btn btn-primary" value="Publier"/>
+                    </div>
                 </div>
-            </div>
+            </form>
         </div>
     </div>
 @endsection

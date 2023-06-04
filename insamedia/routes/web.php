@@ -50,6 +50,7 @@ Route::get('/publication/commentaire/{id}', [PublicationController::class, 'comm
 
 Route::get('/message', [MessageController::class, 'afficherMessage'])->name('message.afficher');
 Route::get('/message/{id}', [MessageController::class, 'afficherMessage'])->name('message.afficher');
+Route::post('/message/envoyer/{id}', [MessageController::class, 'envoyerMessage'])->name('message.envoyer');
 
 Route::get('/parametre/{id}', [ParametreController::class, 'afficherParametre'])->name('parametre.afficher');
 Route::post('/parametre/modifProfil', [ParametreController::class, 'modifProfil'])->name('parametre.modifProfil');
