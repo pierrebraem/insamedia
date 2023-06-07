@@ -6,83 +6,40 @@
     <div class="card mt-4 text-center">
         <h5 class="card-header">Rechercher</h5>
         <div class="card-body">
-            <p>Rechercher une personne, un post, une photo, une vidéo ou une musique.</p>
-            <input class="form-control mb-2" type="search" placeholder="Rechercher"/>
-            <button class="btn btn-dark"><i class="fa-solid fa-filter" id="rechercheFiltre"></i></button>
-            <button class="btn btn-success" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+            <form action="/parcourir/recherche" method="post">
+            @csrf
+                <p>Rechercher une personne, un post, une photo, une vidéo ou une musique.</p>
+                <input class="form-control mb-2" type="search" placeholder="Rechercher" name="recherche"/>
+                <button class="btn btn-dark"><i class="fa-solid fa-filter" id="rechercheFiltre"></i></button>
+                <button class="btn btn-success" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+            </form>
         </div>
     </div>
 
     <!-- Carte profil -->
     <div class="card mt-5">
-        <h5 class="card-header">Profils - 8</h5>
-        <div class="card-body">
-            <div class="resultat">
-                <div class="resultatCol">
-                    <img src="{{ asset('images/photo_exemple1.png') }}" class="photoProfile"/>
-                    <figcaption class="labelResultat">FrenchBrave</figcaption>
-                </div>
-
-                <div class="resultatCol">
-                    <img src="{{ asset('images/photo_exemple2.png') }}" class="photoProfile"/>
-                    <figcaption class="labelResultat">DarkUranium</figcaption>
-                </div>
-
-                <div class="resultatCol">
-                    <img src="{{ asset('images/photo_exemple3.png') }}" class="photoProfile"/>
-                    <figcaption class="labelResultat">EmeraudeDragon</figcaption>
-                </div>
-
-                <div class="resultatCol">
-                    <img src="{{ asset('images/photo_exemple4.png') }}" class="photoProfile"/>
-                    <figcaption class="labelResultat">Mr.X</figcaption>
-                </div>
-
-                <div class="resultatCol">
-                    <img src="{{ asset('images/photo_exemple5.png') }}" class="photoProfile"/>
-                    <figcaption class="labelResultat">CrabyThunder</figcaption>
-                </div>
-
-                <div class="resultatCol">
-                    <img src="{{ asset('images/photo_exemple6.png') }}" class="photoProfile"/>
-                    <figcaption class="labelResultat">OscarBrave</figcaption>
-                </div>
-
-                <div class="resultatCol">
-                    <img src="{{ asset('images/photo_exemple7.png') }}" class="photoProfile"/>
-                    <figcaption class="labelResultat">BearX</figcaption>
-                </div>
-
-                <div class="resultatCol">
-                    <img src="{{ asset('images/photo_exemple8.png') }}" class="photoProfile"/>
-                    <figcaption class="labelResultat">GhostMaj</figcaption>
+        @if($resultat == null)
+            <h5 class="card-header">Profils - 0</h5>
+            <div class="card-body"></div>
+        @else
+            <h5 class="card-header">Profils - {{$resultat->count()}}</h5>
+            <div class="card-body">
+                <div class="resultat">
+                    @foreach($resultat as $unResultat)
+                        <a href="/profils/{{$unResultat->id}}">
+                            <div class="resultatCol">
+                                @if($unResultat->photo == null)
+                                    <img src="{{ asset('images/photo_default.jpg') }}" class="photoProfile"/>
+                                @else
+                                    <img src="{{ asset($unResultat->photo) }}" class="photoProfile"/>
+                                @endif
+                                <figcaption class="labelResultat">{{$unResultat->pseudo}}</figcaption>
+                            </div>
+                        </a>
+                    @endforeach
                 </div>
             </div>
-        </div>
-    </div>
-
-    <!-- Carte images -->
-    <div class="card mt-5">
-        <h5 class="card-header">Images - 2</h5>
-        <div class="card-body">
-            <div class="resultat">
-                <div class="resultatCol">
-                    <img src="{{ asset('images/Mon_chat.jpg') }}" class="image"/>
-                    <figcaption class="labelResultat">
-                        <p>Mon chat</p>
-                        <p>De OscarBrave</p>
-                    </figcaption>
-                </div>
-
-                <div class="resultatCol">
-                    <img src="{{ asset('images/Mon_cheval.jpg') }}" class="image"/>
-                    <figcaption class="labelResultat">
-                        <p>Mon cheval</p>
-                        <p>De OscarBrave</p>
-                    </figcaption>
-                </div>
-            </div>
-        </div>
+        @endif
     </div>
 
     <!-- modal filtre -->

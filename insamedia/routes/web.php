@@ -9,6 +9,7 @@ use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\PublicationController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\ParametreController;
+use App\Http\Controllers\ParcourirController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,9 +24,8 @@ use App\Http\Controllers\ParametreController;
 
 Route::get('/', [AccueilController::class, 'afficherAccueil'])->name('accueil.afficher');
 
-Route::get('/parcourir', function() {
-    return view('parcourir');
-});
+Route::get('/parcourir', [ParcourirController::class, 'afficherParcourir'])->name('parcourir.afficher');
+Route::post('/parcourir/recherche', [ParcourirController::class, 'rechercher'])->name('parcourir.rechercher');
 
 Route::get('/connexion', [ConnexionInscriptionController::class, 'afficherConnexion'])->name('connexion.afficher');
 Route::post('/connexion/seconnecter', [ConnexionInscriptionController::class, 'seconnecter'])->name('connexion.seconnecter');
