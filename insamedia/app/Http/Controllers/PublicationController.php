@@ -13,6 +13,11 @@ class PublicationController extends Controller
 {
     public function publier(Request $request, $id){
         $id = intval($id);
+
+        $request->validate([
+            'publication' => ['required', 'string', 'min:1', 'max:255']
+        ]);
+
         $nouvellePublication = new Publication;
 
         $nouvellePublication->description = $request->input('publication');
@@ -25,6 +30,28 @@ class PublicationController extends Controller
         }
         else{
             $nouvellePublication->aCommentaire = 0;
+        }
+
+        if($request->hasFile('fichier')){
+            $extension = $request->file('fichier')->getClientOriginalExtension();
+
+            if($extension == 'jpg' || $extension == 'jpeg' || $extension == 'png' || $extension == 'gif'){
+                $dossier = '/images';
+            }
+            else if($extension == 'mp4'){
+                $dossier = '/videos';
+            }
+            else if($extension == 'mp3'){
+                $dossier = '/audios';
+            }
+            else{
+                $dossier = '/autres';
+            }
+
+            $debutLien = $request->session()->get('id').$dossier.'/';
+            $finLien = substr(base_convert(sha1(uniqid(mt_rand())), 16, 36), 0, 32).'.'.$extension;
+            $request->file('fichier')->move($debutLien, $finLien);
+            $nouvellePublication->urlcontenu = $debutLien.$finLien;
         }
 
         $nouvellePublication->save();

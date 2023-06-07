@@ -67,7 +67,7 @@
             <!-- Carte pour publier du contenu -->
             <div class="card cartePublicationP centrer">
                 <div class="card-body">
-                    <form action="/publication/publier/{{$utilisateur->id}}" method="post">
+                    <form action="/publication/publier/{{$utilisateur->id}}" method="post" enctype="multipart/form-data">
                     @csrf
                         <div class="ligneE">
                             <div class="colonneE1">
@@ -95,7 +95,7 @@
                         </div>
                         <div class="row">
                             <div class="col">
-                                <button class="btn btn-warning">Joindre un fichier</button>
+                                <input type="file" class="form-control" name="fichier" />
                             </div>
                             <div class="col">
                                 <input type="submit" class="btn btn-primary elementDroite" value="Publier"/>
