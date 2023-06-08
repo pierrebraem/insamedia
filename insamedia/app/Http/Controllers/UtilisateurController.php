@@ -56,6 +56,7 @@ class UtilisateurController extends Controller
             $publication->aimeDeja = PublicationController::aimeDeja($request, $publication->id);
             $publication->commentaires = PublicationController::obtenirCommentaires($publication->id);
             $publication->autoriser = $this->autoriserVoirPublication($request, $publication->idvisibilite, $id);
+            $publication->extension = explode('.', $publication->urlcontenu)[1];
         }
         return $publications;
     }

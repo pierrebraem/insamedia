@@ -129,6 +129,17 @@
                                     <div class="row">
                                         <div class="col">
                                             <p>{{$publication->description}}</p>
+                                            @if($publication->extension == 'jpg' || $publication->extension == 'jpeg' || $publication->extension == 'png' || $publication->extension == 'gif')
+                                                <img src="{{ asset($publication->urlcontenu) }}" class="photoPublication"/>
+                                            @elseif($publication->extension == 'mp4')
+                                                <video width="500" heigth="500" controls>
+                                                    <source src="{{ asset($publication->urlcontenu) }}">
+                                                </video>
+                                            @elseif($publication->extension == 'mp3')
+                                                <audio controls src="{{ asset($publication->urlcontenu) }}">
+                                            @else
+                                                <a href="{{ asset($publication->urlcontenu) }}" download>Télécharger fichier</a>
+                                            @endif
                                         </div>
                                     </div>
                                     <div class="row">
