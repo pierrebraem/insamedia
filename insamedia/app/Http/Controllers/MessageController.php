@@ -21,7 +21,15 @@ class MessageController extends Controller
             return;
         }
         $id = intval($id);
-        return Message::where('idcompted', $request->session()->get('id'))->where('idcompter', $id)->orWhere('idcompted', $id)->where('idcompter', $request->session()->get('id'))->orderBy('date', 'asc')->get();
+        $messages = Message::where('idcompted', $request->session()->get('id'))->where('idcompter', $id)->orWhere('idcompted', $id)->where('idcompter', $request->session()->get('id'))->orderBy('date', 'asc')->get();
+
+        foreach($messages as $message){
+            if($message->urlcontenu != null){
+                $message->extension = explode('.', $message->urlcontenu)[1];
+            }
+        }
+
+        return $messages;
     }
 
     public function afficherMessage(Request $request, $id = null){

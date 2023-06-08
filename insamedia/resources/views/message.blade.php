@@ -42,6 +42,19 @@
                             <div class="commentaireB">
                                 <div class="card carteB">
                                     <p>{{$message->contenu}}</p>
+                                    @if(isset($message->extension))
+                                        @if($message->extension == 'jpg' || $message->extension == 'jpeg' || $message->extension == 'png' || $message->extension == 'gif')
+                                            <img src="{{ asset($message->urlcontenu) }}" class="photoPublication"/>
+                                        @elseif($message->extension == 'mp4')
+                                            <video width="500" heigth="500" controls>
+                                                <source src="{{ asset($message->urlcontenu) }}">
+                                            </video>
+                                        @elseif($message->extension == 'mp3')
+                                            <audio controls src="{{ asset($message->urlcontenu) }}">
+                                        @else
+                                            <a href="{{ asset($message->urlcontenu) }}" download>Télécharger fichier</a>
+                                        @endif
+                                    @endif
                                 </div>
                             </div>
                             <div class="imageB">
@@ -64,6 +77,19 @@
                             <div class="commentaireB">
                                 <div class="card carteB">
                                     <p>{{$message->contenu}}</p>
+                                    @if(isset($message->extension))
+                                        @if($message->extension == 'jpg' || $message->extension == 'jpeg' || $message->extension == 'png' || $message->extension == 'gif')
+                                            <img src="{{ asset($message->urlcontenu) }}" class="photoPublication"/>
+                                        @elseif($message->extension == 'mp4')
+                                            <video width="500" heigth="500" controls>
+                                                <source src="{{ asset($message->urlcontenu) }}">
+                                            </video>
+                                        @elseif($message->extension == 'mp3')
+                                            <audio controls src="{{ asset($message->urlcontenu) }}">
+                                        @else
+                                            <a href="{{ asset($message->urlcontenu) }}" download>Télécharger fichier</a>
+                                        @endif
+                                    @endif
                                 </div>
                             </div>
                         </div>
