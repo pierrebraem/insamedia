@@ -39,6 +39,29 @@ class MessageController extends Controller
         $nouveauMessage->idcompter = $id;
         $nouveauMessage->contenu = $request->input('message');
         $nouveauMessage->date = Carbon::now();
+
+        if($request->hasFile('fichier')){
+            $extension = $request->file('fichier')->getClientOriginalExtension();
+
+            if($extension == 'jpg' || $extension == 'jpeg' || $extension == 'png' || $extension == 'gif'){
+                $dossier = '/images';
+            }
+            else if($extension == 'mp4'){
+                $dossier = '/videos';
+            }
+            else if($extension == 'mp3'){
+                $dossier = '/audios';
+            }
+            else{
+                $dossier = '/autres';
+            }
+
+            $debutLien = $request->session()->get('id').$dossier.'/';
+            $finLien = substr(base_convert(sha1(uniqid(mt_rand())), 16, 36), 0, 32).'.'.$extension;
+            $request->file('fichier')->move($debutLien, $finLien);
+            $nouveauMessage->urlcontenu = $debutLien.$finLien;
+        }
+
         $nouveauMessage->save();
 
         return back();

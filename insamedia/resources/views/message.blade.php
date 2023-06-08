@@ -74,7 +74,7 @@
 
         @if($id !== null)
             <div id="commentaireM">
-                <form action="/message/envoyer/{{$id}}" method="post">
+                <form action="/message/envoyer/{{$id}}" method="post" enctype="multipart/form-data">
                 @csrf
                     <div class="ligneE">
                         <div class="colonneE1">
@@ -85,6 +85,9 @@
                         </div>
                     </div>
                     <div class="row">
+                        <div class="col">
+                            <input type="file" class="form-control" name="fichier" />
+                        </div>
                         <div class="col">
                             <input type="submit" class="btn btn-primary" value="Publier"/>
                         </div>
