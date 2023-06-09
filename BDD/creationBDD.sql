@@ -199,5 +199,7 @@ ALTER TABLE signalement
 ADD CONSTRAINT fk_signalement_compte FOREIGN KEY (idcompte) REFERENCES compte(id),
 ADD CONSTRAINT fk_signalement_publication FOREIGN KEY (idpublication) REFERENCES publication(id);
 
--- Donne tous les droits sur la base de données à l'utilisateur 'admin'
-GRANT ALL ON insamedia.* TO 'admin'@'localhost';
+-- Créer et donne tous les droits sur la base de données à l'utilisateur 'site'
+DROP USER IF EXISTS 'site'@'%';
+CREATE USER 'site'@'%' IDENTIFIED WITH mysql_native_password BY '123456';
+GRANT ALL ON insamedia.* TO 'site'@'%';
