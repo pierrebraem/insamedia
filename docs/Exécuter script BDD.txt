@@ -1,0 +1,8 @@
+1. Dans l'interface des dossiers partagers sur VirtualBox, choisir le dossier où le script est stocké (dossier BDD)
+2. Ensuite, dans le terminal Linux, aller dans le répertoire home: "cd /home/pierre"
+3. Taper la commande: "sudo mount -t vboxsf bdd partage"
+4. Puis: "cd partage"
+5. Copier le script dans le serveur: "cp creationBDD.sql /home/pierre/scripts/creationbdd.sql"
+6. Aller dans le dossier scripts: "cd ../scripts"
+7. Executer le script avec mysql : "sudo mysql -u root -p < creationbdd.sql"
+8. Pour voir si le script à bien fonctionner, essayer de vous connecter à mysql en tant que 'site' et faite quelques requetes SQL.
