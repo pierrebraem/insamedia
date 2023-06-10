@@ -5,6 +5,7 @@
     <link href="{{ asset('css/styleProfil.css') }}" rel="stylesheet" />
     <link href="{{ asset('css/styleNotification.css') }}" rel="stylesheet" />
     <link href="{{ asset('css/styleMessage.css') }}" rel="stylesheet" />
+    <link href="{{ asset('css/styleAdmin.css') }}" rel="stylesheet" />
 
     <script src="https://kit.fontawesome.com/09475d7342.js" crossorigin="anonymous"></script>
 
@@ -23,6 +24,9 @@
                     <ul class="navbar-nav me-auto">
                         <a class="nav-link" href="/parcourir">Parcourir</a>
                         <a class="nav-link" href="#">Support</a>
+                        @if(Session::get('id') != 3)
+                            <a class="nav-link" href="/administrateur">Tableau de bord</a>
+                        @endif
                     </ul>
                     
                     <!-- Liens à gauche de la navbar -->

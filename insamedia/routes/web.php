@@ -10,6 +10,7 @@ use App\Http\Controllers\PublicationController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\ParametreController;
 use App\Http\Controllers\ParcourirController;
+use App\Http\Controllers\AdministrateurController;
 
 /*
 |--------------------------------------------------------------------------
@@ -54,3 +55,5 @@ Route::post('/message/envoyer/{id}', [MessageController::class, 'envoyerMessage'
 
 Route::get('/parametre/{id}', [ParametreController::class, 'afficherParametre'])->name('parametre.afficher');
 Route::post('/parametre/modifProfil', [ParametreController::class, 'modifProfil'])->name('parametre.modifProfil');
+
+Route::get('/administrateur', [AdministrateurController::class, 'afficherAdministrateur'])->name('administrateur.afficher');

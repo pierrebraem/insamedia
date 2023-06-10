@@ -1,0 +1,40 @@
+.groupCard{
+    display: flex;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.carteA{
+    border: solid black 2px;
+    width: 400px;
+    height: 300px;
+}
+
+.alignementCarte1{
+    margin-left: 400px;
+}
+
+.iconCarte{
+    height: 80%;
+    text-align: center;
+    padding: 8%;
+}
+
+.textCarte{
+    font-weight: bold;
+    font-size: 20px;
+    text-align: center;
+}
+
+.lienCarte{
+    display: block; 
+    height: 100%; 
+    width: 100%;
+    text-decoration: none !important;
+    color: inherit;
+}
+
+.lienCarte:hover{
+    color: inherit;
+}
