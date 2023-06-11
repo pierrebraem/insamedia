@@ -38,3 +38,8 @@
 .lienCarte:hover{
     color: inherit;
 }
+
+.photoProfileA{
+    width: 20%;
+    border-radius: 50%;
+}

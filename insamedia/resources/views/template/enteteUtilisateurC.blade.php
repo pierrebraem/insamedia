@@ -24,7 +24,7 @@
                     <ul class="navbar-nav me-auto">
                         <a class="nav-link" href="/parcourir">Parcourir</a>
                         <a class="nav-link" href="#">Support</a>
-                        @if(Session::get('id') != 3)
+                        @if(Session::get('role') != 3)
                             <a class="nav-link" href="/administrateur">Tableau de bord</a>
                         @endif
                     </ul>
