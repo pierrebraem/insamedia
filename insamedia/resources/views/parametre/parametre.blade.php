@@ -20,4 +20,6 @@
 
         <input type="submit" class="btn btn-primary" value="Valider"/>
     </form>
+
+    <a class="btn btn-danger" href="/parametre/{{$utilisateur->id}}/supprimer">Supprimer le compte</a>
 @endsection

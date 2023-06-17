@@ -59,8 +59,9 @@ Route::get('/message', [MessageController::class, 'afficherMessage'])->name('mes
 Route::get('/message/{id}', [MessageController::class, 'afficherMessage'])->name('message.afficher')->middleware(VerifieBannissement::class);
 Route::post('/message/envoyer/{id}', [MessageController::class, 'envoyerMessage'])->name('message.envoyer')->middleware(VerifieBannissement::class);
 
-Route::get('/parametre/{id}', [ParametreController::class, 'afficherParametre'])->name('parametre.afficher')->middleware(VerifieBannissement::class);
-Route::post('/parametre/modifProfil', [ParametreController::class, 'modifProfil'])->name('parametre.modifProfil')->middleware(VerifieBannissement::class);
+Route::get('/parametre/{id}', [ParametreController::class, 'afficherParametre'])->name('parametre.afficher');
+Route::post('/parametre/modifProfil', [ParametreController::class, 'modifProfil'])->name('parametre.modifProfil');
+Route::get('/parametre/{id}/supprimer', [ParametreController::class, 'supprimerCompte'])->name('parametre.supprimerCompte');
 
 Route::get('/administrateur', [AdministrateurController::class, 'afficherAdministrateur'])->name('administrateur.afficher');
 
