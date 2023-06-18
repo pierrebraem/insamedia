@@ -12,7 +12,7 @@
                 </a>
             </div>
             <div class="carteA alignementCarte1">
-                <a href="/administrateur/signalement" class="lienCarte">
+                <a href="/administrateur/signalements" class="lienCarte">
                     <div class="iconCarte">
                     <i class="fa-solid fa-triangle-exclamation fa-10x"></i>
                     </div>

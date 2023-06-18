@@ -4,9 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Storage;
 
 use App\Models\Utilisateur;
+use App\Models\Publication;
 use App\Models\Bannissement;
+use App\Models\Signalement;
+
+use DB;
 
 class AdministrateurController extends Controller
 {
@@ -17,6 +22,7 @@ class AdministrateurController extends Controller
         return back();
     }
 
+    /* =============================================Partie gestion utilisateurs============================================ */
     public function afficherUtilisateurs(Request $request){
         if($request->session()->get('role') != 3){
             $utilisateurs = Utilisateur::whereNot('id', $request->session()->get('id'))->get();
@@ -102,5 +108,69 @@ class AdministrateurController extends Controller
             return true;
         }
         return false;
+    }
+
+    /* =============================================Partie gestion signalements============================================ */
+    public function afficherSignalements(Request $request){
+        if($request->session()->get('role') != 3){
+            $signalements = DB::table('signalement')
+                                    ->select('publication.id as idPublication', 'publication.description as description', DB::raw('count(signalement.idpublication) as nombrePublication'))
+                                    ->join('publication', 'signalement.idpublication', '=', 'publication.id')
+                                    ->groupBy('idPublication')
+                                    ->get();
+            return view('administrateur/gestionSignalements')->with('signalements', $signalements);
+        }
+        return back();
+    }
+
+    public function detailsSignalement(Request $request, $id){
+        if($request->session()->get('role') != 3){
+            $id = intval($id);
+            $publication = Publication::where('id', $id)->first();
+            $signalements = Signalement::where('idpublication', $id)->get();
+            if($publication->urlcontenu != null){
+                $publication->extension = explode('.', $publication->urlcontenu)[1];
+            }
+            return view('administrateur/detailsSignalement')->with('publication', $publication)
+                                                            ->with('signalements', $signalements);
+        }
+        return back();
+    }
+
+    public function garderSignalement(Request $request, $id){
+        if($request->session()->get('role') != 3){
+            $id = intval($id);
+            Signalement::where('idpublication', $id)->delete();
+            return redirect('/administrateur/signalements');
+        }
+        return back();
+    }
+
+    public function supprimerSignalement(Request $request, $id){
+        if($request->session()->get('role') != 3){
+            $id = intval($id);
+            Signalement::where('idpublication', $id)->delete();
+            $publication = Publication::where('id', $id)->first();
+            if($publication->urlcontenu !== null){
+                Storage::disk('public')->delete($publication->urlcontenu);
+            }
+            $publication->delete();
+            return redirect('/administrateur/signalements');
+        }
+        return back();
+    }
+
+    public function ajouterSignalement(Request $request, $id){
+        $id = intval($id);
+        $request->validate([
+            'raison' => ['required', 'string', 'min:1', 'max:255']
+        ]);
+
+        $nouveauSignalement = new Signalement;
+        $nouveauSignalement->raison = $request->input('raison');
+        $nouveauSignalement->idcompte = $request->session()->get('id');
+        $nouveauSignalement->idpublication = $id;
+        $nouveauSignalement->save();
+        return back();
     }
 }

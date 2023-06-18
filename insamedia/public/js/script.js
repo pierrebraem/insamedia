@@ -95,3 +95,28 @@ if(boutonModificationProfilAdmin !== null){
         }
     });
 }
+
+const boutonSignalement = document.getElementsByClassName('ouvrirModalSignalement');
+if(boutonSignalement !== null){
+    for(let i=0; i<boutonSignalement.length; i++){
+        boutonSignalement[i].addEventListener('click', () => {
+            let idPublication = boutonSignalement[i].getAttribute('data-id');
+            let modal = document.getElementById('modalSignalement');
+            let fermer = document.getElementsByClassName('fermer')[0];
+            let fermerB = document.getElementsByClassName('fermerB')[0];
+    
+            modal.style.display = 'block';
+
+            let btnSignalement = document.getElementsByClassName('form-signalement')[0];
+            btnSignalement.setAttribute('action', '/administrateur/signalements/'+ idPublication + '/ajouter');
+    
+            fermer.onclick = () => {
+                modal.style.display = 'none';
+            }
+    
+            fermerB.onclick = () => {
+                modal.style.display = 'none';
+            }
+        });
+    }
+}

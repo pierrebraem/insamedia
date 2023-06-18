@@ -137,7 +137,7 @@
                                                 </video>
                                             @elseif($publication->extension == 'mp3')
                                                 <audio controls src="{{ asset($publication->urlcontenu) }}">
-                                            @else
+                                            @elseif($publication->urlcontenu != null)
                                                 <a href="{{ asset($publication->urlcontenu) }}" download>Télécharger fichier</a>
                                             @endif
                                         </div>
@@ -155,7 +155,7 @@
 
                                             <i class="fa-solid fa-share" style="margin-right: 10px;"></i>
                             
-                                            <i class="fa-regular fa-flag"></i>
+                                            <i class="fa-regular fa-flag ouvrirModalSignalement" data-id="{{$publication->id}}"></i>
                                         </div>
                                     </div>
                                 </div>
@@ -225,6 +225,29 @@
                     @endif
                 @endforeach
             @endif
+        </div>
+
+        <!-- Modal Signalement -->
+        <div id="modalSignalement" class="modal">
+            <div class="modal-contenu">
+                <div class="modal-entete">
+                    <span class="fermer"><button class="btn btn-danger">&times;</button></span>
+                    <h4>Signalement</h4>
+                </div>
+                <div class="modal-corps">
+                    <form class="form-signalement" method="post">
+                    @csrf
+                        <div>
+                            <label for="raison">Raison :</label>
+                            <input type="text" placeholder="Raison" name="raison"/>
+                        </div>
+                        <div>
+                            <button class="btn btn-danger fermerB">Annuler</button>
+                            <input type="submit" class="btn btn-success" value="Signaler"/>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
 @endsection

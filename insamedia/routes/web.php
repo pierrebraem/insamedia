@@ -63,8 +63,15 @@ Route::get('/parametre/{id}', [ParametreController::class, 'afficherParametre'])
 Route::post('/parametre/modifProfil', [ParametreController::class, 'modifProfil'])->name('parametre.modifProfil')->middleware(VerifieBannissement::class);
 
 Route::get('/administrateur', [AdministrateurController::class, 'afficherAdministrateur'])->name('administrateur.afficher');
+
 Route::get('/administrateur/utilisateurs', [AdministrateurController::class, 'afficherUtilisateurs'])->name('administrateur.utilisateur.afficher');
 Route::get('/administrateur/utilisateurs/{id}', [AdministrateurController::class, 'detailsUtilisateur'])->name('administrateur.utilisateur.details');
 Route::post('/administrateur/utilisateurs/{id}/modifier', [AdministrateurController::class, 'modificationProfilAdmin'])->name('administrateur.utilisateur.modifier');
 Route::get('/administrateur/utilisateurs/{id}/moderation', [AdministrateurController::class, 'attribuerRetirerDroit'])->name('administrateur.utilisateur.moderation');
 Route::post('/administrateur/utilisateurs/{id}/bannir', [AdministrateurController::class, 'bannissement'])->name('administrateur.utilisateur.bannir');
+
+Route::get('/administrateur/signalements', [AdministrateurController::class, 'afficherSignalements'])->name('administrateur.signalement.afficher');
+Route::get('/administrateur/signalements/{id}', [AdministrateurController::class, 'detailsSignalement'])->name('administrateur.signalement.details');
+Route::get('/administrateur/signalements/{id}/garder', [AdministrateurController::class, 'garderSignalement'])->name('administrateur.signalement.garder');
+Route::get('/administrateur/signalements/{id}/supprimer', [AdministrateurController::class, 'supprimerSignalement'])->name('administrateur.signalement.supprimer');
+Route::post('/administrateur/signalements/{id}/ajouter', [AdministrateurController::class, 'ajouterSignalement'])->name('administrateur.signalement.ajouter')->middleware(VerifieBannissement::class);
