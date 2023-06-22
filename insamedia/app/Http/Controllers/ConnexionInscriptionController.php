@@ -67,6 +67,7 @@ class ConnexionInscriptionController extends Controller
         else{
             $utilisateur = Utilisateur::where('email', $request->input('email'));
             $request->session()->put('id', $utilisateur->value('id'));
+            $request->session()->put('photo', $utilisateur->value('photo'));
             $request->session()->put('email', $utilisateur->value('email'));
             $request->session()->put('role', $utilisateur->value('idrole'));
         }

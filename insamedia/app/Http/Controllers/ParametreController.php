@@ -44,9 +44,11 @@ class ParametreController extends Controller
         if($request->hasFile('image')){
             $extension = $request->file('image')->getClientOriginalExtension();
             $request->file('image')->move('avatars', 'avatar-'.$id.'.'.$extension);
+            $lien = 'avatars/'.'avatar-'.$id.'.'.$extension;
+            $request->session()->put('photo', $lien);
         }
 
-        Utilisateur::where('id', $id)->update(['nom' => $request->input('nom'), 'prenom' => $request->input('prenom'), 'pseudo' => $request->input('pseudo'), 'description' => $request->input('description'), 'photo' => 'avatars/'.'avatar-'.$id.'.'.$extension]);
+        Utilisateur::where('id', $id)->update(['nom' => $request->input('nom'), 'prenom' => $request->input('prenom'), 'pseudo' => $request->input('pseudo'), 'description' => $request->input('description'), 'photo' => $lien]);
 
         return back();
     }

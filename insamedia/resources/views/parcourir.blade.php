@@ -26,7 +26,7 @@
             <div class="card-body">
                 <div class="resultat">
                     @foreach($resultat as $unResultat)
-                        <a href="/profils/{{$unResultat->id}}">
+                        <a href="/profils/{{$unResultat->id}}" class="supprimerLien">
                             <div class="resultatCol">
                                 @if($unResultat->photo == null)
                                     <img src="{{ asset('images/photo_default.jpg') }}" class="photoProfile"/>

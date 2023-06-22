@@ -71,7 +71,11 @@
                     @csrf
                         <div class="ligneE">
                             <div class="colonneE1">
-                                <a href="#"><img class="photoProfile elementDroite" src="{{ asset('images/photo_default.jpg') }}" alt="default"/></a>
+                                @if(Session::get('photo') == null)
+                                    <a href="/profils/{{Session::get('id')}}"><img class="photoProfile elementDroite" src="{{ asset('images/photo_default.jpg') }}" alt="default"/></a>
+                                @else
+                                    <a href="/profils/{{Session::get('id')}}"><img class="photoProfile elementDroite" src="{{ asset( Session::get('photo') ) }}"/></a>
+                                @endif
                             </div>
                             <div class="colonneE2">
                                 <textarea class="w-100" rows="5" placeholder="Dites ce que vous voulez" name="publication"></textarea>
@@ -144,7 +148,7 @@
                                     </div>
                                     <div class="row">
                                         <div class="col">
-                                            <a href="/publication/aimer/{{$publication->id}}">
+                                            <a href="/publication/aimer/{{$publication->id}}" class="supprimerLien">
                                                 @if($publication->aimeDeja)
                                                     <i class="fa-solid fa-heart"></i>
                                                 @else
@@ -200,7 +204,11 @@
                                         <form action="/publication/commentaire/{{$publication->id}}" method="get">
                                             <div class="ligneE">
                                                 <div class="colonneE1">
-                                                    <a href="#"><img class="photoProfile elementDroite" src="{{ asset('images/photo_default.jpg') }}" alt="default"/></a>
+                                                    @if(Session::get('photo') == null)
+                                                        <a href="/profils/{{Session::get('id')}}"><img class="photoProfile elementDroite" src="{{ asset('images/photo_default.jpg') }}" alt="default"/></a>
+                                                    @else
+                                                        <a href="/profils/{{Session::get('id')}}"><img class="photoProfile elementDroite" src="{{ asset( Session::get('photo') ) }}"/></a>
+                                                    @endif
                                                 </div>
                                                 <div class="colonneE2">
                                                     <textarea class="w-100" rows="2" placeholder="Écrivez un commentaire" name="commentaire"></textarea>

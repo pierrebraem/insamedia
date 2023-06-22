@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Middleware\VerifieBannissement;
+use App\Http\Middleware\VerifieAdministrateur;
 
 use App\Http\Controllers\ConnexionInscriptionController;
 use App\Http\Controllers\AccueilController;
@@ -63,16 +64,16 @@ Route::get('/parametre/{id}', [ParametreController::class, 'afficherParametre'])
 Route::post('/parametre/modifProfil', [ParametreController::class, 'modifProfil'])->name('parametre.modifProfil');
 Route::get('/parametre/{id}/supprimer', [ParametreController::class, 'supprimerCompte'])->name('parametre.supprimerCompte');
 
-Route::get('/administrateur', [AdministrateurController::class, 'afficherAdministrateur'])->name('administrateur.afficher');
+Route::get('/administrateur', [AdministrateurController::class, 'afficherAdministrateur'])->name('administrateur.afficher')->middleware(VerifieAdministrateur::class);
 
-Route::get('/administrateur/utilisateurs', [AdministrateurController::class, 'afficherUtilisateurs'])->name('administrateur.utilisateur.afficher');
-Route::get('/administrateur/utilisateurs/{id}', [AdministrateurController::class, 'detailsUtilisateur'])->name('administrateur.utilisateur.details');
-Route::post('/administrateur/utilisateurs/{id}/modifier', [AdministrateurController::class, 'modificationProfilAdmin'])->name('administrateur.utilisateur.modifier');
-Route::get('/administrateur/utilisateurs/{id}/moderation', [AdministrateurController::class, 'attribuerRetirerDroit'])->name('administrateur.utilisateur.moderation');
-Route::post('/administrateur/utilisateurs/{id}/bannir', [AdministrateurController::class, 'bannissement'])->name('administrateur.utilisateur.bannir');
+Route::get('/administrateur/utilisateurs', [AdministrateurController::class, 'afficherUtilisateurs'])->name('administrateur.utilisateur.afficher')->middleware(VerifieAdministrateur::class);
+Route::get('/administrateur/utilisateurs/{id}', [AdministrateurController::class, 'detailsUtilisateur'])->name('administrateur.utilisateur.details')->middleware(VerifieAdministrateur::class);
+Route::post('/administrateur/utilisateurs/{id}/modifier', [AdministrateurController::class, 'modificationProfilAdmin'])->name('administrateur.utilisateur.modifier')->middleware(VerifieAdministrateur::class);
+Route::get('/administrateur/utilisateurs/{id}/moderation', [AdministrateurController::class, 'attribuerRetirerDroit'])->name('administrateur.utilisateur.moderation')->middleware(VerifieAdministrateur::class);
+Route::post('/administrateur/utilisateurs/{id}/bannir', [AdministrateurController::class, 'bannissement'])->name('administrateur.utilisateur.bannir')->middleware(VerifieAdministrateur::class);
 
-Route::get('/administrateur/signalements', [AdministrateurController::class, 'afficherSignalements'])->name('administrateur.signalement.afficher');
-Route::get('/administrateur/signalements/{id}', [AdministrateurController::class, 'detailsSignalement'])->name('administrateur.signalement.details');
-Route::get('/administrateur/signalements/{id}/garder', [AdministrateurController::class, 'garderSignalement'])->name('administrateur.signalement.garder');
-Route::get('/administrateur/signalements/{id}/supprimer', [AdministrateurController::class, 'supprimerSignalement'])->name('administrateur.signalement.supprimer');
+Route::get('/administrateur/signalements', [AdministrateurController::class, 'afficherSignalements'])->name('administrateur.signalement.afficher')->middleware(VerifieAdministrateur::class);
+Route::get('/administrateur/signalements/{id}', [AdministrateurController::class, 'detailsSignalement'])->name('administrateur.signalement.details')->middleware(VerifieAdministrateur::class);
+Route::get('/administrateur/signalements/{id}/garder', [AdministrateurController::class, 'garderSignalement'])->name('administrateur.signalement.garder')->middleware(VerifieAdministrateur::class);
+Route::get('/administrateur/signalements/{id}/supprimer', [AdministrateurController::class, 'supprimerSignalement'])->name('administrateur.signalement.supprimer')->middleware(VerifieAdministrateur::class);
 Route::post('/administrateur/signalements/{id}/ajouter', [AdministrateurController::class, 'ajouterSignalement'])->name('administrateur.signalement.ajouter')->middleware(VerifieBannissement::class);

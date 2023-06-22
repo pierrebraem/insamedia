@@ -35,6 +35,7 @@ class MessageController extends Controller
     public function afficherMessage(Request $request, $id = null){
         $listeDiscussions = $this->obtenirListeDiscussions($request);
         $messages = $this->obtenirMessages($request, $id);
+        //dd($messages[0]->receveur->photo);
         return view('message')->with('listeDiscussions', $listeDiscussions)
                             ->with('id', $id)
                             ->with('messages', $messages);

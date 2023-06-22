@@ -58,7 +58,7 @@
                                 </div>
                             </div>
                             <div class="imageB">
-                                @if($message->demendeur->photo === null)
+                                @if($message->demendeur->photo == null)
                                     <img class="photoProfile elementDroite" src="{{ asset('images/photo_default.jpg') }}" alt="default"/>
                                 @else
                                     <img class="photoProfile elementDroite" src="{{ asset($message->demendeur->photo) }}"/>
@@ -68,10 +68,10 @@
                     @else
                         <div class="bulleD">
                             <div class="imageB">
-                                @if($message->receveur->photo === null)
+                                @if($message->demendeur->photo == null)
                                     <img class="photoProfile elementDroite" src="{{ asset('images/photo_default.jpg') }}" alt="default"/>
                                 @else
-                                    <img class="photoProfile elementDroite" src="{{ asset($message->receveur->photo) }}"/>
+                                    <img class="photoProfile elementDroite" src="{{ asset($message->demendeur->photo) }}"/>
                                 @endif
                             </div>
                             <div class="commentaireB">
@@ -104,7 +104,11 @@
                 @csrf
                     <div class="ligneE">
                         <div class="colonneE1">
-                            <a href="#"><img class="photoProfile elementDroite" src="{{ asset('images/photo_default.jpg') }}" alt="default"/></a>
+                            @if(Session::get('photo') == null)
+                                <a href="/profils/{{Session::get('id')}}"><img class="photoProfile elementDroite" src="{{ asset('images/photo_default.jpg') }}" alt="default"/></a>
+                            @else
+                                <a href="/profils/{{Session::get('id')}}"><img class="photoProfile elementDroite" src="{{ asset( Session::get('photo') ) }}"/></a>
+                            @endif
                         </div>
                         <div class="colonneE2">
                             <textarea class="w-100" rows="3" placeholder="Ecrivez votre message ici" name="message"></textarea>

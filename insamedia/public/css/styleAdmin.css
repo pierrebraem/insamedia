@@ -32,11 +32,6 @@
     height: 100%; 
     width: 100%;
     text-decoration: none !important;
-    color: inherit;
-}
-
-.lienCarte:hover{
-    color: inherit;
 }
 
 .photoProfileA{
