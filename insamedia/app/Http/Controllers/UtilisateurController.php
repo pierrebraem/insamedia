@@ -10,6 +10,7 @@ use App\Http\Controllers\PublicationController;
 use App\Models\Utilisateur;
 use App\Models\Visibilite;
 use App\Models\Amis;
+use App\Models\Bloquer;
 
 class UtilisateurController extends Controller
 {
@@ -34,6 +35,14 @@ class UtilisateurController extends Controller
 
     public function checkReceveurAmi($idR, $idD){
         return Amis::where('idcompter', $idR)->where('idcompted', $idD)->where('attente', 1)->first();
+    }
+
+    public static function estBloqueur($idD, $idR){
+        return Bloquer::where('idcompted', $idD)->where('idcompter', $idR)->first();
+    }
+
+    public static function estBloque($idR, $idD){
+        return Bloquer::where('idcompter', $idR)->where('idcompted', $idD)->first();
     }
 
     public function autoriserVoirPublication(Request $request, $idVisibilite, $id){
@@ -68,6 +77,8 @@ class UtilisateurController extends Controller
         $id = intval($id);
         $demandeurAmi = null;
         $receveurAmi = null;
+        $estBloqueur = null;
+        $estBloque = null;
         $utilisateur = $this->informationsUtilisateur($id);
         $publications = $this->obtenirPublications($request, $id);
 
@@ -80,11 +91,15 @@ class UtilisateurController extends Controller
             if($request->session()->get('id') !== $id){
                 $demandeurAmi = $this->checkDemandeurAmi($request->session()->get('id'), $id);
                 $receveurAmi = $this->checkReceveurAmi($request->session()->get('id'), $id);
+                $estBloqueur = $this->estBloqueur($request->session()->get('id'), $id);
+                $estBloque = $this->estBloque($request->session()->get('id'), $id);
             }
             return view('profil\profil')->with('utilisateur', $utilisateur)
                                         ->with('amis', $amis)
                                         ->with('demandeurAmi', $demandeurAmi)
                                         ->with('receveurAmi', $receveurAmi)
+                                        ->with('estBloqueur', $estBloqueur)
+                                        ->with('estBloque', $estBloque)
                                         ->with('estAmi', $estAmi)
                                         ->with('visibilites', Visibilite::all())
                                         ->with('publications', $publications);
@@ -134,5 +149,24 @@ class UtilisateurController extends Controller
             Amis::where('idcompted', $request->session()->get('id'))->where('idcompter', $id)->delete();
             return back();
         }
+    }
+
+    public function bloquer(Request $request, $id){
+        $id = intval($id);
+
+        $nouveauBloquer = new Bloquer();
+        $nouveauBloquer->idcompted = $request->session()->get('id');
+        $nouveauBloquer->idcompter = $id;
+        $nouveauBloquer->save();
+
+        return back();
+    }
+
+    public function debloquer(Request $request, $id){
+        $id = intval($id);
+
+        Bloquer::where('idcompted', $request->session()->get('id'))->where('idcompter', $id)->delete();
+
+        return back();
     }
 }

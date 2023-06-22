@@ -15,6 +15,7 @@ use App\Models\Amis;
 use App\Models\Notification;
 use App\Models\Signalement;
 use App\Models\Bannissement;
+use App\Models\Bloquer;
 
 use App\Http\Controllers\UtilisateurController;
 
@@ -71,6 +72,9 @@ class ParametreController extends Controller
 
             /* Suppression des commentaires */
             Commentaire::where('idcompte', $request->session()->get('id'))->delete();
+
+            /* Suppression des personnes bloqués */
+            Bloquer::where('idcompted', $request->session()->get('id'))->orWhere('idcompter', $request->session()->get('id'))->delete();
 
             /* Suppression des messages */
             Message::where('idcompted', $request->session()->get('id'))->orWhere('idcompter', $request->session()->get('id'))->delete();

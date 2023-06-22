@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 
+use App\Http\Controllers\UtilisateurController;
+
 use App\Models\Message;
 
 use DB;
@@ -35,8 +37,12 @@ class MessageController extends Controller
     public function afficherMessage(Request $request, $id = null){
         $listeDiscussions = $this->obtenirListeDiscussions($request);
         $messages = $this->obtenirMessages($request, $id);
+        $estBloqueur = UtilisateurController::estBloqueur($request->session()->get('id'), $id);
+        $estBloque = UtilisateurController::estBloque($request->session()->get('id'), $id);
         return view('message')->with('listeDiscussions', $listeDiscussions)
                             ->with('id', $id)
+                            ->with('estBloqueur', $estBloqueur)
+                            ->with('estBloque', $estBloque)
                             ->with('messages', $messages);
     }
 

@@ -49,6 +49,8 @@ Route::get('/profils/{id}/accepter', [UtilisateurController::class, 'accepterAmi
 Route::get('/profils/{id}/refuser', [UtilisateurController::class, 'supprimerAmis'])->name('profil.refuser')->middleware(VerifieBannissement::class);
 Route::get('/profils/{id}/annuler', [UtilisateurController::class, 'supprimerAmis'])->name('profil.annuler')->middleware(VerifieBannissement::class);
 Route::get('/profils/{id}/supprimer', [UtilisateurController::class, 'supprimerAmis'])->name('profil.supprimer')->middleware(VerifieBannissement::class);
+Route::get('/profils/{id}/bloquer', [UtilisateurController::class, 'bloquer'])->name('profil.bloquer')->middleware(VerifieBannissement::class);
+Route::get('/profils/{id}/debloquer', [UtilisateurController::class, 'debloquer'])->name('profil.debloquer')->middleware(VerifieBannissement::class);
 
 Route::get('/notifications', [NotificationController::class, 'afficherNotification'])->name('notification.afficher')->middleware(VerifieBannissement::class);
 

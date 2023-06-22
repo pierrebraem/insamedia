@@ -31,7 +31,17 @@
         </div>
 
         <div id="discussion">
-            @if($messages == null)
+            @if($estBloqueur != null)
+                <div class="text-center">
+                    <h2>Vous avez bloqués cette personne.</h2>
+                    <h3>Vous ne pouvez plus voir son contenu, ni lui envoyer un message.</h3>
+                </div>
+            @elseif($estBloque != null)
+                <div class="text-center">
+                    <h2>Cette personne vous a bloqué.</h2>
+                    <h3>Vous ne pouvez plus voir son contenu, ni lui envoyer un message.</h3>
+                </div>
+            @elseif($messages == null)
                 <h2 class="text-center">Cliquez sur une discussion pour commencer</h2>
             @elseif($messages->count() == 0)
                 <h2 class="text-center">Aucun messages</h2>
@@ -98,7 +108,7 @@
             @endif
         </div>
 
-        @if($id !== null)
+        @if($id != null && $estBloqueur == null && $estBloque == null)
             <div id="commentaireM">
                 <form action="/message/envoyer/{{$id}}" method="post" enctype="multipart/form-data">
                 @csrf
