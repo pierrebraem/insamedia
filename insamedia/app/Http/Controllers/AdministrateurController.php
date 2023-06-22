@@ -23,7 +23,6 @@ class AdministrateurController extends Controller
     public function afficherUtilisateurs(Request $request){
         $utilisateurs = Utilisateur::whereNot('id', $request->session()->get('id'))->get();
         return view('administrateur/gestionUtilisateurs')->with('utilisateurs', $utilisateurs);
-        return back();
     }
 
     public function detailsUtilisateur(Request $request, $id){
@@ -44,29 +43,41 @@ class AdministrateurController extends Controller
         else{
             Utilisateur::where('id', $id)->update(['idrole' => 3]);
         }
+
+        return back();
     }
 
     public function modificationProfilAdmin(Request $request, $id){
         $id = intval($id);
+        $start_at = Carbon::now()->subYears(13);
         $request->validate([
             'nom' => ['required', 'string', 'min:1', 'max:50'],
             'prenom' => ['required', 'string', 'min:1', 'max:50'],
             'pseudo' => ['required', 'string', 'min:1', 'max:50'],
             'email' => ['required', 'string', 'min:1', 'max:255'],
-            'date' => ['required', 'date'] 
+            'date' => ['required', 'date', 'before:'.$start_at] 
         ]);
 
         Utilisateur::where('id', $id)->update(['nom' => $request->input('nom'), 'prenom' => $request->input('prenom'), 'pseudo' => $request->input('pseudo'), 'email' => $request->input('email'), 'datenaissance' => $request->input('date')]);
+
+        return back();
     }
 
     public function bannissement(Request $request, $id){
         $id = intval($id);
+
+        $request->validate([
+            'raison' => ['required', 'string', 'min:1', 'max:255'],
+            'date' => ['required', 'date', 'after:now']
+        ]);
 
         $nouveauBannissement = new Bannissement;
         $nouveauBannissement->raison = $request->input('raison');
         $nouveauBannissement->finban = $request->input('date').' '.Carbon::now()->format('H:i:s');
         $nouveauBannissement->idcompte = $id;
         $nouveauBannissement->save();
+
+        return back();
     }
 
     public function afficherBannissement(Request $request){
@@ -80,6 +91,7 @@ class AdministrateurController extends Controller
     public function supprimerBannissement(Request $request, $id){
         $id = intval($id);
         Bannissement::where('id', $id)->delete();
+        return back();
     }
 
     public function checkBannissementEnCours($id){

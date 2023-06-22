@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Hash;
+use Carbon\Carbon;
 
 use App\Models\Utilisateur;
 
@@ -18,11 +19,12 @@ class ConnexionInscriptionController extends Controller
     }
 
     public function sincrire(Request $request){
+        $start_at = Carbon::now()->subYears(13);
         $request->validate([
             'nom' => ['required', 'string', 'min:1', 'max:50'],
             'prenom' => ['required', 'string', 'min:1', 'max:50'],
             'email' => ['required', 'string', 'min:1', 'max:255'],
-            'datenaissance' => ['required', 'date'],
+            'datenaissance' => ['required', 'date', 'before:'.$start_at],
             'pseudo' => ['required', 'string', 'min:1', 'max:50'],
             'mdp' => ['required', 'string', 'min:6', 'max:50'],
             'mdpC' => ['required', 'string', 'min:6', 'max:50'],

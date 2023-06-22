@@ -38,7 +38,7 @@ class ParametreController extends Controller
             'prenom' => ['required', 'string', 'min:1', 'max:50'],
             'pseudo' => ['required', 'string', 'min:1', 'max:50'],
             'description' => ['nullable', 'string', 'max:255'],
-            'image' => ['nullable', 'mimes:jpeg,jpg,png,gif']
+            'image' => ['nullable', 'mimes:jpeg,jpg,png,gif', 'dimensions:max_width=222,max_height=222']
         ]);
 
         if($request->hasFile('image')){

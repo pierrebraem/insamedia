@@ -14,6 +14,10 @@ class ParcourirController extends Controller
     }
 
     public function rechercher(Request $request){
+        $request->validate([
+            'recherche' => ['required', 'string', 'min:1', 'max:255']
+        ]);
+
         $resultat = Utilisateur::where('pseudo', 'LIKE', '%'.$request->input('recherche').'%')->get();
         return view('parcourir')->with('resultat', $resultat);
     }

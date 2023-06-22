@@ -35,7 +35,6 @@ class MessageController extends Controller
     public function afficherMessage(Request $request, $id = null){
         $listeDiscussions = $this->obtenirListeDiscussions($request);
         $messages = $this->obtenirMessages($request, $id);
-        //dd($messages[0]->receveur->photo);
         return view('message')->with('listeDiscussions', $listeDiscussions)
                             ->with('id', $id)
                             ->with('messages', $messages);
@@ -43,6 +42,10 @@ class MessageController extends Controller
 
     public function envoyerMessage(Request $request, $id){
         $id = intval($id);
+        $request->validate([
+            'message' => ['required', 'string', 'min:1', 'max:255']
+        ]);
+
         $nouveauMessage = new Message;
         $nouveauMessage->idcompted = $request->session()->get('id');
         $nouveauMessage->idcompter = $id;

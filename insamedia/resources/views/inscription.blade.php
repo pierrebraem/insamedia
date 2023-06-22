@@ -39,6 +39,9 @@
                     <div class="form-group">
                         <label>Date de naissance :</label>
                         <input type="date" class="form-control" name="datenaissance" />
+                        <div class="form-text">
+                            Vous devez avoir au moins 13 ans pour vous inscrire.
+                        </div>
                     </div>
 
                     <div class="form-group">
