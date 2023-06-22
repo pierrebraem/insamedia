@@ -1,3 +1,7 @@
+video{
+    width: 100%;
+}
+
 .icon{
     font-size: 20px;
     color: white;
@@ -147,7 +151,7 @@
     margin: auto;
 }
 
-@media screen and (max-width: 900px){
+@media screen and (max-width: 1100px){
     .formulaire{
         width: 80%;
     }

@@ -22,7 +22,7 @@
                         @if($publication->extension == 'jpg' || $publication->extension == 'jpeg' || $publication->extension == 'png' || $publication->extension == 'gif')
                             <img src="{{ asset($publication->urlcontenu) }}" class="photoPublication"/>
                         @elseif($publication->extension == 'mp4')
-                            <video width="500" heigth="500" controls>
+                            <video controls>
                                 <source src="{{ asset($publication->urlcontenu) }}">
                             </video>
                         @elseif($publication->extension == 'mp3')

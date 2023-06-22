@@ -46,7 +46,7 @@
                                         @if($message->extension == 'jpg' || $message->extension == 'jpeg' || $message->extension == 'png' || $message->extension == 'gif')
                                             <img src="{{ asset($message->urlcontenu) }}" class="photoPublication"/>
                                         @elseif($message->extension == 'mp4')
-                                            <video width="500" heigth="500" controls>
+                                            <video controls>
                                                 <source src="{{ asset($message->urlcontenu) }}">
                                             </video>
                                         @elseif($message->extension == 'mp3')
@@ -81,7 +81,7 @@
                                         @if($message->extension == 'jpg' || $message->extension == 'jpeg' || $message->extension == 'png' || $message->extension == 'gif')
                                             <img src="{{ asset($message->urlcontenu) }}" class="photoPublication"/>
                                         @elseif($message->extension == 'mp4')
-                                            <video width="500" heigth="500" controls>
+                                            <video controls>
                                                 <source src="{{ asset($message->urlcontenu) }}">
                                             </video>
                                         @elseif($message->extension == 'mp3')

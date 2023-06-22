@@ -22,7 +22,7 @@
                         <button class="btn btn-warning">Joindre un fichier</button>
                     </div>
                     <div class="col">
-                        <a href="/publication/publier" class="btn btn-primary elementDroite" style="width: 25%;">Publier</a>
+                        <a href="/publication/publier" class="btn btn-primary elementDroite" style="width: 50%;">Publier</a>
                     </div>
                 </div>                
             </div>
@@ -374,7 +374,7 @@
                     <div class="row">
                         <div class="col">
                             <p>J'ai trouvé un bug sur ce jeu ce matin.</p>
-                            <video width="500" heigth="500" controls>
+                            <video controls>
                                 <source src="{{ asset('videos/bug.mp4') }}">
                             </video>
                         </div>
