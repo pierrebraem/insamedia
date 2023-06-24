@@ -31,7 +31,7 @@
                     
                     <!-- Liens à gauche de la navbar -->
                     <ul class="navbar-nav ms-auto">
-                        <a class="nav-link" href="/notifications"><i class="fa-regular fa-bell icon"></i></a>
+                        <a class="nav-link" href="/notifications"><i class="fa-regular fa-bell icon"></i>@if(Session::get('nombreNotifications') != 0)<span class="badge badge-light round-pill">{{Session::get('nombreNotifications')}}</span>@endif</a>
                         <a class="nav-link" href="/message"><i class="fa-regular fa-envelope icon"></i></a>
                         <a class="nav-link" href="/profils/{{Session::get('id')}}"><i class="fa-regular fa-id-card icon"></i></a>
                         <a class="nav-link" href="/deconnexion"><i class="fa-solid fa-door-open icon"></i></a>

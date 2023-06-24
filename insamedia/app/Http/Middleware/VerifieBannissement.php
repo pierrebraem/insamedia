@@ -5,6 +5,8 @@ namespace App\Http\Middleware;
 use Illuminate\Http\Request;
 use Closure;
 
+use App\Http\Controllers\NotificationController;
+
 use App\Models\Bannissement;
 
 class VerifieBannissement
@@ -13,6 +15,7 @@ class VerifieBannissement
         if(Bannissement::where('idcompte', $request->session()->get('id'))->count() != 0){
             return redirect('/banni');
         }
+        $request->session()->put('nombreNotifications', NotificationController::obtenirNombreNotifications($request));
         return $next($request);
     }
 }

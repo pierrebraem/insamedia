@@ -5,9 +5,12 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 
+use App\Http\Controllers\NotificationController;
+
 use App\Models\Publication;
 use App\Models\Commentaire;
 use App\Models\Aimer;
+use App\Models\Utilisateur;
 
 class PublicationController extends Controller
 {
@@ -63,11 +66,13 @@ class PublicationController extends Controller
         $id = intval($id);
         
         $aime = Aimer::where('idpublication', $id)->where('idcompte', $request->session()->get('id'))->first();
-        if($aime === null){
+        if($aime == null){
             $nouveauAimer = new Aimer;
             $nouveauAimer->idpublication = $id;
             $nouveauAimer->idcompte = $request->session()->get('id');
             $nouveauAimer->save();
+
+            NotificationController::enregistrerNotification(Utilisateur::where('id', $request->session()->get('id'))->value('pseudo').' a aimé une publication', Publication::where('id', $id)->value('idcompte'), $request->session()->get('id'), 2, $id);
         }
         else{
             Aimer::where('idpublication', $id)->where('idcompte', $request->session()->get('id'))->delete();
@@ -114,6 +119,8 @@ class PublicationController extends Controller
         $nouveauCommentaire->idcompte = $request->session()->get('id');
         $nouveauCommentaire->commentaire = $request->input('commentaire');
         $nouveauCommentaire->save();
+
+        NotificationController::enregistrerNotification(Utilisateur::where('id', $request->session()->get('id'))->value('pseudo').' a commenté une publication', Publication::where('id', $id)->value('idcompte'), $request->session()->get('id'), 3, $id);
 
         return back();
     }

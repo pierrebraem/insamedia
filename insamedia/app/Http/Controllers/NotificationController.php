@@ -5,27 +5,30 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 
+use App\Http\Controllers\PublicationController;
+
 use App\Models\Notification;
 
 class NotificationController extends Controller
 {
-    public function obtenirNombreNotification($id){
-        return Notification::where('idcompter', $id)->count();
+    public static function obtenirNombreNotifications(Request $request){
+        return Notification::where('idcompter', $request->session()->get('id'))->where('vu', 0)->count();
     }
 
     public function afficherNotification(Request $request){
-        return view('notification')->with('notifications', Notification::where('idcompter', $request->session()->get('id'))->get());
+        $notifications = Notification::where('idcompter', $request->session()->get('id'))->get();
+        foreach($notifications as $notification){
+            $notification->anciennete = PublicationController::calculTempsPublication($notification->date);
+        }
+
+        return view('notification')->with('notifications', $notifications);
     }
 
-    public function calculTempsPasser($tempsNotif){
-        dd('coucou');
-    }
-
-    public static function enregistrerNotification($contenu, $idcompter, $idcompteo, $idpublication = null){
+    public static function enregistrerNotification($contenu, $idcompter, $idcompteo, $type, $idpublication = null){
         $enregistrer = new Notification;
         $enregistrer->contenu = $contenu;
         $enregistrer->date = Carbon::now();
-        $enregistrer->idtype = 1;
+        $enregistrer->idtype = $type;
         $enregistrer->idcompter = $idcompter;
         $enregistrer->idcompteo = $idcompteo;
         $enregistrer->idpublication = $idpublication;

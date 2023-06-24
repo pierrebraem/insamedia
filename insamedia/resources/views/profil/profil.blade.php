@@ -194,7 +194,7 @@
                                                                 @if($commentaire->compte->photo === null)
                                                                     <img src="{{ asset('images/photo_default.jpg') }}" class="photoProfile"/>
                                                                 @else
-                                                                    <img src="{{ asset($publication->compte->photo) }}" class="photoProfile"/>
+                                                                    <img src="{{ asset($commentaire->compte->photo) }}" class="photoProfile"/>
                                                                 @endif
                                                             </div>
                                                             <div class="col">

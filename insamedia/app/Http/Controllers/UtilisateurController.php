@@ -116,7 +116,7 @@ class UtilisateurController extends Controller
             $ajoutAmis->idcompter = $id;
             $ajoutAmis->save();
 
-            NotificationController::enregistrerNotification(Utilisateur::where('id', $request->session()->get('id'))->value('pseudo').' veut être votre ami', $id, $request->session()->get('id'));
+            NotificationController::enregistrerNotification(Utilisateur::where('id', $request->session()->get('id'))->value('pseudo').' veut être votre ami', $id, $request->session()->get('id'), 1);
             return back();
         }
     }

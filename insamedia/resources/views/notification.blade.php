@@ -13,7 +13,7 @@
                         <img class="photoProfileN" src="{{ asset($notification->originaire->photo) }}"/>
                     @endif
                     <div>
-                        <p>Il y a 32min</p>
+                        <p>Il y a {{$notification->anciennete}}</p>
                         <div class="testN2">
                             <p>{{$notification->contenu}}</p>
                             @if($notification->idtype === 1)
