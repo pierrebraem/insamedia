@@ -117,8 +117,8 @@ class UtilisateurController extends Controller
         }
         else{
             Amis::where('idcompter', $request->session()->get('id'))->where('idcompted', $id)->where('attente', 1)->update(['attente' => 0]);
-            NotificationController::MAJNotification('Vous avez acceptés la demande d\'amis de '.Utilisateur::where('id', $id)->value('pseudo'), $request->session()->get('id'), $id);
-            NotificationController::enregistrerNotification(Utilisateur::where('id', $request->session()->get('id'))->value('pseudo').' a accepté d\'être votre ami', $id, $request->session()->get('id'));
+            NotificationController::MAJNotification('Vous avez acceptés la demande d\'amis de '.Utilisateur::where('id', $id)->value('pseudo'), $request->session()->get('id'), $id, 4);
+            NotificationController::enregistrerNotification(Utilisateur::where('id', $request->session()->get('id'))->value('pseudo').' a accepté d\'être votre ami', $id, $request->session()->get('id'), 4);
             return back();
         }
     }
@@ -127,7 +127,7 @@ class UtilisateurController extends Controller
         $id = intval($id);
         if(Amis::where('idcompter', $request->session()->get('id'))->where('idcompted', $id)->first() !== null){
             Amis::where('idcompter', $request->session()->get('id'))->where('idcompted', $id)->delete();
-            NotificationController::MAJNotification('Vous avez refusés la demande d\'amis de '.Utilisateur::where('id', $id)->value('pseudo'), $request->session()->get('id'), $id);
+            NotificationController::MAJNotification('Vous avez refusés la demande d\'amis de '.Utilisateur::where('id', $id)->value('pseudo'), $request->session()->get('id'), $id, 5);
             return back();
         }
         else if(Utilisateur::firstWhere('id', $id) === null || Amis::where('idcompted', $request->session()->get('id'))->where('idcompter', $id)->first() === null){

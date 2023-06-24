@@ -24,6 +24,15 @@ class NotificationController extends Controller
         return view('notification')->with('notifications', $notifications);
     }
 
+    public function redirect($id){
+        $id = intval($id);
+
+        $notification = Notification::where('id', $id);
+        $notification->update(['vu' => 1]);
+        $idPublication = $notification->value('idpublication');
+        return redirect('/publication/'.$idPublication);
+    }
+
     public static function enregistrerNotification($contenu, $idcompter, $idcompteo, $type, $idpublication = null){
         $enregistrer = new Notification;
         $enregistrer->contenu = $contenu;
@@ -35,7 +44,7 @@ class NotificationController extends Controller
         $enregistrer->save();
     }
 
-    public static function MAJNotification($contenu, $idcompter, $idcompteo, $idpublication = null){
-        Notification::where('idcompter', $idcompter)->where('idcompteo', $idcompteo)->where('idpublication', $idpublication)->update(['contenu' => $contenu, 'date' => Carbon::now()]);
+    public static function MAJNotification($contenu, $idcompter, $idcompteo, $type, $idpublication = null){
+        Notification::where('idcompter', $idcompter)->where('idcompteo', $idcompteo)->where('idpublication', $idpublication)->update(['contenu' => $contenu, 'date' => Carbon::now(), 'idtype' => $type]);
     }
 }

@@ -105,7 +105,9 @@ class PublicationController extends Controller
             $nouveauAimer->idcompte = $request->session()->get('id');
             $nouveauAimer->save();
 
-            NotificationController::enregistrerNotification(Utilisateur::where('id', $request->session()->get('id'))->value('pseudo').' a aimé une publication', Publication::where('id', $id)->value('idcompte'), $request->session()->get('id'), 2, $id);
+            if($request->session()->get('id') != Publication::where('id', $id)->value('idcompte')){
+                NotificationController::enregistrerNotification(Utilisateur::where('id', $request->session()->get('id'))->value('pseudo').' a aimé une publication', Publication::where('id', $id)->value('idcompte'), $request->session()->get('id'), 2, $id);
+            }
         }
         else{
             Aimer::where('idpublication', $id)->where('idcompte', $request->session()->get('id'))->delete();
@@ -153,7 +155,9 @@ class PublicationController extends Controller
         $nouveauCommentaire->commentaire = $request->input('commentaire');
         $nouveauCommentaire->save();
 
-        NotificationController::enregistrerNotification(Utilisateur::where('id', $request->session()->get('id'))->value('pseudo').' a commenté une publication', Publication::where('id', $id)->value('idcompte'), $request->session()->get('id'), 3, $id);
+        if($request->session()->get('id') != Publication::where('id', $id)->value('idcompte')){
+            NotificationController::enregistrerNotification(Utilisateur::where('id', $request->session()->get('id'))->value('pseudo').' a commenté une publication', Publication::where('id', $id)->value('idcompte'), $request->session()->get('id'), 3, $id);
+        }
 
         return back();
     }
