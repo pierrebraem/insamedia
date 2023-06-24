@@ -54,9 +54,10 @@ Route::get('/profils/{id}/debloquer', [UtilisateurController::class, 'debloquer'
 
 Route::get('/notifications', [NotificationController::class, 'afficherNotification'])->name('notification.afficher')->middleware(VerifieBannissement::class);
 
-Route::post('/publication/publier/{id}', [PublicationController::class, 'publier'])->name('publication.publier')->middleware(VerifieBannissement::class);
-Route::get('/publication/aimer/{id}', [PublicationController::class, 'aimer'])->name('publication.aimer')->middleware(VerifieBannissement::class);
-Route::get('/publication/commentaire/{id}', [PublicationController::class, 'commentaire'])->name('publication.commentaire')->middleware(VerifieBannissement::class);
+Route::get('/publication/{id}', [PublicationController::class, 'afficher'])->name('publication.afficher')->middleware(VerifieBannissement::class);
+Route::post('/publication/{id}/publier', [PublicationController::class, 'publier'])->name('publication.publier')->middleware(VerifieBannissement::class);
+Route::get('/publication/{id}/aimer', [PublicationController::class, 'aimer'])->name('publication.aimer')->middleware(VerifieBannissement::class);
+Route::get('/publication/{id}/commentaire', [PublicationController::class, 'commentaire'])->name('publication.commentaire')->middleware(VerifieBannissement::class);
 
 Route::get('/message', [MessageController::class, 'afficherMessage'])->name('message.afficher')->middleware(VerifieBannissement::class);
 Route::get('/message/{id}', [MessageController::class, 'afficherMessage'])->name('message.afficher')->middleware(VerifieBannissement::class);

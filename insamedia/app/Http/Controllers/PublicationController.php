@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Carbon\Carbon;
 
 use App\Http\Controllers\NotificationController;
+use App\Http\Controllers\UtilisateurController;
 
 use App\Models\Publication;
 use App\Models\Commentaire;
@@ -14,6 +15,38 @@ use App\Models\Utilisateur;
 
 class PublicationController extends Controller
 {
+    public static function autoriserVoirPublication(Request $request, $idVisibilite, $id){
+        if($idVisibilite == 3 || $id == $request->session()->get('id')){
+            return $id == $request->session()->get('id');
+        }
+        else if($idVisibilite == 2){
+            return UtilisateurController::estAmi($request->session()->get('id'), $id);
+        }
+        else{
+            return true;
+        }
+    }
+
+    public function afficher(Request $request, $id){
+        $id = intval($id);
+        $publication = Publication::where('id', $id)->first();
+        if($publication == null){
+            return view('publication/erreur');
+        }
+
+        $publication->anciennete = $this->calculTempsPublication($publication->date);
+        $publication->aimer = $this->obtenirNombreAimes($publication->id);
+        $publication->aimeDeja = $this->aimeDeja($request, $publication->id);
+        $publication->commentaires = $this->obtenirCommentaires($publication->id);
+        $publication->autoriser = $this->autoriserVoirPublication($request, $publication->idvisibilite, $publication->idcompte);
+
+        if($publication->urlcontenu != null){
+            $publication->extension = explode('.', $publication->urlcontenu)[1];
+        }
+
+        return view('publication/afficherPublication')->with('publication', $publication);
+    }
+
     public function publier(Request $request, $id){
         $id = intval($id);
 
