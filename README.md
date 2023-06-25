@@ -60,3 +60,9 @@ Pour créer un compte admin :
 - Correction d'un bug où un utilisateur connecté pouvait accéder aux pages inscription et connexion
 - Correction d'un bug où les signalements ne se supprimer pas bien lors de la suppression d'un compte
 - Correction d'un bug où les informations dans les modals s'envoyer après avoir cliquer sur les boutons d'annulation
+
+## v0.1.2
+### Bug
+  - Correction d'un bug où la photo de profil peu se supprimer après la modification des paramètres
+### Amélioration
+- Code commenté
