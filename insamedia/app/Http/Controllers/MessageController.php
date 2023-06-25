@@ -13,11 +13,18 @@ use DB;
 
 class MessageController extends Controller
 {
+    /*
+    * Fonction qui permet d'obtenir la liste des contacts
+    */
     public function obtenirListeDiscussions(Request $request){
         $premier = DB::table('message')->select('message.idcompter as id', 'compte.pseudo as pseudo', 'compte.photo as photo')->distinct()->join('compte', 'message.idcompter', '=', 'compte.id')->where('idcompted', $request->session()->get('id'));
         return DB::table('message')->select('message.idcompted as id', 'compte.pseudo as pseudo', 'compte.photo as photo')->distinct()->join('compte', 'message.idcompted', '=', 'compte.id')->where('idcompter', $request->session()->get('id'))->union($premier)->get();
     }
 
+    /*
+    * Fonction qui permet d'obtenir la liste des messages d'un contact
+    * Paramtère : l'id de l'utilisateur auquel on communique avec
+    */
     public function obtenirMessages(Request $request, $id){
         if($id == null){
             return;
@@ -34,6 +41,16 @@ class MessageController extends Controller
         return $messages;
     }
 
+    /*
+    * Fonction qui permet d'afficher la page des messages
+    * Paramètre : l'id de l'utilisateur qu'on souhaite communiquer avec
+    * Variables dans la vue :
+    * - listeDiscussions : liste des contact de l'utilisateur
+    * - id : l'id de la discussion
+    * - estBloqueur : Vérifie si on a bloqué cette utilisateur
+    * - estBloque : Vérifie si l'utilisateur nous a bloqué
+    * - messages : Liste des messages d'une discussion
+    */
     public function afficherMessage(Request $request, $id = null){
         $listeDiscussions = $this->obtenirListeDiscussions($request);
         $messages = $this->obtenirMessages($request, $id);
@@ -46,6 +63,10 @@ class MessageController extends Controller
                             ->with('messages', $messages);
     }
 
+    /*
+    * Fonction qui permet d'envoyer un message
+    * Paramètre : l'id de l'utilisateur qu'on souhaite lui envoyer le message
+    */
     public function envoyerMessage(Request $request, $id){
         $id = intval($id);
         $request->validate([
@@ -58,6 +79,7 @@ class MessageController extends Controller
         $nouveauMessage->contenu = $request->input('message');
         $nouveauMessage->date = Carbon::now();
 
+        /* Vérifie si il y a un fichier. Si oui, où l'enregistrer en fonction de son format */
         if($request->hasFile('fichier')){
             $extension = $request->file('fichier')->getClientOriginalExtension();
 
@@ -74,6 +96,7 @@ class MessageController extends Controller
                 $dossier = '/autres';
             }
 
+            /* Le contenu est stocké dans le dossier public. Tous son contenus se situe dans un dossier auquel son nom est l'id de l'utilisateur */
             $debutLien = $request->session()->get('id').$dossier.'/';
             $finLien = substr(base_convert(sha1(uniqid(mt_rand())), 16, 36), 0, 32).'.'.$extension;
             $request->file('fichier')->move($debutLien, $finLien);

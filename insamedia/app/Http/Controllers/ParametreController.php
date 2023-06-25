@@ -21,6 +21,12 @@ use App\Http\Controllers\UtilisateurController;
 
 class ParametreController extends Controller
 {
+    /*
+    * Fonction qui permet d'afficher les paramètres d'un utilisateur. Affiche une erreur si les paramètres ne lui concerne pas
+    * paramètre : l'id de l'utilisateur concerner
+    * variable dans la vue :
+    * - utilisateur : information concernant l'utilisateur
+    */
     public function afficherParametre(Request $request, $id){
         $id = intval($id);
         if($id === $request->session()->get('id')){
@@ -32,8 +38,13 @@ class ParametreController extends Controller
         }
     }
 
+    /*
+    * Fonction qui permet de modifier les informations du profil
+    */
     public function modifProfil(Request $request){
         $id = intval($request->session()->get('id'));
+        $lien = Utilisateur::where('id', $id)->value('photo');
+
         $request->validate([
             'nom' => ['required', 'string', 'min:1', 'max:50'],
             'prenom' => ['required', 'string', 'min:1', 'max:50'],
@@ -54,6 +65,10 @@ class ParametreController extends Controller
         return back();
     }
 
+    /*
+    * Fonction qui permet de supprimer un compte
+    * paramètre : l'id du compte à supprimer
+    */
     public function supprimerCompte(Request $request, $id){
         $id = intval($id);
         if(Utilisateur::where('id', $request->session()->get('id'))->first() !== null){

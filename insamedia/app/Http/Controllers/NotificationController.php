@@ -11,6 +11,9 @@ use App\Models\Notification;
 
 class NotificationController extends Controller
 {
+    /*
+    * Fonction qui permet d'obtenir le nombre de notifications non vue
+    */
     public static function obtenirNombreNotifications(Request $request){
         return Notification::where('idcompter', $request->session()->get('id'))->where('vu', 0)->count();
     }
@@ -24,6 +27,10 @@ class NotificationController extends Controller
         return view('notification')->with('notifications', $notifications);
     }
 
+    /*
+    * Fonction qui permet de se rediriger quand on clique sur une publication. Elle permet également de mettre la notification à vue
+    * paramètre : l'id de la notification
+    */
     public function redirect($id){
         $id = intval($id);
 
@@ -33,6 +40,15 @@ class NotificationController extends Controller
         return redirect('/publication/'.$idPublication);
     }
 
+    /*
+    * Fonction qui permet d'enregistrer une notification
+    * paramètre : 
+    * - contenu : le texte de la notification
+    * - idcompter : l'id du compte qui va recevoir la notification
+    * - idcompteo : l'id du compte concerner par la notification
+    * - type : type de la notification
+    * - idpublication : l'id de la publication concerner par la publication. Si null, alors la notification est une demande d'amis.
+    */
     public static function enregistrerNotification($contenu, $idcompter, $idcompteo, $type, $idpublication = null){
         $enregistrer = new Notification;
         $enregistrer->contenu = $contenu;
@@ -44,6 +60,15 @@ class NotificationController extends Controller
         $enregistrer->save();
     }
 
+    /*
+    * Fonction qui permet de mettre à jour une notification
+    * paramètre : 
+    * - contenu : le texte de la notification
+    * - idcompter : l'id du compte qui va recevoir la notification
+    * - idcompteo : l'id du compte concerner par la notification
+    * - type : type de la notification
+    * - idpublication : l'id de la publication concerner par la publication. Si null, alors la notification est une demande d'amis.
+    */
     public static function MAJNotification($contenu, $idcompter, $idcompteo, $type, $idpublication = null){
         Notification::where('idcompter', $idcompter)->where('idcompteo', $idcompteo)->where('idpublication', $idpublication)->update(['contenu' => $contenu, 'date' => Carbon::now(), 'idtype' => $type]);
     }

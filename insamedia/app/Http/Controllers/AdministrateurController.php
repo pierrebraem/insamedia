@@ -15,16 +15,33 @@ use DB;
 
 class AdministrateurController extends Controller
 {
+    /*
+    * Fonction qui permet d'afficher la page d'accueil pour les administrateurs
+    */
     public function afficherAdministrateur(Request $request){
         return view('administrateur/accueil');
     }
 
     /* =============================================Partie gestion utilisateurs============================================ */
+    
+    /*
+    * Fonction qui permet d'afficher la page de la gestion des utilisateurs
+    * variables dans la vue : 
+    * - utilisateurs : liste de tous les utilisateurs execptés celle qui est actuellement connecté
+    */
     public function afficherUtilisateurs(Request $request){
         $utilisateurs = Utilisateur::whereNot('id', $request->session()->get('id'))->get();
         return view('administrateur/gestionUtilisateurs')->with('utilisateurs', $utilisateurs);
     }
 
+    /*
+    * Fonction qui permet d'afficher la page des détails d'un utilisateur
+    * paramètre : l'id de l'utilisateur qu'on souhaite obtenir les inforamtions
+    * variables dans la vue :
+    * - utilisateur : contient les informations de l'utilisateur concerner
+    * - bannissements : contient tous les bannissements de l'utilisateur concerner
+    * - checkBannissementEncours : Verifie si l'utilisateur concerner est actuellement banni
+    */
     public function detailsUtilisateur(Request $request, $id){
         $id = intval($id);
         $utilisateur = Utilisateur::firstWhere('id', $id);
@@ -34,6 +51,10 @@ class AdministrateurController extends Controller
                                                         ->with('checkBannissementEncours', $this->checkBannissementEnCours($id));
     }
 
+    /*
+    * Fonction qui permet d'attribuer ou de retirer les droits administrateurs
+    * paramètre : l'id de l'utilisateur qu'on souhaite attribuer ou retirer les droits
+    */
     public function attribuerRetirerDroit(Request $request, $id){
         $id = intval($id);
         $checkRole = Utilisateur::where('id', $id)->first('idrole');
@@ -47,6 +68,10 @@ class AdministrateurController extends Controller
         return back();
     }
 
+    /*
+    * Fonction qui permet de modifier les données d'un utilisateur
+    * paramètre : l'id de l'utilisateur qu'on souhaite modifier les données
+    */
     public function modificationProfilAdmin(Request $request, $id){
         $id = intval($id);
         $start_at = Carbon::now()->subYears(13);
@@ -63,6 +88,10 @@ class AdministrateurController extends Controller
         return back();
     }
 
+    /*
+    * Fonction qui permet de bannir un utilisateur
+    * paramètre : l'id de l'utilisateur qu'on souhaite bannir
+    */
     public function bannissement(Request $request, $id){
         $id = intval($id);
 
@@ -80,6 +109,9 @@ class AdministrateurController extends Controller
         return back();
     }
 
+    /*
+    * Fonction qui permet d'afficher la page de bannissement quand un utilisateur est banni
+    */
     public function afficherBannissement(Request $request){
         $banni = Bannissement::where('idcompte', $request->session()->get('id'));
         if($banni->count() != 0){
@@ -88,12 +120,20 @@ class AdministrateurController extends Controller
         return back();
     }
 
+    /*
+    * Fonction qui permet de supprimer un bannissement dans l'historique des bannissements d'un utilisateur
+    * paramètre : l'id du bannissement qu'on souhaite supprimer
+    */
     public function supprimerBannissement(Request $request, $id){
         $id = intval($id);
         Bannissement::where('id', $id)->delete();
         return back();
     }
 
+    /*
+    * Fonction qui permet de vérifier si un bannissement est en cours
+    * paramètre : l'id de l'utilisateur qu'on souhaite vérifier
+    */
     public function checkBannissementEnCours($id){
         if(Bannissement::where('finban', '>=', Carbon::now())->where('idcompte', $id)->count() !== 0){
             return true;
@@ -102,6 +142,12 @@ class AdministrateurController extends Controller
     }
 
     /* =============================================Partie gestion signalements============================================ */
+
+    /*
+    * Fonction qui permet d'afficher la page des signalements
+    * variables dans la vue :
+    * - signalements : liste de tous les signalements
+    */
     public function afficherSignalements(Request $request){
         $signalements = DB::table('signalement')
                                 ->select('publication.id as idPublication', 'publication.description as description', DB::raw('count(signalement.idpublication) as nombrePublication'))
@@ -111,6 +157,13 @@ class AdministrateurController extends Controller
         return view('administrateur/gestionSignalements')->with('signalements', $signalements);
     }
 
+    /*
+    * Fonction qui permet d'afficher la page des détails d'un signalement
+    * paramètre : l'id de la publication qu'on souhaite voir les signalements
+    * variables dans la vue :
+    * - publication : contient les informations de la publication concerner
+    * - signalements : contient tous les signalements de la publication
+    */
     public function detailsSignalement(Request $request, $id){
         $id = intval($id);
         $publication = Publication::where('id', $id)->first();
@@ -122,16 +175,26 @@ class AdministrateurController extends Controller
                                                             ->with('signalements', $signalements);
     }
 
+    /*
+    * Fonction qui permet de garder la publication et de supprimer tous les signalements
+    * paramètre : l'id de la publication qu'on souhaite garder
+    */
     public function garderSignalement(Request $request, $id){
         $id = intval($id);
         Signalement::where('idpublication', $id)->delete();
         return redirect('/administrateur/signalements');
     }
 
+    /*
+    * Fonction qui permet de supprimer la publication ainsi que ces signalements
+    * paramètre : l'id de la publication qu'on souhaite supprimer
+    */
     public function supprimerSignalement(Request $request, $id){
         $id = intval($id);
         Signalement::where('idpublication', $id)->delete();
         $publication = Publication::where('id', $id)->first();
+
+        /* Si il y a, supprime le contenu dans le stockage */
         if($publication->urlcontenu !== null){
             Storage::disk('public')->delete($publication->urlcontenu);
         }
@@ -139,6 +202,10 @@ class AdministrateurController extends Controller
         return redirect('/administrateur/signalements');
     }
 
+    /*
+    * Fonction qui permet d'ajouter un signalement sur la publication
+    * paramètre : l'id de la publication qu'on souhaite signaler
+    */
     public function ajouterSignalement(Request $request, $id){
         $id = intval($id);
         $request->validate([

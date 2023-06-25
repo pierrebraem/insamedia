@@ -15,6 +15,12 @@ use App\Models\Utilisateur;
 
 class PublicationController extends Controller
 {
+    /*
+    * Fonction qui permet de vérifier si un utilisateur à le droit de visionner cette publication
+    * paramètres :
+    * - idVisibilite : l'id de la visibilité. 1 = publique, 2 = amis seulement, 3 = privée
+    * - id : l'id de la publication concerner
+    */
     public static function autoriserVoirPublication(Request $request, $idVisibilite, $id){
         if($idVisibilite == 3 || $id == $request->session()->get('id')){
             return $id == $request->session()->get('id');
@@ -27,6 +33,11 @@ class PublicationController extends Controller
         }
     }
 
+    /*
+    * Fonction qui permet d'afficher une publication dans la page publication. Affiche une erreur si la publication n'existe pas
+    * paramètre : l'id de la publication concerner
+    * Variable dans la vue : les informatios de la publication
+    */
     public function afficher(Request $request, $id){
         $id = intval($id);
         $publication = Publication::where('id', $id)->first();
@@ -47,6 +58,10 @@ class PublicationController extends Controller
         return view('publication/afficherPublication')->with('publication', $publication);
     }
 
+    /*
+    * Fonction qui permet de publier une publication
+    * Paramètre : l'id du profil auquel la publication va être publier
+    */
     public function publier(Request $request, $id){
         $id = intval($id);
 
@@ -68,6 +83,7 @@ class PublicationController extends Controller
             $nouvellePublication->aCommentaire = 0;
         }
 
+        /* Vérifie si il y a un fichier. Si oui, où l'enregistrer en fonction de son format */
         if($request->hasFile('fichier')){
             $extension = $request->file('fichier')->getClientOriginalExtension();
 
@@ -84,6 +100,7 @@ class PublicationController extends Controller
                 $dossier = '/autres';
             }
 
+            /* Le contenu est stocké dans le dossier public. Tous son contenus se situe dans un dossier auquel son nom est l'id de l'utilisateur */
             $debutLien = $request->session()->get('id').$dossier.'/';
             $finLien = substr(base_convert(sha1(uniqid(mt_rand())), 16, 36), 0, 32).'.'.$extension;
             $request->file('fichier')->move($debutLien, $finLien);
@@ -95,6 +112,10 @@ class PublicationController extends Controller
         return back();
     }
 
+    /*
+    * Fonction qui permet d'aimer une publication
+    * Paramètre : l'id de la publication concerner
+    */
     public function aimer(Request $request, $id){
         if($request->session()->has('id')){
             $id = intval($id);
@@ -117,31 +138,50 @@ class PublicationController extends Controller
         return back();
     }
 
+    /*
+    * Fonction qui permet d'obtenir toutes les publications d'un profil du plus récent au plus vieux
+    * Paramètre : l'id du profil concerner
+    */
     public static function obtenirPublicationsProfil($idProfil){
         $idProfil = intval($idProfil);
         return Publication::where('idprofil', $idProfil)->orderBy('date', 'desc')->get();
     }
 
+    /*
+    * Fonction qui permet de calculer l'ancienneter d'une publication
+    * Paramètre : la date de publication d'une publication
+    */
     public static function calculTempsPublication($date){
         $diff = Carbon::now()->diffInSeconds($date);
+        /* Si elle est de plus de 86400s, afficher l'ancienneter en jours */
         if($diff >= 86400){
             return Carbon::now()->diffInDays($date).'J';
         }
+        /* Si elle est de plus de 3600s, afficher l'ancienneter en heures */
         else if($diff >= 3600){
             return Carbon::now()->diffInHours($date).'H';
         }
+        /* Si elle est de plus de 60s, afficher l'ancienneter en minutes */
         else if($diff >= 60){
             return Carbon::now()->diffInMinutes($date).' min';
         }
         return $diff.' s';
     }
 
+    /*
+    * Fonction qui permet d'obtenir le nombre d'aime d'une publication
+    * Paramètre : l'id de la publication concerner
+    */
     public static function obtenirNombreAimes($id){
         $id = intval($id);
 
         return Aimer::where('idpublication', $id)->count();
     }
 
+    /*
+    * Fonction qui permet de vérifier si un utilisateur aime déjà une publication
+    * Paramètre : l'id de la publication concerner
+    */
     public static function aimeDeja(Request $request, $id){
         if(Aimer::where('idpublication', $id)->where('idcompte', $request->session()->get('id'))->first() === null){
             return false;
@@ -149,6 +189,10 @@ class PublicationController extends Controller
         return true;
     }
 
+    /*
+    * Fonction qui permet d'ajouter un nouveau commentaire dans une publication
+    * Paramètre : l'id de la publication concerner
+    */
     public function commentaire(Request $request, $id){
         $id = intval($id);
         $nouveauCommentaire = new Commentaire;
@@ -164,6 +208,10 @@ class PublicationController extends Controller
         return back();
     }
 
+    /*
+    * Fonction qui permet d'obtenir les commentaires d'une publication
+    * Paramètre : l'id de la publication concerner
+    */
     public static function obtenirCommentaires($idPublication){
         $idPublication = intval($idPublication);
         return Commentaire::where('idpublication', $idPublication)->get();
