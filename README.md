@@ -24,6 +24,39 @@
 - DB_USERNAME : Nom d'utilisateur pour intéragir avec la base de données
 - DB_PASSWORD : Mon de passe du compte utilisateur
 
+# Ajout d'un compte administrateur
+Laravel utilise un hash qui est inconnu par MySQL. Il est donc impossible de créer un compte admin via un script MySQL.
+Pour créer un compte admin :
+- Créer un compte via le site
+- Dans la base de données, table compte, sélectionner le compte créer et mettez l'id rôle à 1
+
 # Historique des versions
-## V0.1.0
+## v0.1.0
 - Première version du projet
+
+## v0.1.1
+### Fonctionnalités
+- Possibilité de bloquer un utilisateur
+- Implémentation des notifications
+- Implémentation d'une page de visualisation de publication
+### Améliorations
+- Amélioration de la vérification du statut d'admistrateur ou de modérateur d'un utilisateur
+- Amélioration de la gestion d'erreurs
+- Les comptes ne peuvent plus avoir le même pseudo
+- Affichage du nombre de notifications
+### Traduction
+- Traduction des messages d'erreurs en français
+### Optimisation
+- Transfère de la fonction "autoriserVoirPublication" du controleur Utilisateur au controleur Publication
+### Bugs
+- Correction d'un bug où certains éléments apparaient en bleu
+- Correction d'un bug où les photos de profil n'apparaissent pas sur la carte d'ajout d'une publication, d'un commentaire ou d'un message
+- Correction d'un bug où la photo profil de l'envoyeur du message était le même que celle de l'utilisateur actuel
+- Correction d'un bug où un utilisateur non connecté pouvait accéder aux fonctionnalités administrateurs
+- Correction d'un bug où il y avait un problème d'affichage des photos de profil dans les commentaires
+- Correction d'un bug où un utilisateur non connecté voyait la carte pour publier du contenu sur un profil
+- Correction d'un bug où un utilisateur non connecté pouvait ajouter un commentaire
+- Correction d'un bug où un utilisateur non connecté pouvait aimer une publication
+- Correction d'un bug où un utilisateur connecté pouvait accéder aux pages inscription et connexion
+- Correction d'un bug où les signalements ne se supprimer pas bien lors de la suppression d'un compte
+- Correction d'un bug où les informations dans les modals s'envoyer après avoir cliquer sur les boutons d'annulation
