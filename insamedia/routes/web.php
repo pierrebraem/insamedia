@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\VerifieBannissement;
 use App\Http\Middleware\VerifieAdministrateur;
 use App\Http\Middleware\NombreNotifs;
+use App\Http\Middleware\VerifieEstConnecte;
 
 use App\Http\Controllers\ConnexionInscriptionController;
 use App\Http\Controllers\AccueilController;
@@ -36,11 +37,11 @@ Route::get('/', [AccueilController::class, 'afficherAccueil'])->name('accueil.af
 Route::get('/parcourir', [ParcourirController::class, 'afficherParcourir'])->name('parcourir.afficher')->middleware(NombreNotifs::class);
 Route::post('/parcourir/recherche', [ParcourirController::class, 'rechercher'])->name('parcourir.rechercher')->middleware(NombreNotifs::class);
 
-Route::get('/connexion', [ConnexionInscriptionController::class, 'afficherConnexion'])->name('connexion.afficher');
-Route::post('/connexion/seconnecter', [ConnexionInscriptionController::class, 'seconnecter'])->name('connexion.seconnecter');
+Route::get('/connexion', [ConnexionInscriptionController::class, 'afficherConnexion'])->name('connexion.afficher')->middleware(VerifieEstConnecte::class);
+Route::post('/connexion/seconnecter', [ConnexionInscriptionController::class, 'seconnecter'])->name('connexion.seconnecter')->middleware(VerifieEstConnecte::class);
 
-Route::get('/inscription', [ConnexionInscriptionController::class, 'afficherInscription'])->name('inscription.afficher');
-Route::post('/inscription/sincrire', [ConnexionInscriptionController::class, 'sincrire'])->name('inscription.sincrire');
+Route::get('/inscription', [ConnexionInscriptionController::class, 'afficherInscription'])->name('inscription.afficher')->middleware(VerifieEstConnecte::class);
+Route::post('/inscription/sincrire', [ConnexionInscriptionController::class, 'sincrire'])->name('inscription.sincrire')->middleware(VerifieEstConnecte::class);
 
 Route::get('/deconnexion', [ConnexionInscriptionController::class, 'deconnexion'])->name('deconnexion');
 

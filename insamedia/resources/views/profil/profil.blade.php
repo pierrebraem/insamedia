@@ -82,49 +82,51 @@
             <!-- Section publication -->
             <div>
                 <!-- Carte pour publier du contenu -->
-                <div class="card cartePublicationP centrer">
-                    <div class="card-body">
-                        <form action="/publication/{{$utilisateur->id}}/publier" method="post" enctype="multipart/form-data">
-                        @csrf
-                            <div class="ligneE">
-                                <div class="colonneE1">
-                                    @if(Session::get('photo') == null)
-                                        <a href="/profils/{{Session::get('id')}}"><img class="photoProfile elementDroite" src="{{ asset('images/photo_default.jpg') }}" alt="default"/></a>
-                                    @else
-                                        <a href="/profils/{{Session::get('id')}}"><img class="photoProfile elementDroite" src="{{ asset( Session::get('photo') ) }}"/></a>
-                                    @endif
+                @if(Session::has('id'))
+                    <div class="card cartePublicationP centrer">
+                        <div class="card-body">
+                            <form action="/publication/{{$utilisateur->id}}/publier" method="post" enctype="multipart/form-data">
+                            @csrf
+                                <div class="ligneE">
+                                    <div class="colonneE1">
+                                        @if(Session::get('photo') == null)
+                                            <a href="/profils/{{Session::get('id')}}"><img class="photoProfile elementDroite" src="{{ asset('images/photo_default.jpg') }}" alt="default"/></a>
+                                        @else
+                                            <a href="/profils/{{Session::get('id')}}"><img class="photoProfile elementDroite" src="{{ asset( Session::get('photo') ) }}"/></a>
+                                        @endif
+                                    </div>
+                                    <div class="colonneE2">
+                                        <textarea class="w-100" rows="5" placeholder="Dites ce que vous voulez" name="publication"></textarea>
+                                    </div>
                                 </div>
-                                <div class="colonneE2">
-                                    <textarea class="w-100" rows="5" placeholder="Dites ce que vous voulez" name="publication"></textarea>
+                                <div class="row">
+                                    <div>
+                                        <label>Visibilite</label>
+                                        <select name="visibilite">
+                                            @foreach($visibilites as $visibilite)
+                                                <option value="{{$visibilite->id}}">{{$visibilite->libelle}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <div>
-                                    <label>Visibilite</label>
-                                    <select name="visibilite">
-                                        @foreach($visibilites as $visibilite)
-                                            <option value="{{$visibilite->id}}">{{$visibilite->libelle}}</option>
-                                        @endforeach
-                                    </select>
+                                <div class="row">
+                                    <div>
+                                        <input type="checkbox" name="aCommentaire"/>
+                                        <label>Désactiver les commentaires</label>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <div>
-                                    <input type="checkbox" name="aCommentaire"/>
-                                    <label>Désactiver les commentaires</label>
+                                <div class="row">
+                                    <div class="col">
+                                        <input type="file" class="form-control" name="fichier" />
+                                    </div>
+                                    <div class="col">
+                                        <input type="submit" class="btn btn-primary elementDroite" value="Publier"/>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <div class="col">
-                                    <input type="file" class="form-control" name="fichier" />
-                                </div>
-                                <div class="col">
-                                    <input type="submit" class="btn btn-primary elementDroite" value="Publier"/>
-                                </div>
-                            </div>
-                        </form>                
+                            </form>                
+                        </div>
                     </div>
-                </div>
+                @endif
 
                 <!-- Affichage publication sur le profil -->
                 @if($publications->count() === 0)
@@ -218,25 +220,27 @@
                                                     </div>
                                                 </div>
                                             @endforeach
-                                            <form action="/publication/{{$publication->id}}/commentaire" method="get">
-                                                <div class="ligneE">
-                                                    <div class="colonneE1">
-                                                        @if(Session::get('photo') == null)
-                                                            <a href="/profils/{{Session::get('id')}}"><img class="photoProfile elementDroite" src="{{ asset('images/photo_default.jpg') }}" alt="default"/></a>
-                                                        @else
-                                                            <a href="/profils/{{Session::get('id')}}"><img class="photoProfile elementDroite" src="{{ asset( Session::get('photo') ) }}"/></a>
-                                                        @endif
+                                            @if(Session::has('id'))
+                                                <form action="/publication/{{$publication->id}}/commentaire" method="get">
+                                                    <div class="ligneE">
+                                                        <div class="colonneE1">
+                                                            @if(Session::get('photo') == null)
+                                                                <a href="/profils/{{Session::get('id')}}"><img class="photoProfile elementDroite" src="{{ asset('images/photo_default.jpg') }}" alt="default"/></a>
+                                                            @else
+                                                                <a href="/profils/{{Session::get('id')}}"><img class="photoProfile elementDroite" src="{{ asset( Session::get('photo') ) }}"/></a>
+                                                            @endif
+                                                        </div>
+                                                        <div class="colonneE2">
+                                                            <textarea class="w-100" rows="2" placeholder="Écrivez un commentaire" name="commentaire"></textarea>
+                                                        </div>
                                                     </div>
-                                                    <div class="colonneE2">
-                                                        <textarea class="w-100" rows="2" placeholder="Écrivez un commentaire" name="commentaire"></textarea>
+                                                    <div class="row">
+                                                        <div class="col">
+                                                            <input type="submit" class="btn btn-primary elementDroite" value="Publier"/>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col">
-                                                        <input type="submit" class="btn btn-primary elementDroite" value="Publier"/>
-                                                    </div>
-                                                </div>
-                                            </form>
+                                                </form>
+                                            @endif
                                         </div>
                                     </div>
                                 @else
@@ -268,7 +272,7 @@
                             <input type="text" placeholder="Raison" name="raison"/>
                         </div>
                         <div>
-                            <button class="btn btn-danger fermerB">Annuler</button>
+                            <button type="button" class="btn btn-danger fermerB">Annuler</button>
                             <input type="submit" class="btn btn-success" value="Signaler"/>
                         </div>
                     </form>

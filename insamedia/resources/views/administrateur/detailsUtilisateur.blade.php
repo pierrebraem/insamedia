@@ -109,7 +109,7 @@
                         <h4>Êtes-vous sur de vouloir @if($utilisateur->idrole == 3) donner @else retirer @endif les droits de modération à {{$utilisateur->pseudo}} ?</h4>
                     </div>
                     <div>
-                        <button class="btn btn-danger fermerB">Non</button>
+                        <button type="button" class="btn btn-danger fermerB">Non</button>
                         <a href="/administrateur/utilisateurs/{{$utilisateur->id}}/moderation" class="btn btn-success">Oui</a>
                     </div>
                 </div>
@@ -136,9 +136,9 @@
                             <input type="date" name="date"/>
                         </div>
 
+                        <button type="button" class="btn btn-danger fermerB">Annuler</button>
                         <input type="submit" class="btn btn-success" value="Bannir"/>
                     </form>
-                    <button class="btn btn-danger fermerB">Annuler</button>
                 </div>
             </div>
         </div>
@@ -156,7 +156,7 @@
                         <p>Une fois supprimer, le bannissement ne réapparaîtrera dans l'historique</p>
                     </div>
                     <div>
-                        <button class="btn btn-danger fermerB">Non</button>
+                        <button type="bouton" class="btn btn-danger fermerB">Non</button>
                         <a href="#" class="btn btn-success btn-suppression-admin">Oui</a>
                     </div>
                 </div>
@@ -198,7 +198,7 @@
                         </div>
 
                         <div style="margin-top: 5px;">
-                            <button class="btn btn-danger fermerB">Annuler</button>
+                            <button type="button" class="btn btn-danger fermerB">Annuler</button>
                             <input type="submit" class="btn btn-success" value="Valider"/>
                         </div>
                     </form>

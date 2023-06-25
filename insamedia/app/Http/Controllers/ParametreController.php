@@ -61,9 +61,10 @@ class ParametreController extends Controller
             $publications = Publication::where('idcompte', $request->session()->get('id'))->orWhere('idprofil', $request->session()->get('id'))->get('id');
             foreach($publications as $publication){
                 $idPublication = intval($publication->id);
-                Commentaire::destroy($idPublication);
-                Aimer::destroy($idPublication);
-                Signalement::destroy($idPublication);
+                Commentaire::where('idpublication', $idPublication)->delete();
+                Aimer::where('idpublication', $idPublication)->delete();
+                Signalement::where('idpublication', $idPublication)->delete();
+                Notification::where('idcompter', $request->session()->get('id'))->orWhere('idcompteo', $request->session()->get('id'))->delete();
                 $publication->delete();
             }
 
@@ -81,9 +82,6 @@ class ParametreController extends Controller
 
             /* Suppression des amis */
             Amis::where('idcompted', $request->session()->get('id'))->orWhere('idcompter', $request->session()->get('id'))->delete();
-
-            /* Suppression des notifications */
-            Notification::where('idcompter', $request->session()->get('id'))->orWhere('idcompteo', $request->session()->get('id'))->delete();
 
             /* Suppression des signalements */
             Signalement::where('idcompte', $request->session()->get('id'))->delete();

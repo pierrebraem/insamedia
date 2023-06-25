@@ -46,11 +46,17 @@ class ConnexionInscriptionController extends Controller
             $nouvelUtilisateur->mdp = Hash::make($request->input('mdp'));
         }
 
+        if(Utilisateur::where('pseudo', $request->input('pseudo'))->value('pseudo') != ''){
+            return back()->withErrors(['message' => 'Le pseudo saisi existe déjà']);
+        }
+        else{
+            $nouvelUtilisateur->pseudo = $request->input('pseudo');
+        }
+
         $nouvelUtilisateur->nom = $request->input('nom');
         $nouvelUtilisateur->prenom = $request->input('prenom');
         $nouvelUtilisateur->email = $request->input('email');
         $nouvelUtilisateur->datenaissance = $request->input('datenaissance');
-        $nouvelUtilisateur->pseudo = $request->input('pseudo');
         $nouvelUtilisateur->idrole = 3;
         $nouvelUtilisateur->save();
 
