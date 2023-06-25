@@ -61,7 +61,7 @@ CREATE TABLE bloquer(
 CREATE TABLE bannissement(
     id INT(10) NOT NULL PRIMARY KEY AUTO_INCREMENT,
     raison VARCHAR(255) NOT NULL,
-    duree TINYINT(3) NOT NULL,
+    finban TIMESTAMP NOT NULL,
     idcompte INT(10) NOT NULL
 );
 
@@ -141,7 +141,11 @@ INSERT INTO visibilite(libelle) VALUES
 
 -- Ajout des données dans la table 'typenotification'
 INSERT INTO typenotification(libelle) VALUES
-('demandeAmis');
+('demandeAmis'),
+('aimer'),
+('commenter'),
+('demandeAcceptée'),
+('demandeRefusée');
 
 -- Insertion des clés étrangères
 -- Insertion de la clé étrangère dans la table 'compte'
