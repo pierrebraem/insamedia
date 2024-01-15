@@ -30,6 +30,9 @@ Pour créer un compte admin :
 - Créer un compte via le site
 - Dans la base de données, table compte, sélectionner le compte créer et mettez l'id rôle à 1
 
+# Vidéo de présentation du projet
+[Vidéo de présentation du projet sur Youtube](https://www.youtube.com/watch?v=Njb1JNzGQpU&ab_channel=Cumulo)
+
 # Historique des versions
 ## v0.1.0
 - Première version du projet
